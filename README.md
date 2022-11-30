@@ -14,6 +14,7 @@ hsi = hsi_tif.asarray().copy()
 [Download HSI Urban_F210 (Yandex Disk)](https://disk.yandex.ru/d/WL4q_BmPl8lgxw)
 ```python
 #How to open in Python
+import spectral.io.envi as envi
 hsi_envi = envi.open('./Urban_F210/Urban_F210.hdr',
                      './Urban_F210/Urban_F210.img')
 hsi = np.array(hsi_envi.open_memmap(writble = True), dtype = float)
