@@ -6,6 +6,10 @@
 [Download HSI Moffett Field](https://drive.google.com/file/d/1xbTM2D-HpMVYf1BUtXefKqqokfEVz9OA/view?usp=sharing)
 
 [Download HSI Cuprite97 (Yandex Disk)](https://disk.yandex.ru/d/YIMepFJvW0TBnw)
+```python
+hsi_tif = tfl.TiffFile(r'C:\Users\konst\jupyter_notebook\HSI\data envil\Cuprite97\Cuprite97.tif')
+hsi = hsi_tif.asarray().copy()
+```
 ___
 [www.spectralpython.net](https://www.spectralpython.net/)
 
