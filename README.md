@@ -5,7 +5,7 @@
 ## Useful links:
 [Download HSI Moffett Field](https://drive.google.com/file/d/1xbTM2D-HpMVYf1BUtXefKqqokfEVz9OA/view?usp=sharing)
 
-[Download HSI Cuprite97](https://drive.google.com/drive/folders/1NNMUvk3aifHwCRRUVTnV8gQl1aYoRD7o?usp=sharing)
+[Download HSI Cuprite97 (Yandex Disk)](https://disk.yandex.ru/d/YIMepFJvW0TBnw)
 ___
 [www.spectralpython.net](https://www.spectralpython.net/)
 
