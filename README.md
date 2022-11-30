@@ -7,7 +7,7 @@
 
 [Download HSI Cuprite97 (Yandex Disk)](https://disk.yandex.ru/d/YIMepFJvW0TBnw)
 ```python
-hsi_tif = tfl.TiffFile(r'C:\Users\konst\jupyter_notebook\HSI\data envil\Cuprite97\Cuprite97.tif')
+hsi_tif = tfl.TiffFile('./Cuprite97/Cuprite97.tif')
 hsi = hsi_tif.asarray().copy()
 ```
 ___
