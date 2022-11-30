@@ -11,7 +11,7 @@
 hsi_tif = tfl.TiffFile('./Cuprite97/Cuprite97.tif')
 hsi = hsi_tif.asarray().copy()
 ```
-[Download HSI Urban_F210 (Yandex Disk)](https://disk.yandex.ru/d/WL4q_BmPl8lgxw
+[Download HSI Urban_F210 (Yandex Disk)](https://disk.yandex.ru/d/WL4q_BmPl8lgxw)
 ```python
 #How to open in Python
 hsi_envi = envi.open('./Urban_F210/Urban_F210.hdr',
