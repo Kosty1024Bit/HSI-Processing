@@ -3,7 +3,15 @@
 ![rgb_mf](https://user-images.githubusercontent.com/32631025/130922046-b5047a45-c37f-43c6-bbb0-5baf80286ff3.png)
 
 ## Useful links:
-[Download HSI Moffett Field](https://drive.google.com/file/d/1xbTM2D-HpMVYf1BUtXefKqqokfEVz9OA/view?usp=sharing)
+[Download HSI Moffett Field (Yandex Disk)](https://disk.yandex.ru/d/spFt8e40w839OQ)
+
+[Download HSI jasperRidge2_F224 (Yandex Disk)](https://disk.yandex.ru/d/LdILQV3pF945mQ)
+
+[Download HSI samson_1 (Yandex Disk)](https://disk.yandex.ru/d/7CaNWUNfHUp_RA)
+
+[Download HSI indian pine (Yandex Disk)](https://disk.yandex.ru/d/Vvpef_-KETbPFg)
+
+[Download HSI Washington_DC_Mall (Yandex Disk)](https://disk.yandex.ru/d/Xcy7TNYpCaVG9g)
 
 [Download HSI Cuprite97 (Yandex Disk)](https://disk.yandex.ru/d/YIMepFJvW0TBnw)
 ```python
