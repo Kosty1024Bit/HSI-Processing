@@ -1,0 +1,7 @@
+cd docs
+sphinx-quickstart
+cd ..
+sphinx-apidoc -o docs/ hsip/
+cd docs
+make html
+make clean
