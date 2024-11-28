@@ -1,10 +1,10 @@
 hsip.processing package
 =======================
 
-hsip.processing.hsilib module
------------------------------
+hsip.processing.processing module
+---------------------------------
 
-.. automodule:: hsip.processing.hsilib
+.. automodule:: hsip.processing.processing
    :members:
    :undoc-members:
    :show-inheritance:

@@ -4,5 +4,8 @@ hsip package
 .. toctree::
    :maxdepth: 4
 
-   hsip.emd
+   hsip.clustering
    hsip.processing
+   hsip.reader
+   hsip.rgb
+   hsip.swemd

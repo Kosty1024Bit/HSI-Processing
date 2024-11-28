@@ -1,10 +1,10 @@
-hsip.emd package
+hsip.rgb package
 ================
 
-hsip.emd.emd module
+hsip.rgb.rgb module
 -------------------
 
-.. automodule:: hsip.emd.emd
+.. automodule:: hsip.rgb.rgb
    :members:
    :undoc-members:
    :show-inheritance:

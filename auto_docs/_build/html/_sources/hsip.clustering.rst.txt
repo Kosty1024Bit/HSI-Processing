@@ -1,10 +1,10 @@
-hsip.processing package
+hsip.clustering package
 =======================
 
-hsip.processing.processing module
+hsip.clustering.clustering module
 ---------------------------------
 
-.. automodule:: hsip.processing.processing
+.. automodule:: hsip.clustering.clustering
    :members:
    :undoc-members:
    :show-inheritance:

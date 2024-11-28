@@ -18,9 +18,9 @@ release = '1.0.0'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
-    'sphinx.ext.autodoc',
-    'sphinx.ext.viewcode',
-    'sphinx.ext.napoleon'
+	'sphinx.ext.autodoc',
+	'sphinx.ext.viewcode',
+	'sphinx.ext.napoleon'
 ]
 
 templates_path = ['_templates']
@@ -33,12 +33,3 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
-
-def autodoc_skip_member(app, what, name, obj, skip, options):
-    # Уберите Submodules и Module contents
-    if name in ["Submodules", "Module contents"]:
-        return True
-    return skip
-
-def setup(app):
-    app.connect("autodoc-skip-member", autodoc_skip_member)
