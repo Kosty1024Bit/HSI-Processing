@@ -1,8 +1,10 @@
-hsip.processing package
-=======================
+Methods of processing hyperspectral data
+========================================
 
-hsip.processing.processing module
----------------------------------
+Working with HSI often requires functionality for both pre- and post-processing of data.
+
+Processing methods:
+-------------------
 
 .. automodule:: hsip.processing.processing
    :members:

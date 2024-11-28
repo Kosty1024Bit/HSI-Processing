@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>hsip.reader package &mdash; HSI Processing 1.0.0 documentation</title>
+  <title>Hyperspectral data reading tools &mdash; HSI Processing 1.0.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
@@ -19,8 +19,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="hsip.rgb package" href="hsip.rgb.html" />
-    <link rel="prev" title="hsip.processing package" href="hsip.processing.html" /> 
+    <link rel="next" title="Color image synthesis" href="hsip.rgb.html" />
+    <link rel="prev" title="Methods of processing hyperspectral data" href="hsip.processing.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,20 +44,21 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">hsip</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="hsip.html">hsip package</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="hsip.clustering.html">hsip.clustering package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="hsip.processing.html">hsip.processing package</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">hsip.reader package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#module-hsip.reader.reader">hsip.reader.reader module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.clustering.html">Clustering of hyperspectral data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.processing.html">Methods of processing hyperspectral data</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Hyperspectral data reading tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-hsip.reader.reader">Readers:</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#hsip.reader.reader.open_AVIRIS"><code class="docutils literal notranslate"><span class="pre">open_AVIRIS()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hsip.reader.reader.open_ENVI"><code class="docutils literal notranslate"><span class="pre">open_ENVI()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hsip.reader.reader.open_ERDAS"><code class="docutils literal notranslate"><span class="pre">open_ERDAS()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hsip.reader.reader.open_SpyFile"><code class="docutils literal notranslate"><span class="pre">open_SpyFile()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hsip.reader.reader.open_TIF"><code class="docutils literal notranslate"><span class="pre">open_TIF()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="hsip.rgb.html">hsip.rgb package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="hsip.swemd.html">hsip.swemd package</a></li>
 </ul>
 </li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.rgb.html">Color image synthesis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.swemd.html">Empirical mode decomposition (EMD)</a></li>
 </ul>
 
         </div>
@@ -74,9 +75,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="modules.html">hsip</a></li>
-          <li class="breadcrumb-item"><a href="hsip.html">hsip package</a></li>
-      <li class="breadcrumb-item active">hsip.reader package</li>
+      <li class="breadcrumb-item active">Hyperspectral data reading tools</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/hsip.reader.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -86,10 +85,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="hsip-reader-package">
-<h1>hsip.reader package<a class="headerlink" href="#hsip-reader-package" title="Link to this heading"></a></h1>
+  <section id="hyperspectral-data-reading-tools">
+<h1>Hyperspectral data reading tools<a class="headerlink" href="#hyperspectral-data-reading-tools" title="Link to this heading"></a></h1>
+<p>Hyperspectral data are distributed in different formats. Using these functions it is possible to read HSI in the following formats: SpyFile, ENVI, AVIRIS, ERDAS/Lan, Tif.</p>
+<p>All readers except the TIF reader are wrappers for the opening functions from the <a class="reference external" href="https://www.spectralpython.net/">Spectral Python library</a>.</p>
 <section id="module-hsip.reader.reader">
-<span id="hsip-reader-reader-module"></span><h2>hsip.reader.reader module<a class="headerlink" href="#module-hsip.reader.reader" title="Link to this heading"></a></h2>
+<span id="readers"></span><h2>Readers:<a class="headerlink" href="#module-hsip.reader.reader" title="Link to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="hsip.reader.reader.open_AVIRIS">
 <span class="sig-prename descclassname"><span class="pre">hsip.reader.reader.</span></span><span class="sig-name descname"><span class="pre">open_AVIRIS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_rfl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_spc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsip/reader/reader.html#open_AVIRIS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsip.reader.reader.open_AVIRIS" title="Link to this definition"></a></dt>
@@ -231,8 +232,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="hsip.processing.html" class="btn btn-neutral float-left" title="hsip.processing package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="hsip.rgb.html" class="btn btn-neutral float-right" title="hsip.rgb package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="hsip.processing.html" class="btn btn-neutral float-left" title="Methods of processing hyperspectral data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="hsip.rgb.html" class="btn btn-neutral float-right" title="Color image synthesis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

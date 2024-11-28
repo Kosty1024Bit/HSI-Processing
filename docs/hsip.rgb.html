@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>hsip.rgb package &mdash; HSI Processing 1.0.0 documentation</title>
+  <title>Color image synthesis &mdash; HSI Processing 1.0.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
@@ -19,8 +19,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="hsip.swemd package" href="hsip.swemd.html" />
-    <link rel="prev" title="hsip.reader package" href="hsip.reader.html" /> 
+    <link rel="next" title="Empirical mode decomposition (EMD)" href="hsip.swemd.html" />
+    <link rel="prev" title="Hyperspectral data reading tools" href="hsip.reader.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,20 +44,18 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">hsip</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="hsip.html">hsip package</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="hsip.clustering.html">hsip.clustering package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="hsip.processing.html">hsip.processing package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="hsip.reader.html">hsip.reader package</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">hsip.rgb package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#module-hsip.rgb.rgb">hsip.rgb.rgb module</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="hsip.swemd.html">hsip.swemd package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.clustering.html">Clustering of hyperspectral data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.processing.html">Methods of processing hyperspectral data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.reader.html">Hyperspectral data reading tools</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Color image synthesis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-hsip.rgb.rgb">Methods for RGB synthesis:</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#hsip.rgb.rgb.hsi_synthesize_rgb"><code class="docutils literal notranslate"><span class="pre">hsi_synthesize_rgb()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hsip.rgb.rgb.simple_synthesize_rgb"><code class="docutils literal notranslate"><span class="pre">simple_synthesize_rgb()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.swemd.html">Empirical mode decomposition (EMD)</a></li>
 </ul>
 
         </div>
@@ -74,9 +72,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="modules.html">hsip</a></li>
-          <li class="breadcrumb-item"><a href="hsip.html">hsip package</a></li>
-      <li class="breadcrumb-item active">hsip.rgb package</li>
+      <li class="breadcrumb-item active">Color image synthesis</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/hsip.rgb.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -86,10 +82,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="hsip-rgb-package">
-<h1>hsip.rgb package<a class="headerlink" href="#hsip-rgb-package" title="Link to this heading"></a></h1>
+  <section id="color-image-synthesis">
+<h1>Color image synthesis<a class="headerlink" href="#color-image-synthesis" title="Link to this heading"></a></h1>
+<p>Just like hyperspectral images, color images also consist of multiple channels. This functionality allows for the reconstruction of color images from HSI data with colors that closely resemble reality. Additionally, it enables the creation of color images composed of the most informative channels, which can be used for semantic clustering.</p>
 <section id="module-hsip.rgb.rgb">
-<span id="hsip-rgb-rgb-module"></span><h2>hsip.rgb.rgb module<a class="headerlink" href="#module-hsip.rgb.rgb" title="Link to this heading"></a></h2>
+<span id="methods-for-rgb-synthesis"></span><h2>Methods for RGB synthesis:<a class="headerlink" href="#module-hsip.rgb.rgb" title="Link to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="hsip.rgb.rgb.hsi_synthesize_rgb">
 <span class="sig-prename descclassname"><span class="pre">hsip.rgb.rgb.</span></span><span class="sig-name descname"><span class="pre">hsi_synthesize_rgb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spectral_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rgb_bands</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelengths</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsip/rgb/rgb.html#hsi_synthesize_rgb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsip.rgb.rgb.hsi_synthesize_rgb" title="Link to this definition"></a></dt>
@@ -146,8 +143,8 @@ If provided, the closest wavelengths to 650 nm (red), 550 nm (green), and 450 nm
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="hsip.reader.html" class="btn btn-neutral float-left" title="hsip.reader package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="hsip.swemd.html" class="btn btn-neutral float-right" title="hsip.swemd package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="hsip.reader.html" class="btn btn-neutral float-left" title="Hyperspectral data reading tools" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="hsip.swemd.html" class="btn btn-neutral float-right" title="Empirical mode decomposition (EMD)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>hsip.processing package &mdash; HSI Processing 1.0.0 documentation</title>
+  <title>Methods of processing hyperspectral data &mdash; HSI Processing 1.0.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
@@ -20,8 +20,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="hsip.reader package" href="hsip.reader.html" />
-    <link rel="prev" title="hsip.clustering package" href="hsip.clustering.html" /> 
+    <link rel="next" title="Hyperspectral data reading tools" href="hsip.reader.html" />
+    <link rel="prev" title="Clustering of hyperspectral data" href="hsip.clustering.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,20 +45,19 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">hsip</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="hsip.html">hsip package</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="hsip.clustering.html">hsip.clustering package</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">hsip.processing package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#module-hsip.processing.processing">hsip.processing.processing module</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="hsip.reader.html">hsip.reader package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="hsip.rgb.html">hsip.rgb package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="hsip.swemd.html">hsip.swemd package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.clustering.html">Clustering of hyperspectral data</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Methods of processing hyperspectral data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-hsip.processing.processing">Processing methods:</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#hsip.processing.processing.normalize"><code class="docutils literal notranslate"><span class="pre">normalize()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hsip.processing.processing.rayleigh_scattering"><code class="docutils literal notranslate"><span class="pre">rayleigh_scattering()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hsip.processing.processing.sigma_maximum_filter"><code class="docutils literal notranslate"><span class="pre">sigma_maximum_filter()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.reader.html">Hyperspectral data reading tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.rgb.html">Color image synthesis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.swemd.html">Empirical mode decomposition (EMD)</a></li>
 </ul>
 
         </div>
@@ -75,9 +74,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="modules.html">hsip</a></li>
-          <li class="breadcrumb-item"><a href="hsip.html">hsip package</a></li>
-      <li class="breadcrumb-item active">hsip.processing package</li>
+      <li class="breadcrumb-item active">Methods of processing hyperspectral data</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/hsip.processing.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -87,31 +84,32 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="hsip-processing-package">
-<h1>hsip.processing package<a class="headerlink" href="#hsip-processing-package" title="Link to this heading"></a></h1>
+  <section id="methods-of-processing-hyperspectral-data">
+<h1>Methods of processing hyperspectral data<a class="headerlink" href="#methods-of-processing-hyperspectral-data" title="Link to this heading"></a></h1>
+<p>Working with HSI often requires functionality for both pre- and post-processing of data.</p>
 <section id="module-hsip.processing.processing">
-<span id="hsip-processing-processing-module"></span><h2>hsip.processing.processing module<a class="headerlink" href="#module-hsip.processing.processing" title="Link to this heading"></a></h2>
+<span id="processing-methods"></span><h2>Processing methods:<a class="headerlink" href="#module-hsip.processing.processing" title="Link to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="hsip.processing.processing.normalize">
 <span class="sig-prename descclassname"><span class="pre">hsip.processing.processing.</span></span><span class="sig-name descname"><span class="pre">normalize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsip/processing/processing.html#normalize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsip.processing.processing.normalize" title="Link to this definition"></a></dt>
-<dd><blockquote>
-<div><p>Normalizes a given NumPy array to the range [0, 1].
+<dd><p>Normalizes a given NumPy array to the range [0, 1].
 The function scales the input array such that the minimum value in the array becomes 0
 and the maximum value becomes 1. The formula used is:</p>
 <div class="math notranslate nohighlight">
-\[normalized\_value =\]</div>
-</div></blockquote>
-<p>rac{value - min}{max - min}</p>
-<blockquote>
-<div><dl class="simple">
-<dt>array<span class="classifier">np.ndarray</span></dt><dd><p>A NumPy array to be normalized. The array can be of any shape or type that supports
+\[normalized = {{value - min}} / {{max - min}}\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>array</strong> (<em>np.ndarray</em>) – A NumPy array to be normalized. The array can be of any shape or type that supports
 element-wise arithmetic operations.</p>
 </dd>
-</dl>
-<dl class="simple">
-<dt>np.ndarray</dt><dd><p>A NumPy array of the same shape as the input, with values normalized to the range [0, 1].</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A NumPy array of the same shape as the input, with values normalized to the range [0, 1].</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">normalized_array</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
@@ -127,7 +125,6 @@ element-wise arithmetic operations.</p>
 <span class="go"> [0.8  1.  ]]</span>
 </pre></div>
 </div>
-</div></blockquote>
 </dd></dl>
 
 <dl class="py function">
@@ -200,8 +197,8 @@ threshold values.</p></li>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="hsip.clustering.html" class="btn btn-neutral float-left" title="hsip.clustering package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="hsip.reader.html" class="btn btn-neutral float-right" title="hsip.reader package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="hsip.clustering.html" class="btn btn-neutral float-left" title="Clustering of hyperspectral data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="hsip.reader.html" class="btn btn-neutral float-right" title="Hyperspectral data reading tools" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

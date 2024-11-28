@@ -1,8 +1,10 @@
-hsip.clustering package
-=======================
+Clustering of hyperspectral data
+================================
 
-hsip.clustering.clustering module
----------------------------------
+One of the main methods of processing the HSI is clustering.
+
+Clustering methods:
+-------------------
 
 .. automodule:: hsip.clustering.clustering
    :members:

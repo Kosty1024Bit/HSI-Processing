@@ -4,11 +4,11 @@ from tqdm import tqdm
 def normalize(array: np.ndarray):
     '''
     Normalizes a given NumPy array to the range [0, 1].
-    The function scales the input array such that the minimum value in the array becomes 0 
+    The function scales the input array such that the minimum value in the array becomes 0
     and the maximum value becomes 1. The formula used is:
 
     .. math::
-        normalized\_value = \frac{value - min}{max - min}
+        normalized = {{value - min}} / {{max - min}}
 
     Parameters
     ----------

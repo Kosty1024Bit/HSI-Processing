@@ -8,10 +8,18 @@ HSI Processing documentation
 
 Welcome to HSI Processing documentation!
 
+.. image:: rgbspec.png
+   :width: 770px
+   :height: 301px
+   :scale: 100 %
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: Contents:
 
-   modules
+   hsip.clustering
+   hsip.processing
+   hsip.reader
+   hsip.rgb
+   hsip.swemd
 

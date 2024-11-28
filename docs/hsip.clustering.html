@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>hsip.clustering package &mdash; HSI Processing 1.0.0 documentation</title>
+  <title>Clustering of hyperspectral data &mdash; HSI Processing 1.0.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
@@ -19,8 +19,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="hsip.processing package" href="hsip.processing.html" />
-    <link rel="prev" title="hsip package" href="hsip.html" /> 
+    <link rel="next" title="Methods of processing hyperspectral data" href="hsip.processing.html" />
+    <link rel="prev" title="HSI Processing documentation" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,20 +44,24 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">hsip</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="hsip.html">hsip package</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">hsip.clustering package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#module-hsip.clustering.clustering">hsip.clustering.clustering module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Clustering of hyperspectral data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-hsip.clustering.clustering">Clustering methods:</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#hsip.clustering.clustering.CosClust"><code class="docutils literal notranslate"><span class="pre">CosClust</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#hsip.clustering.clustering.CosClust.threshold"><code class="docutils literal notranslate"><span class="pre">CosClust.threshold</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hsip.clustering.clustering.CosClust.labels"><code class="docutils literal notranslate"><span class="pre">CosClust.labels</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hsip.clustering.clustering.CosClust.reference_set"><code class="docutils literal notranslate"><span class="pre">CosClust.reference_set</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hsip.clustering.clustering.CosClust.fit"><code class="docutils literal notranslate"><span class="pre">CosClust.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">CosClust.fit()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="hsip.processing.html">hsip.processing package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="hsip.reader.html">hsip.reader package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="hsip.rgb.html">hsip.rgb package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="hsip.swemd.html">hsip.swemd package</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.processing.html">Methods of processing hyperspectral data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.reader.html">Hyperspectral data reading tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.rgb.html">Color image synthesis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.swemd.html">Empirical mode decomposition (EMD)</a></li>
 </ul>
 
         </div>
@@ -74,9 +78,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="modules.html">hsip</a></li>
-          <li class="breadcrumb-item"><a href="hsip.html">hsip package</a></li>
-      <li class="breadcrumb-item active">hsip.clustering package</li>
+      <li class="breadcrumb-item active">Clustering of hyperspectral data</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/hsip.clustering.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -86,10 +88,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="hsip-clustering-package">
-<h1>hsip.clustering package<a class="headerlink" href="#hsip-clustering-package" title="Link to this heading"></a></h1>
+  <section id="clustering-of-hyperspectral-data">
+<h1>Clustering of hyperspectral data<a class="headerlink" href="#clustering-of-hyperspectral-data" title="Link to this heading"></a></h1>
+<p>One of the main methods of processing the HSI is clustering.</p>
 <section id="module-hsip.clustering.clustering">
-<span id="hsip-clustering-clustering-module"></span><h2>hsip.clustering.clustering module<a class="headerlink" href="#module-hsip.clustering.clustering" title="Link to this heading"></a></h2>
+<span id="clustering-methods"></span><h2>Clustering methods:<a class="headerlink" href="#module-hsip.clustering.clustering" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="hsip.clustering.clustering.CosClust">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hsip.clustering.clustering.</span></span><span class="sig-name descname"><span class="pre">CosClust</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.9</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsip/clustering/clustering.html#CosClust"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsip.clustering.clustering.CosClust" title="Link to this definition"></a></dt>
@@ -194,8 +197,8 @@ and <cite>n_features</cite> is the number of features for each sample.</p></li>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="hsip.html" class="btn btn-neutral float-left" title="hsip package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="hsip.processing.html" class="btn btn-neutral float-right" title="hsip.processing package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="HSI Processing documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="hsip.processing.html" class="btn btn-neutral float-right" title="Methods of processing hyperspectral data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -20,7 +20,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="hsip" href="modules.html" /> 
+    <link rel="next" title="Clustering of hyperspectral data" href="hsip.clustering.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,7 +44,11 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">hsip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.clustering.html">Clustering of hyperspectral data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.processing.html">Methods of processing hyperspectral data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.reader.html">Hyperspectral data reading tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.rgb.html">Color image synthesis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.swemd.html">Empirical mode decomposition (EMD)</a></li>
 </ul>
 
         </div>
@@ -74,11 +78,52 @@
   <section id="hsi-processing-documentation">
 <h1>HSI Processing documentation<a class="headerlink" href="#hsi-processing-documentation" title="Link to this heading"></a></h1>
 <p>Welcome to HSI Processing documentation!</p>
+<a class="reference internal image-reference" href="_images/rgbspec.png"><img alt="_images/rgbspec.png" src="_images/rgbspec.png" style="width: 770.0px; height: 301.0px;" />
+</a>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">hsip</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="hsip.html">hsip package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.clustering.html">Clustering of hyperspectral data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hsip.clustering.html#module-hsip.clustering.clustering">Clustering methods:</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="hsip.clustering.html#hsip.clustering.clustering.CosClust"><code class="docutils literal notranslate"><span class="pre">CosClust</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.processing.html">Methods of processing hyperspectral data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hsip.processing.html#module-hsip.processing.processing">Processing methods:</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="hsip.processing.html#hsip.processing.processing.normalize"><code class="docutils literal notranslate"><span class="pre">normalize()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hsip.processing.html#hsip.processing.processing.rayleigh_scattering"><code class="docutils literal notranslate"><span class="pre">rayleigh_scattering()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hsip.processing.html#hsip.processing.processing.sigma_maximum_filter"><code class="docutils literal notranslate"><span class="pre">sigma_maximum_filter()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.reader.html">Hyperspectral data reading tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hsip.reader.html#module-hsip.reader.reader">Readers:</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="hsip.reader.html#hsip.reader.reader.open_AVIRIS"><code class="docutils literal notranslate"><span class="pre">open_AVIRIS()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hsip.reader.html#hsip.reader.reader.open_ENVI"><code class="docutils literal notranslate"><span class="pre">open_ENVI()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hsip.reader.html#hsip.reader.reader.open_ERDAS"><code class="docutils literal notranslate"><span class="pre">open_ERDAS()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hsip.reader.html#hsip.reader.reader.open_SpyFile"><code class="docutils literal notranslate"><span class="pre">open_SpyFile()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hsip.reader.html#hsip.reader.reader.open_TIF"><code class="docutils literal notranslate"><span class="pre">open_TIF()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.rgb.html">Color image synthesis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hsip.rgb.html#module-hsip.rgb.rgb">Methods for RGB synthesis:</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="hsip.rgb.html#hsip.rgb.rgb.hsi_synthesize_rgb"><code class="docutils literal notranslate"><span class="pre">hsi_synthesize_rgb()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hsip.rgb.html#hsip.rgb.rgb.simple_synthesize_rgb"><code class="docutils literal notranslate"><span class="pre">simple_synthesize_rgb()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.swemd.html">Empirical mode decomposition (EMD)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hsip.swemd.html#module-hsip.swemd.swemd">Methods for decomposition into EMD</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="hsip.swemd.html#hsip.swemd.swemd.SWEMD"><code class="docutils literal notranslate"><span class="pre">SWEMD()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hsip.swemd.html#hsip.swemd.swemd.SWEMD_signal"><code class="docutils literal notranslate"><span class="pre">SWEMD_signal()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -89,7 +134,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="modules.html" class="btn btn-neutral float-right" title="hsip" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="hsip.clustering.html" class="btn btn-neutral float-right" title="Clustering of hyperspectral data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

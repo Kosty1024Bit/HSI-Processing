@@ -1,8 +1,10 @@
-hsip.swemd package
-==================
+Empirical mode decomposition (EMD)
+==================================
 
-hsip.swemd.swemd module
------------------------
+Много текста про скользящее окно (можно вставить из презентации)
+
+Methods for decomposition into EMD
+----------------------------------
 
 .. automodule:: hsip.swemd.swemd
    :members:
