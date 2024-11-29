@@ -1,0 +1,262 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hyperspectral data reading tools &mdash; HSI Processing 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8d563738"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Color image synthesis" href="hsip.rgb.html" />
+    <link rel="prev" title="Methods of processing hyperspectral data" href="hsip.processing.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            HSI Processing
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="hsip.clustering.html">Clustering of hyperspectral data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.processing.html">Methods of processing hyperspectral data</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Hyperspectral data reading tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-hsip.reader.reader">Readers:</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#hsip.reader.reader.open_AVIRIS"><code class="docutils literal notranslate"><span class="pre">open_AVIRIS()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hsip.reader.reader.open_ENVI"><code class="docutils literal notranslate"><span class="pre">open_ENVI()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hsip.reader.reader.open_ERDAS"><code class="docutils literal notranslate"><span class="pre">open_ERDAS()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hsip.reader.reader.open_SpyFile"><code class="docutils literal notranslate"><span class="pre">open_SpyFile()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hsip.reader.reader.open_TIF"><code class="docutils literal notranslate"><span class="pre">open_TIF()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.rgb.html">Color image synthesis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.swemd.html">Empirical mode decomposition (EMD)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">HSI Processing</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Hyperspectral data reading tools</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/hsip.reader.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="hyperspectral-data-reading-tools">
+<h1>Hyperspectral data reading tools<a class="headerlink" href="#hyperspectral-data-reading-tools" title="Link to this heading"></a></h1>
+<p>Hyperspectral data are distributed in different formats. Using these functions it is possible to read HSI in the following formats: SpyFile, ENVI, AVIRIS, ERDAS/Lan, Tif.</p>
+<p>All readers except the TIF reader are wrappers for the opening functions from the <a class="reference external" href="https://www.spectralpython.net/">Spectral Python library</a>.</p>
+<section id="module-hsip.reader.reader">
+<span id="readers"></span><h2>Readers:<a class="headerlink" href="#module-hsip.reader.reader" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="hsip.reader.reader.open_AVIRIS">
+<span class="sig-prename descclassname"><span class="pre">hsip.reader.reader.</span></span><span class="sig-name descname"><span class="pre">open_AVIRIS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_rfl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_spc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsip/reader/reader.html#open_AVIRIS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsip.reader.reader.open_AVIRIS" title="Link to this definition"></a></dt>
+<dd><p>Opens a hyperspectral image in AVIRIS format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path_rfl</strong> (<em>str</em>) – Path to the AVIRIS reflectance data file (.rfl).</p></li>
+<li><p><strong>path_spc</strong> (<em>str</em>) – Path to the AVIRIS spectral calibration file (.spc).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <cite>SpyFile</cite> object containing the AVIRIS hyperspectral data.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>SpectralLibrary</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">your_module</span> <span class="kn">import</span> <span class="n">open_AVIRIS</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hsi</span> <span class="o">=</span> <span class="n">open_AVIRIS</span><span class="p">(</span><span class="s2">&quot;example.rfl&quot;</span><span class="p">,</span> <span class="s2">&quot;example.spc&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">hsi</span><span class="p">)</span>
+<span class="go">SpyFile: [shape=(100, 100, 224), dtype=float32]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hsip.reader.reader.open_ENVI">
+<span class="sig-prename descclassname"><span class="pre">hsip.reader.reader.</span></span><span class="sig-name descname"><span class="pre">open_ENVI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_hdr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_img</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsip/reader/reader.html#open_ENVI"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsip.reader.reader.open_ENVI" title="Link to this definition"></a></dt>
+<dd><p>Opens a hyperspectral image in ENVI format and converts it to a NumPy array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path_hdr</strong> (<em>str</em>) – Path to the ENVI header file (.hdr).</p></li>
+<li><p><strong>path_img</strong> (<em>str</em>) – Path to the ENVI image file (.img).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A NumPy array of the hyperspectral data, with <cite>dtype=float</cite>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>The ENVI image is opened as a memory-mapped array and then loaded fully into memory as a float array.</p></li>
+</ul>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">your_module</span> <span class="kn">import</span> <span class="n">open_ENVI</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hsi</span> <span class="o">=</span> <span class="n">open_ENVI</span><span class="p">(</span><span class="s2">&quot;example.hdr&quot;</span><span class="p">,</span> <span class="s2">&quot;example.img&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">hsi</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="go">(100, 100, 224)  # Example dimensions</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hsip.reader.reader.open_ERDAS">
+<span class="sig-prename descclassname"><span class="pre">hsip.reader.reader.</span></span><span class="sig-name descname"><span class="pre">open_ERDAS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsip/reader/reader.html#open_ERDAS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsip.reader.reader.open_ERDAS" title="Link to this definition"></a></dt>
+<dd><p>Opens a hyperspectral image in ERDAS Imagine format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – Path to the ERDAS Imagine file to be opened.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <cite>SpyFile</cite> object containing the hyperspectral data.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>SpectralLibrary</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">your_module</span> <span class="kn">import</span> <span class="n">open_ERDAS</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hsi</span> <span class="o">=</span> <span class="n">open_ERDAS</span><span class="p">(</span><span class="s2">&quot;example.img&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">hsi</span><span class="p">)</span>
+<span class="go">SpyFile: [shape=(100, 100, 224), dtype=float32]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hsip.reader.reader.open_SpyFile">
+<span class="sig-prename descclassname"><span class="pre">hsip.reader.reader.</span></span><span class="sig-name descname"><span class="pre">open_SpyFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_lan</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsip/reader/reader.html#open_SpyFile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsip.reader.reader.open_SpyFile" title="Link to this definition"></a></dt>
+<dd><p>Opens a hyperspectral image in LAN format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path_lan</strong> (<em>str</em>) – Path to the LAN file to be opened.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <cite>SpyFile</cite> object containing the hyperspectral data.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>SpectralLibrary</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">your_module</span> <span class="kn">import</span> <span class="n">open_SpyFile</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hsi</span> <span class="o">=</span> <span class="n">open_SpyFile</span><span class="p">(</span><span class="s2">&quot;example.lan&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">hsi</span><span class="p">)</span>
+<span class="go">SpyFile: [shape=(100, 100, 224), dtype=float32]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hsip.reader.reader.open_TIF">
+<span class="sig-prename descclassname"><span class="pre">hsip.reader.reader.</span></span><span class="sig-name descname"><span class="pre">open_TIF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_tif</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsip/reader/reader.html#open_TIF"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsip.reader.reader.open_TIF" title="Link to this definition"></a></dt>
+<dd><p>Opens a hyperspectral image in GeoTIFF format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path_tif</strong> (<em>str</em>) – Path to the GeoTIFF file to be opened.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A NumPy array containing the hyperspectral data.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>The GeoTIFF data is loaded into memory using the <cite>tifffile</cite> library and copied as a NumPy array.</p></li>
+</ul>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">your_module</span> <span class="kn">import</span> <span class="n">open_TIF</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hsi</span> <span class="o">=</span> <span class="n">open_TIF</span><span class="p">(</span><span class="s2">&quot;example.tif&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">hsi</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="go">(100, 100, 224)  # Example dimensions</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="hsip.processing.html" class="btn btn-neutral float-left" title="Methods of processing hyperspectral data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="hsip.rgb.html" class="btn btn-neutral float-right" title="Color image synthesis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Pukhkii Konstantin.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
