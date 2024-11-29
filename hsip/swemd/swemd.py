@@ -79,6 +79,7 @@ def SWEMD_signal(iSample: np.ndarray, number_of_modes: int = 4, windows_size: li
         Window sizes for each level of empirical modes.
     '''
 
+    #Warning! Legacy code follows!
 
     if isinstance(windows_size, int):
         windows_size = [windows_size]
@@ -201,9 +202,6 @@ def SWEMD_signal(iSample: np.ndarray, number_of_modes: int = 4, windows_size: li
             windowSize = int(2 * (dSize / 2) + 1)  # for next imf
             
         bound = int(windowSize / 2)
-        
-        #print('len(windows_size)', len(windows_size))
-        #print()
         
         sample = rSample.copy()
         rSample = np.zeros(shape = sampleSize, dtype = np.float64)

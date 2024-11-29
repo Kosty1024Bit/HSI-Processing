@@ -1,11 +1,6 @@
 import numpy as np
 
-import spectral.io.spyfile as spyfile
-import spectral.io.aviris as aviris
-import spectral.io.envi as envi
-import spectral.io.erdas as erdas
-
-import tifffile as tfl
+from hsip.processing.processing import normalize
 
 
 def hsi_synthesize_rgb(spectral_data: np.ndarray, rgb_bands: list | np.ndarray = None, wavelengths: list | np.ndarray = None):
@@ -78,7 +73,7 @@ def hsi_synthesize_rgb(spectral_data: np.ndarray, rgb_bands: list | np.ndarray =
     rgb_image = np.stack([red_band, green_band, blue_band], axis=-1)
     rgb_image = np.uint8(rgb_image)
 
-    return rgb_imag
+    return rgb_image
 
 
 def simple_synthesize_rgb(band_data: list, sig_max_filt: float = None):

@@ -63,7 +63,7 @@ def rayleigh_scattering(spectral_data: np.ndarray, inplace=False, verbose=True):
         raise TypeError('spectral_data must be an np.ndarray')
         
     bands = spectral_data.shape[-1]
-    rayleigh_offsets = np.zeros(shape=bands, dtype=float)
+    rayleigh_offsets = np.zeros(shape=bands, dtype=spectral_data.dtype)
     for i in tqdm(range(bands), disable=not verbose):
         layer = spectral_data[..., i]
         rayleigh_offsets[i] = layer[layer > 0].min()
