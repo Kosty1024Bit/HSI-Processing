@@ -7,6 +7,8 @@ from hdbscan import HDBSCAN as source_HDBSCAN
 
 from tqdm import tqdm
 
+from hsip.analysis.analysis import get_centroids_and_medoids
+
 
 class CosClust():
     '''
@@ -28,10 +30,14 @@ class CosClust():
         The cluster labels assigned to each sample. Initialized as `None` and populated after `fit` is called.
     reference_set : list
         A list of reference samples representing each cluster.
+    centroids : np.ndarray
+        2D array of shape `(n_clusters, n_features)` containing the centroids of the clusters.
+    medoids : np.ndarray
+        2D array of shape `(n_clusters, n_features)` containing the medoids of the clusters.
 
     Methods
     -------
-    fit(source_data, y=None)
+    fit(source_data)
         Performs clustering on the input data and returns cluster labels.
 
     Examples
@@ -49,7 +55,10 @@ class CosClust():
         self.labels = None
         self.verbose = verbose
         self.reference_set = []
-
+        
+        self.centroids = None
+        self.medoids = None
+        
 
     def fit(self, source_data: np.ndarray):
         '''
@@ -110,6 +119,8 @@ class CosClust():
             tmp_labels[i] = tmp_corr_array.argmax()
 
         self.labels = tmp_labels
+        
+        self.centroids, self.medoids = get_centroids_and_medoids(self.labels, source_data, 'cosine')
 
         return self.labels
 
@@ -142,6 +153,10 @@ class SCH():
     fcluster_depth : int
         The maximum depth to perform inconsistency calculation if `fcluster_criterion="inconsistent"`. 
         Ignored for other criteria.
+    centroids : np.ndarray
+        2D array of shape `(n_clusters, n_features)` containing the centroids of the clusters.
+    medoids : np.ndarray
+        2D array of shape `(n_clusters, n_features)` containing the medoids of the clusters.
 
     Methods
     -------
@@ -192,6 +207,9 @@ class SCH():
         self.fcluster_t = fcluster_t
         self.fcluster_criterion = fcluster_criterion
         self.fcluster_depth = fcluster_depth
+        
+        self.centroids = None
+        self.medoids = None
 
 
     def fit(self, source_data: np.ndarray):
@@ -212,6 +230,8 @@ class SCH():
             depth=self.fcluster_depth,
         )
 
+        self.centroids, self.medoids = get_centroids_and_medoids(self.labels, source_data, self.linkage_metric)
+        
         return self.labels
 
 
@@ -227,6 +247,10 @@ class HDBSCAN():
     ----------
     labels : np.ndarray or None
         Cluster labels assigned to each data point after fitting the model. Initially set to `None`.
+    centroids : np.ndarray
+        2D array of shape `(n_clusters, n_features)` containing the centroids of the clusters.
+    medoids : np.ndarray
+        2D array of shape `(n_clusters, n_features)` containing the medoids of the clusters.
 
     Methods
     -------
@@ -253,14 +277,19 @@ class HDBSCAN():
     [0 0 1 -1 2 2 1 1 3 ...]
     '''
     def __init__(self, **kwargs):
-
         self.__hdbscan__ = source_HDBSCAN(**kwargs)
         self.labels = None
+        
+        self.centroids = None
+        self.medoids = None
 
+        
     def fit(self, source_data: np.ndarray):
         if source_data.shape[0] > 64000:
             raise ValueError(f'Very large sample! Recommended no more than 64000 samples. Submitted: {source_data.shape[0]}.')
 
         self.labels = self.__hdbscan__.fit_predict(source_data)
+        
+        self.centroids, self.medoids = get_centroids_and_medoids(self.labels, source_data, 'euclidean')
 
         return self.labels
