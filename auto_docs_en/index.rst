@@ -17,6 +17,7 @@ Welcome to HSI Processing documentation!
    :maxdepth: 3
    :caption: Contents:
 
+   hsip.analysis
    hsip.clustering
    hsip.processing
    hsip.reader

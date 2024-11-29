@@ -8,7 +8,7 @@ def normalize(array: np.ndarray):
     and the maximum value becomes 1. The formula used is:
 
     .. math::
-        normalized\_value = \frac{value - min}{max - min}
+        normalized = {value - min} / {max - min}
 
     Parameters
     ----------

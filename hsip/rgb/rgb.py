@@ -25,13 +25,12 @@ def hsi_synthesize_rgb(spectral_data: np.ndarray, rgb_bands: list | np.ndarray =
 
     Examples
     --------
-    Using band indices directly:
+    >>> # Using band indices directly:
     >>> spectral_data = np.random.rand(100, 100, 224)  # Example hyperspectral data
     >>> rgb_bands = [50, 100, 150]  # Example red, green, blue bands
     >>> rgb_image = synthesize_rgb(spectral_data, rgb_bands=rgb_bands)
     >>> print(rgb_image.shape)
     (100, 100, 3)
-
     Using wavelengths:
     >>> wavelengths = np.linspace(400, 700, 224)  # Example wavelength data
     >>> rgb_image = synthesize_rgb(spectral_data, wavelengths=wavelengths)

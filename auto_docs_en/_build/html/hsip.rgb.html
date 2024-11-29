@@ -44,6 +44,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="hsip.analysis.html">Signature analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hsip.clustering.html">Clustering of hyperspectral data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hsip.processing.html">Methods of processing hyperspectral data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hsip.reader.html">Hyperspectral data reading tools</a></li>
@@ -51,6 +52,18 @@
 <li class="toctree-l2"><a class="reference internal" href="#module-hsip.rgb.rgb">Methods for RGB synthesis:</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#hsip.rgb.rgb.hsi_synthesize_rgb"><code class="docutils literal notranslate"><span class="pre">hsi_synthesize_rgb()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#hsip.rgb.rgb.simple_synthesize_rgb"><code class="docutils literal notranslate"><span class="pre">simple_synthesize_rgb()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hsip.rgb.labels.labels_to_rgb"><code class="docutils literal notranslate"><span class="pre">labels_to_rgb()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-hsip.rgb.colors">Class with a predefined set of colors:</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#hsip.rgb.colors.Color"><code class="docutils literal notranslate"><span class="pre">Color</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#hsip.rgb.colors.Color.colors"><code class="docutils literal notranslate"><span class="pre">Color.colors</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hsip.rgb.colors.Color.__get_color__"><code class="docutils literal notranslate"><span class="pre">Color.__get_color__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hsip.rgb.colors.Color.__getitem__"><code class="docutils literal notranslate"><span class="pre">Color.__getitem__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hsip.rgb.colors.Color.__len__"><code class="docutils literal notranslate"><span class="pre">Color.__len__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hsip.rgb.colors.Color.__iter__"><code class="docutils literal notranslate"><span class="pre">Color.__iter__()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -109,17 +122,19 @@ If provided, the closest wavelengths to 650 nm (red), 550 nm (green), and 450 nm
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<p>Using band indices directly:
-&gt;&gt;&gt; spectral_data = np.random.rand(100, 100, 224)  # Example hyperspectral data
-&gt;&gt;&gt; rgb_bands = [50, 100, 150]  # Example red, green, blue bands
-&gt;&gt;&gt; rgb_image = synthesize_rgb(spectral_data, rgb_bands=rgb_bands)
-&gt;&gt;&gt; print(rgb_image.shape)
-(100, 100, 3)</p>
-<p>Using wavelengths:
-&gt;&gt;&gt; wavelengths = np.linspace(400, 700, 224)  # Example wavelength data
-&gt;&gt;&gt; rgb_image = synthesize_rgb(spectral_data, wavelengths=wavelengths)
-&gt;&gt;&gt; print(rgb_image.shape)
-(100, 100, 3)</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Using band indices directly:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">spectral_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">224</span><span class="p">)</span>  <span class="c1"># Example hyperspectral data</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rgb_bands</span> <span class="o">=</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">150</span><span class="p">]</span>  <span class="c1"># Example red, green, blue bands</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rgb_image</span> <span class="o">=</span> <span class="n">synthesize_rgb</span><span class="p">(</span><span class="n">spectral_data</span><span class="p">,</span> <span class="n">rgb_bands</span><span class="o">=</span><span class="n">rgb_bands</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">rgb_image</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="go">(100, 100, 3)</span>
+<span class="go">Using wavelengths:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wavelengths</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">700</span><span class="p">,</span> <span class="mi">224</span><span class="p">)</span>  <span class="c1"># Example wavelength data</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rgb_image</span> <span class="o">=</span> <span class="n">synthesize_rgb</span><span class="p">(</span><span class="n">spectral_data</span><span class="p">,</span> <span class="n">wavelengths</span><span class="o">=</span><span class="n">wavelengths</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">rgb_image</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="go">(100, 100, 3)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -134,6 +149,121 @@ If provided, the closest wavelengths to 650 nm (red), 550 nm (green), and 450 nm
 <dd class="field-even"><p>np.ndarray</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py function" id="module-hsip.rgb.labels">
+<dt class="sig sig-object py" id="hsip.rgb.labels.labels_to_rgb">
+<span class="sig-prename descclassname"><span class="pre">hsip.rgb.labels.</span></span><span class="sig-name descname"><span class="pre">labels_to_rgb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">RGB_image</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsip/rgb/labels.html#labels_to_rgb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsip.rgb.labels.labels_to_rgb" title="Link to this definition"></a></dt>
+<dd><p>Converts a label mask into an RGB image representation.</p>
+<p>This function generates an RGB image where each unique label in the input <cite>labels</cite> array is
+assigned a specific color. If an <cite>RGB_image</cite> is provided, the color for each label is
+determined by the mean color of the corresponding regions in the <cite>RGB_image</cite>. If not,
+predefined colors from a global <cite>colors_set</cite> are used. Warning: <cite>colors_set</cite> - has exactly
+17 colors in the set, if there are more unique labels, the colors for some will be repeated!</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>labels</strong> (<em>np.ndarray</em>) – A 2D or 3D array representing the label mask. Each unique value corresponds to a different class.</p></li>
+<li><p><strong>RGB_image</strong> (<em>np.ndarray</em><em>, </em><em>optional</em>) – A 3D array of shape <cite>(height, width, 3)</cite> representing an existing RGB image. If provided,
+the color for each label is calculated as the mean RGB value of the regions corresponding to that label.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A 3D RGB image of shape <cite>(height, width, 3)</cite> with colors assigned to each label.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>If <cite>RGB_image</cite> is not provided, the colors are assigned from a predefined <cite>colors_set</cite> array.</p></li>
+<li><p>This function is useful for visualizing label masks in a colorful, human-readable format.</p></li>
+</ul>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Using a predefined color set:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+<span class="gp">... </span>                   <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rgb_image</span> <span class="o">=</span> <span class="n">labels_to_rgb</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">rgb_image</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="go">(2, 3, 3)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="module-hsip.rgb.colors">
+<span id="class-with-a-predefined-set-of-colors"></span><h2>Class with a predefined set of colors:<a class="headerlink" href="#module-hsip.rgb.colors" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hsip.rgb.colors.Color">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hsip.rgb.colors.</span></span><span class="sig-name descname"><span class="pre">Color</span></span><a class="reference internal" href="_modules/hsip/rgb/colors.html#Color"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsip.rgb.colors.Color" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A utility class for managing and accessing a predefined set of colors.</p>
+<p>This class provides a collection of RGB color values in the range [0, 1],
+and methods to retrieve single or multiple colors by index or slice.
+It also supports modular indexing to wrap around the color set.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hsip.rgb.colors.Color.colors">
+<span class="sig-name descname"><span class="pre">colors</span></span><a class="headerlink" href="#hsip.rgb.colors.Color.colors" title="Link to this definition"></a></dt>
+<dd><p>A 2D array of shape <cite>(n_colors, 3)</cite> containing RGB color values in the range [0, 1].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hsip.rgb.colors.Color.__get_color__">
+<span class="sig-name descname"><span class="pre">__get_color__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsip/rgb/colors.html#Color.__get_color__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsip.rgb.colors.Color.__get_color__" title="Link to this definition"></a></dt>
+<dd><p>Retrieves a single color or a subset of colors by index or slice.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hsip.rgb.colors.Color.__getitem__">
+<span class="sig-name descname"><span class="pre">__getitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsip/rgb/colors.html#Color.__getitem__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsip.rgb.colors.Color.__getitem__" title="Link to this definition"></a></dt>
+<dd><p>Alias for <cite>__get_color__</cite>, allows indexing with square brackets.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hsip.rgb.colors.Color.__len__">
+<span class="sig-name descname"><span class="pre">__len__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsip/rgb/colors.html#Color.__len__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsip.rgb.colors.Color.__len__" title="Link to this definition"></a></dt>
+<dd><p>Returns the total number of colors in the palette.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hsip.rgb.colors.Color.__iter__">
+<span class="sig-name descname"><span class="pre">__iter__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsip/rgb/colors.html#Color.__iter__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsip.rgb.colors.Color.__iter__" title="Link to this definition"></a></dt>
+<dd><p>Returns an iterator over the colors.</p>
+</dd></dl>
+
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>None</strong></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Create an instance of the `Color` class and retrieve colors:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">color_palette</span> <span class="o">=</span> <span class="n">Color</span><span class="p">()</span>
+<span class="go">Access a single color using an index:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">color_palette</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">array([0.90196078, 0.09803922, 0.29411765])</span>
+<span class="go">Access multiple colors using a slice:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">color_palette</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+<span class="go">array([[0.23529412, 0.70588235, 0.29411765],</span>
+<span class="go">       [0.        , 0.50980392, 0.78431373],</span>
+<span class="go">       [0.96078431, 0.50980392, 0.18823529]])</span>
+<span class="go">Modular indexing wraps around:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">color_palette</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span>
+<span class="go">array([0.23529412, 0.70588235, 0.29411765])  # Index 20 maps to 1 (20 % len(colors))</span>
+<span class="go">Iterate through the colors:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">color</span> <span class="ow">in</span> <span class="n">color_palette</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+<span class="go">array([0.90196078, 0.09803922, 0.29411765])</span>
+<span class="go">array([0.23529412, 0.70588235, 0.29411765])</span>
+<span class="go">...</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </section>

@@ -41,6 +41,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../hsip.analysis.html">Signature analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../hsip.clustering.html">Clustering of hyperspectral data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../hsip.processing.html">Methods of processing hyperspectral data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../hsip.reader.html">Hyperspectral data reading tools</a></li>
@@ -75,12 +76,7 @@
   <h1>Source code for hsip.rgb.rgb</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="kn">import</span> <span class="nn">spectral.io.spyfile</span> <span class="k">as</span> <span class="nn">spyfile</span>
-<span class="kn">import</span> <span class="nn">spectral.io.aviris</span> <span class="k">as</span> <span class="nn">aviris</span>
-<span class="kn">import</span> <span class="nn">spectral.io.envi</span> <span class="k">as</span> <span class="nn">envi</span>
-<span class="kn">import</span> <span class="nn">spectral.io.erdas</span> <span class="k">as</span> <span class="nn">erdas</span>
-
-<span class="kn">import</span> <span class="nn">tifffile</span> <span class="k">as</span> <span class="nn">tfl</span>
+<span class="kn">from</span> <span class="nn">hsip.processing.processing</span> <span class="kn">import</span> <span class="n">normalize</span>
 
 
 <div class="viewcode-block" id="hsi_synthesize_rgb">
@@ -107,13 +103,12 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    Using band indices directly:</span>
+<span class="sd">    &gt;&gt;&gt; # Using band indices directly:</span>
 <span class="sd">    &gt;&gt;&gt; spectral_data = np.random.rand(100, 100, 224)  # Example hyperspectral data</span>
 <span class="sd">    &gt;&gt;&gt; rgb_bands = [50, 100, 150]  # Example red, green, blue bands</span>
 <span class="sd">    &gt;&gt;&gt; rgb_image = synthesize_rgb(spectral_data, rgb_bands=rgb_bands)</span>
 <span class="sd">    &gt;&gt;&gt; print(rgb_image.shape)</span>
 <span class="sd">    (100, 100, 3)</span>
-
 <span class="sd">    Using wavelengths:</span>
 <span class="sd">    &gt;&gt;&gt; wavelengths = np.linspace(400, 700, 224)  # Example wavelength data</span>
 <span class="sd">    &gt;&gt;&gt; rgb_image = synthesize_rgb(spectral_data, wavelengths=wavelengths)</span>
@@ -155,7 +150,7 @@
     <span class="n">rgb_image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">red_band</span><span class="p">,</span> <span class="n">green_band</span><span class="p">,</span> <span class="n">blue_band</span><span class="p">],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">rgb_image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">(</span><span class="n">rgb_image</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">rgb_imag</span></div>
+    <span class="k">return</span> <span class="n">rgb_image</span></div>
 
 
 

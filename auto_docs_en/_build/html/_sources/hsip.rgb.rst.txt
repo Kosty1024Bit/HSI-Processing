@@ -10,3 +10,17 @@ Methods for RGB synthesis:
    :members:
    :undoc-members:
    :show-inheritance:
+
+.. automodule:: hsip.rgb.labels
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Class with a predefined set of colors:
+--------------------------------------
+
+.. automodule:: hsip.rgb.colors
+   :members:
+   :undoc-members:
+   :show-inheritance:

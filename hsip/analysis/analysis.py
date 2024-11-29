@@ -33,7 +33,7 @@ def get_centroids_and_medoids(labels, data, metric='cosine'):
 
     Examples
     --------
-    Compute centroids and medoids for cosine similarity
+    >>> # Compute centroids and medoids for cosine similarity
     >>> import numpy as np
     >>> from scipy.spatial.distance import cdist
     >>> labels = np.array([0, 0, 1, 1, 2, 2])
@@ -96,7 +96,7 @@ def get_cross_correlation_matrix(data: np.ndarray, metric: str='euclidean'):
 
     Examples
     --------
-    Compute cross-correlation matrix with the default Euclidean metric
+    >>> # Compute cross-correlation matrix with the default Euclidean metric
     >>> import numpy as np
     >>> from scipy.spatial.distance import cdist
     >>> data = np.array([[0, 1], [1, 2], [2, 3], [3, 4]])
