@@ -1,7 +1,0 @@
-cd auto_docs
-sphinx-quickstart
-cd ..
-sphinx-apidoc -o auto_docs/ hsip/
-cd auto_docs
-make html
-make clean
