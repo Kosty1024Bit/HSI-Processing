@@ -4,11 +4,11 @@ from tqdm import tqdm
 def normalize(array: np.ndarray):
     '''
     Normalizes a given NumPy array to the range [0, 1].
-    The function scales the input array such that the minimum value in the array becomes 0
+    The function scales the input array such that the minimum value in the array becomes 0 
     and the maximum value becomes 1. The formula used is:
 
     .. math::
-        normalized = {{value - min}} / {{max - min}}
+        normalized\_value = \frac{value - min}{max - min}
 
     Parameters
     ----------
@@ -63,7 +63,7 @@ def rayleigh_scattering(spectral_data: np.ndarray, inplace=False, verbose=True):
         raise TypeError('spectral_data must be an np.ndarray')
         
     bands = spectral_data.shape[-1]
-    rayleigh_offsets = np.zeros(shape=bands, dtype=float)
+    rayleigh_offsets = np.zeros(shape=bands, dtype=spectral_data.dtype)
     for i in tqdm(range(bands), disable=not verbose):
         layer = spectral_data[..., i]
         rayleigh_offsets[i] = layer[layer > 0].min()
