@@ -1,5 +1,6 @@
 from numba import jit
 import numpy as np
+from tqdm import tqdm
 
 def SWEMD(data: np.ndarray, number_of_modes:int = 4, windows_size: list = [3], verbose: bool = True):
     '''
