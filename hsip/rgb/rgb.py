@@ -26,6 +26,7 @@ def hsi_synthesize_rgb(spectral_data: np.ndarray, rgb_bands: list | np.ndarray =
     Examples
     --------
     Using band indices directly:
+    
     >>> from hsip.rgb.rgb import hsi_synthesize_rgb
     >>> spectral_data = np.random.rand(100, 100, 224)  # Example hyperspectral data
     >>> rgb_bands = [50, 100, 150]  # Example red, green, blue bands
@@ -103,7 +104,7 @@ def simple_synthesize_rgb(band_data: list, sig_max_filt: float = None):
     Examples
     --------
     Generate an RGB image with sigma maximum filtering
-    
+
     >>> import numpy as np
     >>> from hsip.rgb.rgb import simple_synthesize_rgb
     >>> band_red = np.random.rand(100, 100)
