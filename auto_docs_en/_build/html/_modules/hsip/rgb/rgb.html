@@ -103,16 +103,14 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    Using band indices directly:</span>
-<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; # Using band indices directly:</span>
 <span class="sd">    &gt;&gt;&gt; from hsip.rgb.rgb import hsi_synthesize_rgb</span>
 <span class="sd">    &gt;&gt;&gt; spectral_data = np.random.rand(100, 100, 224)  # Example hyperspectral data</span>
 <span class="sd">    &gt;&gt;&gt; rgb_bands = [50, 100, 150]  # Example red, green, blue bands</span>
 <span class="sd">    &gt;&gt;&gt; rgb_image = synthesize_rgb(spectral_data, rgb_bands=rgb_bands)</span>
 <span class="sd">    &gt;&gt;&gt; print(rgb_image.shape)</span>
 <span class="sd">    (100, 100, 3)</span>
-
-<span class="sd">    Using wavelengths:</span>
+<span class="sd">    &gt;&gt;&gt; # Using wavelengths:</span>
 <span class="sd">    &gt;&gt;&gt; wavelengths = np.linspace(400, 700, 224)  # Example wavelength data</span>
 <span class="sd">    &gt;&gt;&gt; rgb_image = synthesize_rgb(spectral_data, wavelengths=wavelengths)</span>
 <span class="sd">    &gt;&gt;&gt; print(rgb_image.shape)</span>
