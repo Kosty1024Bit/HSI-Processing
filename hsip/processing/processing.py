@@ -24,6 +24,7 @@ def normalize(array: np.ndarray):
     Examples
     --------
     >>> import numpy as np
+    >>> from hsip.processing.processing import normalize
     >>> array = np.array([1, 2, 3, 4, 5])
     >>> normalized_array = normalize(array)
     >>> print(normalized_array)
@@ -57,6 +58,17 @@ def rayleigh_scattering(spectral_data: np.ndarray, inplace=False, verbose=True):
     -------
     np.ndarray:
         A 1D array containing the Rayleigh scattering signature for each spectral band.
+
+    Examples
+    --------
+    Apply a sigma filter to a 3D spectral dataset:
+    
+    >>> import numpy as np
+    >>> from hsip.processing.processing import rayleigh_scattering
+    >>> data = np.random.rand(100, 100, 10) * 10  # Example spectral data
+    >>> rayleigh_signature = rayleigh_scattering(data, inplace=True)
+    >>> rayleigh_signature  # Rayleigh scattering signature
+    array([...])
     '''
     
     if not isinstance(spectral_data, np.ndarray):
@@ -98,17 +110,12 @@ def sigma_maximum_filter(spectral_data: np.ndarray, sigma: float = 3, thresholds
     np.ndarray
         The filtered spectral data with values capped by the calculated thresholds.
 
-    Notes
-    -----
-    - If `thresholds` is provided, it will be updated in-place with the calculated 
-      threshold values.
-    - The filtering is applied to all bands of the spectral data independently.
-
     Examples
     --------
     Apply a sigma filter to a 3D spectral dataset:
     
     >>> import numpy as np
+    >>> from hsip.processing.processing import sigma_maximum_filter
     >>> data = np.random.rand(100, 100, 10) * 10  # Example spectral data
     >>> thresholds = np.zeros(data.shape[-1:], dtype=np.float32)
     >>> result_with_thresholds = sigma_maximum_filter(data, sigma=2, thresholds=thresholds)

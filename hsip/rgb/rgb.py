@@ -26,6 +26,7 @@ def hsi_synthesize_rgb(spectral_data: np.ndarray, rgb_bands: list | np.ndarray =
     Examples
     --------
     Using band indices directly:
+    >>> from hsip.rgb.rgb import hsi_synthesize_rgb
     >>> spectral_data = np.random.rand(100, 100, 224)  # Example hyperspectral data
     >>> rgb_bands = [50, 100, 150]  # Example red, green, blue bands
     >>> rgb_image = synthesize_rgb(spectral_data, rgb_bands=rgb_bands)
@@ -75,20 +76,44 @@ def hsi_synthesize_rgb(spectral_data: np.ndarray, rgb_bands: list | np.ndarray =
 
     return rgb_image
 
+Напиши документацию в стандарте numpy к этой функции на английском языке:
 
 def simple_synthesize_rgb(band_data: list, sig_max_filt: float = None):
     '''
-    Synthesizes an RGB image from ....
+    Generate an RGB image from three hyperspectral bands.
+
+    This function synthesizes a simple RGB image from three provided hyperspectral bands,
+    corresponding to the red, green, and blue channels. Optionally, it applies a sigma 
+    maximum filter to each band for noise reduction before normalization and scaling.
 
     Parameters
     ----------
+    band_data : list of np.ndarray
+        A list containing exactly three 2D arrays, each representing one band of hyperspectral 
+        data for the red, green, and blue channels. Each array must have the same shape.
+    sig_max_filt : float, optional
+        A sigma value to apply the `sigma_maximum_filter` function to each band. If provided, 
+        it is used for noise reduction before synthesizing the RGB image.
 
     Returns
     -------
-    np.ndarray
-        A 3D array of shape (height, width, 3) representing the synthesized RGB image.
+    rgb_image : np.ndarray
+        A 3D array of shape `(height, width, 3)` representing the synthesized RGB image.
+        The output is of type `np.uint8` with pixel values scaled to the range [0, 255].
+
+    Examples
+    --------
+    Generate an RGB image with sigma maximum filtering
+    >>> import numpy as np
+    >>> from hsip.rgb.rgb import simple_synthesize_rgb
+    >>> band_red = np.random.rand(100, 100)
+    >>> band_green = np.random.rand(100, 100)
+    >>> band_blue = np.random.rand(100, 100)
+    >>> band_data = [band_red, band_green, band_blue]
+    >>> rgb_image = simple_synthesize_rgb(band_data, sig_max_filt=3)
+    >>> print(rgb_image.shape)
+    (100, 100, 3)
     '''
-    
     if len(band_data) != 3:
         raise ValueError("`band_data` must contain exactly three bands for red, green, and blue bands.")
     

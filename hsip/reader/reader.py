@@ -24,7 +24,7 @@ def open_SpyFile(path_lan: str):
 
     Examples
     --------
-    >>> from your_module import open_SpyFile
+    >>> from hsip.reader.reader import open_SpyFile
     >>> hsi = open_SpyFile("example.lan")
     >>> print(hsi)
     SpyFile: [shape=(100, 100, 224), dtype=float32]
@@ -56,7 +56,7 @@ def open_ENVI(path_hdr: str, path_img: str):
 
     Examples
     --------
-    >>> from your_module import open_ENVI
+    >>> from hsip.reader.reader import open_ENVI
     >>> hsi = open_ENVI("example.hdr", "example.img")
     >>> print(hsi.shape)
     (100, 100, 224)  # Example dimensions
@@ -85,7 +85,7 @@ def open_AVIRIS(path_rfl: str, path_spc: str):
 
     Examples
     --------
-    >>> from your_module import open_AVIRIS
+    >>> from hsip.reader.reader import open_AVIRIS
     >>> hsi = open_AVIRIS("example.rfl", "example.spc")
     >>> print(hsi)
     SpyFile: [shape=(100, 100, 224), dtype=float32]
@@ -110,7 +110,7 @@ def open_ERDAS(path: str):
 
     Examples
     --------
-    >>> from your_module import open_ERDAS
+   >>> from hsip.reader.reader import open_ERDAS
     >>> hsi = open_ERDAS("example.img")
     >>> print(hsi)
     SpyFile: [shape=(100, 100, 224), dtype=float32]
@@ -140,7 +140,7 @@ def open_TIF(path_tif: str):
 
     Examples
     --------
-    >>> from your_module import open_TIF
+    >>> >>> from hsip.reader.reader import open_TIF
     >>> hsi = open_TIF("example.tif")
     >>> print(hsi.shape)
     (100, 100, 224)  # Example dimensions

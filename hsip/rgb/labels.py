@@ -32,6 +32,7 @@ def labels_to_rgb(labels: np.ndarray, RGB_image: np.ndarray = None):
     Examples
     --------
     Example 1: Using a predefined color set:
+    >>> from hsip.rgb.labels import labels_to_rgb
     >>> labels = np.array([[0, 0, 1],
     ...                    [1, 2, 2]])
     >>> rgb_image = labels_to_rgb(labels)
@@ -39,6 +40,7 @@ def labels_to_rgb(labels: np.ndarray, RGB_image: np.ndarray = None):
     (2, 3, 3)
 
     Example 2: Using an existing RGB image to compute colors:
+    >>> from hsip.rgb.labels import labels_to_rgb
     >>> labels = np.array([[0, 0, 1],
     ...                    [1, 2, 2]])
     >>> RGB_image = np.random.randint(0, 255, size=(2, 3, 3), dtype=np.uint8)

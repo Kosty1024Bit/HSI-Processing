@@ -32,7 +32,8 @@ class Color:
     Examples
     --------
     Create an instance of the `Color` class and retrieve colors:
-
+    
+    >>> from hsip.rgb.colors import Color
     >>> color_palette = Color()
 
     Access a single color using an index:
