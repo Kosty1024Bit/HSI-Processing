@@ -84,29 +84,29 @@
 <span class="sd">    Normalizes a given NumPy array to the range [0, 1].</span>
 <span class="sd">    The function scales the input array such that the minimum value in the array becomes 0 </span>
 <span class="sd">    and the maximum value becomes 1. The formula used is:</span>
-
-<span class="sd">    .. math::</span>
-<span class="sd">        normalized = {value - min} / {max - min}</span>
-
+<span class="sd">    </span>
+<span class="sd">    formula</span>
+<span class="sd">    </span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    array : np.ndarray</span>
 <span class="sd">        A NumPy array to be normalized. The array can be of any shape or type that supports</span>
 <span class="sd">        element-wise arithmetic operations.</span>
-
+<span class="sd">    </span>
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    np.ndarray</span>
 <span class="sd">        A NumPy array of the same shape as the input, with values normalized to the range [0, 1].</span>
-
+<span class="sd">    </span>
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
+
 <span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from hsip.processing.processing import normalize</span>
 <span class="sd">    &gt;&gt;&gt; array = np.array([1, 2, 3, 4, 5])</span>
 <span class="sd">    &gt;&gt;&gt; normalized_array = normalize(array)</span>
 <span class="sd">    &gt;&gt;&gt; print(normalized_array)</span>
 <span class="sd">    [0.   0.25 0.5  0.75 1.  ]</span>
-<span class="sd">    </span>
 <span class="sd">    &gt;&gt;&gt; array = np.array([[1, 2], [3, 4], [5, 6]])</span>
 <span class="sd">    &gt;&gt;&gt; normalized_array = normalize(array)</span>
 <span class="sd">    &gt;&gt;&gt; print(normalized_array)</span>
@@ -138,6 +138,17 @@
 <span class="sd">    -------</span>
 <span class="sd">    np.ndarray:</span>
 <span class="sd">        A 1D array containing the Rayleigh scattering signature for each spectral band.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Apply a sigma filter to a 3D spectral dataset:</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from hsip.processing.processing import rayleigh_scattering</span>
+<span class="sd">    &gt;&gt;&gt; data = np.random.rand(100, 100, 10) * 10  # Example spectral data</span>
+<span class="sd">    &gt;&gt;&gt; rayleigh_signature = rayleigh_scattering(data, inplace=True)</span>
+<span class="sd">    &gt;&gt;&gt; rayleigh_signature  # Rayleigh scattering signature</span>
+<span class="sd">    array([...])</span>
 <span class="sd">    &#39;&#39;&#39;</span>
     
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">spectral_data</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
@@ -182,17 +193,12 @@
 <span class="sd">    np.ndarray</span>
 <span class="sd">        The filtered spectral data with values capped by the calculated thresholds.</span>
 
-<span class="sd">    Notes</span>
-<span class="sd">    -----</span>
-<span class="sd">    - If `thresholds` is provided, it will be updated in-place with the calculated </span>
-<span class="sd">      threshold values.</span>
-<span class="sd">    - The filtering is applied to all bands of the spectral data independently.</span>
-
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    Apply a sigma filter to a 3D spectral dataset:</span>
 <span class="sd">    </span>
 <span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from hsip.processing.processing import sigma_maximum_filter</span>
 <span class="sd">    &gt;&gt;&gt; data = np.random.rand(100, 100, 10) * 10  # Example spectral data</span>
 <span class="sd">    &gt;&gt;&gt; thresholds = np.zeros(data.shape[-1:], dtype=np.float32)</span>
 <span class="sd">    &gt;&gt;&gt; result_with_thresholds = sigma_maximum_filter(data, sigma=2, thresholds=thresholds)</span>

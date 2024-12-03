@@ -111,7 +111,7 @@
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">your_module</span> <span class="kn">import</span> <span class="n">open_AVIRIS</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hsip.reader.reader</span> <span class="kn">import</span> <span class="n">open_AVIRIS</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">hsi</span> <span class="o">=</span> <span class="n">open_AVIRIS</span><span class="p">(</span><span class="s2">&quot;example.rfl&quot;</span><span class="p">,</span> <span class="s2">&quot;example.spc&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">hsi</span><span class="p">)</span>
 <span class="go">SpyFile: [shape=(100, 100, 224), dtype=float32]</span>
@@ -142,7 +142,7 @@
 <li><p>The ENVI image is opened as a memory-mapped array and then loaded fully into memory as a float array.</p></li>
 </ul>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">your_module</span> <span class="kn">import</span> <span class="n">open_ENVI</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hsip.reader.reader</span> <span class="kn">import</span> <span class="n">open_ENVI</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">hsi</span> <span class="o">=</span> <span class="n">open_ENVI</span><span class="p">(</span><span class="s2">&quot;example.hdr&quot;</span><span class="p">,</span> <span class="s2">&quot;example.img&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">hsi</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="go">(100, 100, 224)  # Example dimensions</span>
@@ -166,7 +166,7 @@
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">your_module</span> <span class="kn">import</span> <span class="n">open_ERDAS</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hsip.reader.reader</span> <span class="kn">import</span> <span class="n">open_ERDAS</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">hsi</span> <span class="o">=</span> <span class="n">open_ERDAS</span><span class="p">(</span><span class="s2">&quot;example.img&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">hsi</span><span class="p">)</span>
 <span class="go">SpyFile: [shape=(100, 100, 224), dtype=float32]</span>
@@ -190,7 +190,7 @@
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">your_module</span> <span class="kn">import</span> <span class="n">open_SpyFile</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hsip.reader.reader</span> <span class="kn">import</span> <span class="n">open_SpyFile</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">hsi</span> <span class="o">=</span> <span class="n">open_SpyFile</span><span class="p">(</span><span class="s2">&quot;example.lan&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">hsi</span><span class="p">)</span>
 <span class="go">SpyFile: [shape=(100, 100, 224), dtype=float32]</span>
@@ -218,7 +218,7 @@
 <li><p>The GeoTIFF data is loaded into memory using the <cite>tifffile</cite> library and copied as a NumPy array.</p></li>
 </ul>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">your_module</span> <span class="kn">import</span> <span class="n">open_TIF</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">hsip.reader.reader</span> <span class="kn">import</span> <span class="n">open_TIF</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">hsi</span> <span class="o">=</span> <span class="n">open_TIF</span><span class="p">(</span><span class="s2">&quot;example.tif&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">hsi</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="go">(100, 100, 224)  # Example dimensions</span>

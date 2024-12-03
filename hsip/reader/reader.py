@@ -110,7 +110,7 @@ def open_ERDAS(path: str):
 
     Examples
     --------
-   >>> from hsip.reader.reader import open_ERDAS
+    >>> from hsip.reader.reader import open_ERDAS
     >>> hsi = open_ERDAS("example.img")
     >>> print(hsi)
     SpyFile: [shape=(100, 100, 224), dtype=float32]

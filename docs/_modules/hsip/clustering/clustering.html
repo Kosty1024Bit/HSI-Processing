@@ -121,6 +121,7 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from hsip.clustering.clustering import CosClust</span>
 <span class="sd">    &gt;&gt;&gt; data = np.random.rand(100, 50)  # 100 samples with 50 features each</span>
 <span class="sd">    &gt;&gt;&gt; model = CosClust(threshold=0.8, verbose=True)</span>
 <span class="sd">    &gt;&gt;&gt; labels = model.fit(data)</span>
@@ -265,6 +266,7 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from hsip.clustering.clustering import SCH</span>
 <span class="sd">    &gt;&gt;&gt; source_data = np.random.rand(10, 5)</span>
 <span class="sd">    &gt;&gt;&gt; model = SCH()</span>
 <span class="sd">    &gt;&gt;&gt; labels = model.fit(source_data)</span>
@@ -359,7 +361,7 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; import numpy as np</span>
-<span class="sd">    &gt;&gt;&gt; from hdbscan import HDBSCAN</span>
+<span class="sd">    &gt;&gt;&gt; from hsip.clustering.clustering import HDBSCAN</span>
 <span class="sd">    &gt;&gt;&gt; source_data = np.random.rand(100, 5)</span>
 <span class="sd">    &gt;&gt;&gt; model = HDBSCAN(min_cluster_size=10)</span>
 <span class="sd">    &gt;&gt;&gt; labels = model.fit(source_data)</span>

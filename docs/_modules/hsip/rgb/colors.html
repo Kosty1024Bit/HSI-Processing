@@ -109,20 +109,22 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
+<span class="sd">    </span>
 <span class="sd">    &gt;&gt;&gt; # Create an instance of the `Color` class and retrieve colors:</span>
+<span class="sd">    &gt;&gt;&gt; from hsip.rgb.colors import Color</span>
 <span class="sd">    &gt;&gt;&gt; color_palette = Color()</span>
-<span class="sd">    Access a single color using an index:</span>
+<span class="sd">    &gt;&gt;&gt; # Access a single color using an index:</span>
 <span class="sd">    &gt;&gt;&gt; color_palette[0]</span>
 <span class="sd">    array([0.90196078, 0.09803922, 0.29411765])</span>
-<span class="sd">    Access multiple colors using a slice:</span>
+<span class="sd">    &gt;&gt;&gt; # Access multiple colors using a slice:</span>
 <span class="sd">    &gt;&gt;&gt; color_palette[1:4]</span>
 <span class="sd">    array([[0.23529412, 0.70588235, 0.29411765],</span>
 <span class="sd">           [0.        , 0.50980392, 0.78431373],</span>
 <span class="sd">           [0.96078431, 0.50980392, 0.18823529]])</span>
-<span class="sd">    Modular indexing wraps around:</span>
+<span class="sd">    &gt;&gt;&gt; # Modular indexing wraps around:</span>
 <span class="sd">    &gt;&gt;&gt; color_palette[20]</span>
 <span class="sd">    array([0.23529412, 0.70588235, 0.29411765])  # Index 20 maps to 1 (20 % len(colors))</span>
-<span class="sd">    Iterate through the colors:</span>
+<span class="sd">    &gt;&gt;&gt; # Iterate through the colors:</span>
 <span class="sd">    &gt;&gt;&gt; for color in color_palette:</span>
 <span class="sd">    ...     print(color)</span>
 <span class="sd">    array([0.90196078, 0.09803922, 0.29411765])</span>

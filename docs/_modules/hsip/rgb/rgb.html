@@ -103,12 +103,14 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; # Using band indices directly:</span>
+<span class="sd">    Using band indices directly:</span>
+<span class="sd">    &gt;&gt;&gt; from hsip.rgb.rgb import hsi_synthesize_rgb</span>
 <span class="sd">    &gt;&gt;&gt; spectral_data = np.random.rand(100, 100, 224)  # Example hyperspectral data</span>
 <span class="sd">    &gt;&gt;&gt; rgb_bands = [50, 100, 150]  # Example red, green, blue bands</span>
 <span class="sd">    &gt;&gt;&gt; rgb_image = synthesize_rgb(spectral_data, rgb_bands=rgb_bands)</span>
 <span class="sd">    &gt;&gt;&gt; print(rgb_image.shape)</span>
 <span class="sd">    (100, 100, 3)</span>
+
 <span class="sd">    Using wavelengths:</span>
 <span class="sd">    &gt;&gt;&gt; wavelengths = np.linspace(400, 700, 224)  # Example wavelength data</span>
 <span class="sd">    &gt;&gt;&gt; rgb_image = synthesize_rgb(spectral_data, wavelengths=wavelengths)</span>
@@ -158,17 +160,41 @@
 <a class="viewcode-back" href="../../../hsip.rgb.html#hsip.rgb.rgb.simple_synthesize_rgb">[docs]</a>
 <span class="k">def</span> <span class="nf">simple_synthesize_rgb</span><span class="p">(</span><span class="n">band_data</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">sig_max_filt</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Synthesizes an RGB image from ....</span>
+<span class="sd">    Generate an RGB image from three hyperspectral bands.</span>
+
+<span class="sd">    This function synthesizes a simple RGB image from three provided hyperspectral bands,</span>
+<span class="sd">    corresponding to the red, green, and blue channels. Optionally, it applies a sigma </span>
+<span class="sd">    maximum filter to each band for noise reduction before normalization and scaling.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
+<span class="sd">    band_data : list of np.ndarray</span>
+<span class="sd">        A list containing exactly three 2D arrays, each representing one band of hyperspectral </span>
+<span class="sd">        data for the red, green, and blue channels. Each array must have the same shape.</span>
+<span class="sd">    sig_max_filt : float, optional</span>
+<span class="sd">        A sigma value to apply the `sigma_maximum_filter` function to each band. If provided, </span>
+<span class="sd">        it is used for noise reduction before synthesizing the RGB image.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    np.ndarray</span>
-<span class="sd">        A 3D array of shape (height, width, 3) representing the synthesized RGB image.</span>
+<span class="sd">    rgb_image : np.ndarray</span>
+<span class="sd">        A 3D array of shape `(height, width, 3)` representing the synthesized RGB image.</span>
+<span class="sd">        The output is of type `np.uint8` with pixel values scaled to the range [0, 255].</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Generate an RGB image with sigma maximum filtering</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from hsip.rgb.rgb import simple_synthesize_rgb</span>
+<span class="sd">    &gt;&gt;&gt; band_red = np.random.rand(100, 100)</span>
+<span class="sd">    &gt;&gt;&gt; band_green = np.random.rand(100, 100)</span>
+<span class="sd">    &gt;&gt;&gt; band_blue = np.random.rand(100, 100)</span>
+<span class="sd">    &gt;&gt;&gt; band_data = [band_red, band_green, band_blue]</span>
+<span class="sd">    &gt;&gt;&gt; rgb_image = simple_synthesize_rgb(band_data, sig_max_filt=3)</span>
+<span class="sd">    &gt;&gt;&gt; print(rgb_image.shape)</span>
+<span class="sd">    (100, 100, 3)</span>
 <span class="sd">    &#39;&#39;&#39;</span>
-    
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">band_data</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;`band_data` must contain exactly three bands for red, green, and blue bands.&quot;</span><span class="p">)</span>
     

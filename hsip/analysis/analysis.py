@@ -34,6 +34,7 @@ def get_centroids_and_medoids(labels, data, metric='cosine'):
     Examples
     --------
     Compute centroids and medoids for cosine similarity
+
     >>> import numpy as np
     >>> from hsip.analysis.analysis import get_centroids_and_medoids
     >>> labels = np.array([0, 0, 1, 1, 2, 2])
@@ -96,6 +97,7 @@ def get_cross_correlation_matrix(data: np.ndarray, metric: str='euclidean'):
     Examples
     --------
     Compute cross-correlation matrix with the default Euclidean metric
+    
     >>> import numpy as np
     >>> from hsip.analysis.analysis import get_cross_correlation_matrix
     >>> data = np.array([[0, 1], [1, 2], [2, 3], [3, 4]])

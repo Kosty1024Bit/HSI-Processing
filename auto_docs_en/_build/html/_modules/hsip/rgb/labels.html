@@ -109,10 +109,22 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; # Using a predefined color set:</span>
+<span class="sd">    Example 1: Using a predefined color set:</span>
+
+<span class="sd">    &gt;&gt;&gt; from hsip.rgb.labels import labels_to_rgb</span>
 <span class="sd">    &gt;&gt;&gt; labels = np.array([[0, 0, 1],</span>
 <span class="sd">    ...                    [1, 2, 2]])</span>
 <span class="sd">    &gt;&gt;&gt; rgb_image = labels_to_rgb(labels)</span>
+<span class="sd">    &gt;&gt;&gt; print(rgb_image.shape)</span>
+<span class="sd">    (2, 3, 3)</span>
+
+<span class="sd">    Example 2: Using an existing RGB image to compute colors:</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; from hsip.rgb.labels import labels_to_rgb</span>
+<span class="sd">    &gt;&gt;&gt; labels = np.array([[0, 0, 1],</span>
+<span class="sd">    ...                    [1, 2, 2]])</span>
+<span class="sd">    &gt;&gt;&gt; RGB_image = np.random.randint(0, 255, size=(2, 3, 3), dtype=np.uint8)</span>
+<span class="sd">    &gt;&gt;&gt; rgb_image = labels_to_rgb(labels, RGB_image=RGB_image)</span>
 <span class="sd">    &gt;&gt;&gt; print(rgb_image.shape)</span>
 <span class="sd">    (2, 3, 3)</span>
 <span class="sd">    &#39;&#39;&#39;</span>

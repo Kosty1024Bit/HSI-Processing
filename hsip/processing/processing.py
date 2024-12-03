@@ -6,30 +6,29 @@ def normalize(array: np.ndarray):
     Normalizes a given NumPy array to the range [0, 1].
     The function scales the input array such that the minimum value in the array becomes 0 
     and the maximum value becomes 1. The formula used is:
-
-    .. math::
-        normalized\_value = \frac{value - min}{max - min}
-
+    
+    formula
+    
     Parameters
     ----------
     array : np.ndarray
         A NumPy array to be normalized. The array can be of any shape or type that supports
         element-wise arithmetic operations.
-
+    
     Returns
     -------
     np.ndarray
         A NumPy array of the same shape as the input, with values normalized to the range [0, 1].
-
+    
     Examples
     --------
+
     >>> import numpy as np
     >>> from hsip.processing.processing import normalize
     >>> array = np.array([1, 2, 3, 4, 5])
     >>> normalized_array = normalize(array)
     >>> print(normalized_array)
     [0.   0.25 0.5  0.75 1.  ]
-    
     >>> array = np.array([[1, 2], [3, 4], [5, 6]])
     >>> normalized_array = normalize(array)
     >>> print(normalized_array)

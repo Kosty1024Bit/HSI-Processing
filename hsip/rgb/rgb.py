@@ -76,7 +76,6 @@ def hsi_synthesize_rgb(spectral_data: np.ndarray, rgb_bands: list | np.ndarray =
 
     return rgb_image
 
-Напиши документацию в стандарте numpy к этой функции на английском языке:
 
 def simple_synthesize_rgb(band_data: list, sig_max_filt: float = None):
     '''
@@ -104,6 +103,7 @@ def simple_synthesize_rgb(band_data: list, sig_max_filt: float = None):
     Examples
     --------
     Generate an RGB image with sigma maximum filtering
+    
     >>> import numpy as np
     >>> from hsip.rgb.rgb import simple_synthesize_rgb
     >>> band_red = np.random.rand(100, 100)
