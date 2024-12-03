@@ -31,19 +31,25 @@ class Color:
 
     Examples
     --------
-    >>> # Create an instance of the `Color` class and retrieve colors:
+    Create an instance of the `Color` class and retrieve colors:
+    
+    >>> from hsip.rgb.colors import Color
     >>> color_palette = Color()
+
     Access a single color using an index:
     >>> color_palette[0]
     array([0.90196078, 0.09803922, 0.29411765])
+
     Access multiple colors using a slice:
     >>> color_palette[1:4]
     array([[0.23529412, 0.70588235, 0.29411765],
            [0.        , 0.50980392, 0.78431373],
            [0.96078431, 0.50980392, 0.18823529]])
+
     Modular indexing wraps around:
     >>> color_palette[20]
     array([0.23529412, 0.70588235, 0.29411765])  # Index 20 maps to 1 (20 % len(colors))
+
     Iterate through the colors:
     >>> for color in color_palette:
     ...     print(color)

@@ -43,6 +43,7 @@ class CosClust():
     Examples
     --------
     >>> import numpy as np
+    >>> from hsip.clustering.clustering import CosClust
     >>> data = np.random.rand(100, 50)  # 100 samples with 50 features each
     >>> model = CosClust(threshold=0.8, verbose=True)
     >>> labels = model.fit(data)
@@ -181,6 +182,7 @@ class SCH():
     Examples
     --------
     >>> import numpy as np
+    >>> from hsip.clustering.clustering import SCH
     >>> source_data = np.random.rand(10, 5)
     >>> model = SCH()
     >>> labels = model.fit(source_data)
@@ -269,7 +271,7 @@ class HDBSCAN():
     Examples
     --------
     >>> import numpy as np
-    >>> from hdbscan import HDBSCAN
+    >>> from hsip.clustering.clustering import HDBSCAN
     >>> source_data = np.random.rand(100, 5)
     >>> model = HDBSCAN(min_cluster_size=10)
     >>> labels = model.fit(source_data)

@@ -1,5 +1,6 @@
 from numba import jit
 import numpy as np
+from tqdm import tqdm
 
 def SWEMD(data: np.ndarray, number_of_modes:int = 4, windows_size: list = [3], verbose: bool = True):
     '''
@@ -16,12 +17,24 @@ def SWEMD(data: np.ndarray, number_of_modes:int = 4, windows_size: list = [3], v
         The list of passed sizes can be less than specified in `number_of_modes`, in which case subsequent sizes of sliding windows will be calculated automatically.
         The list can be passed a value equal to -1, in which case the window size will also be calculated automatically.
         If int is passed, this number will be the size of the sliding window only for the first IMF.
+    
     Returns
     -------
     IMFs : list
         Empirical modes for each sample.
     err_windows_size : list
         Window sizes for each level of empirical modes.
+
+    Examples
+    --------
+    EMD calculation: window lengths equal three for the 1st and 2nd modes, 5 for the 3rd mode, and automatic for the rest.
+
+    >>> import numpy as np
+    >>> from hsip.swemd.swemd import SWEMD
+    >>> data = np.random.rand(1000, 1000, 100) * 10  # Example spectral data
+    >>> IMFs, windows = SWEMD(data, number_of_modes=8, windows_size=[3, 3, 5])
+    >>> print(IMFs.shape, windows.shape)
+    (8, 1000, 1000, 100), (8, 1000, 1000)
     '''
 
     if data.dtype != np.float64:
@@ -71,12 +84,24 @@ def SWEMD_signal(iSample: np.ndarray, number_of_modes: int = 4, windows_size: li
         The list of passed sizes can be less than specified in `number_of_modes`, in which case subsequent sizes of sliding windows will be calculated automatically.
         The list can be passed a value equal to -1, in which case the window size will also be calculated automatically.
         If int is passed, this number will be the size of the sliding window only for the first IMF.
+    
     Returns
     -------
     IMFs : list
         Empirical modes for each sample.
     err_windows_size : list
         Window sizes for each level of empirical modes.
+
+    Examples
+    --------
+    EMD calculation: window lengths equal three for the 1st and 2nd modes, 5 for the 3rd mode, and automatic for the rest.
+
+    >>> import numpy as np
+    >>> from hsip.swemd.swemd import SWEMD_signal
+    >>> data = np.random.rand(100) * 10  # Example spectral data
+    >>> IMFs, windows = SWEMD(data, number_of_modes=8, windows_size=[3, 3, 5])
+    >>> print(IMFs.shape, windows.shape)
+    (100), (8)
     '''
 
     #Warning! Legacy code follows!
@@ -101,8 +126,6 @@ def SWEMD_signal(iSample: np.ndarray, number_of_modes: int = 4, windows_size: li
     dSize     = int(sampleSize)
     dMaxCount = int(0)
     dMinCount = int(0)
-
-    #windows_size = []
     
     resEmpModes = np.zeros(shape = (number_of_modes, iSample.shape[0]), dtype = np.float64)
 
