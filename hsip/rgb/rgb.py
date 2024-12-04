@@ -78,7 +78,6 @@ def hsi_synthesize_rgb(spectral_data: np.ndarray, rgb_bands: list | np.ndarray =
 
     return rgb_image
 
-Напиши документацию в стандарте numpy к этой функции на английском языке:
 
 def simple_synthesize_rgb(band_data: list, sig_max_filt: float = None):
     '''
