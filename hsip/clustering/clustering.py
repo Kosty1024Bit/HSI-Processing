@@ -12,43 +12,44 @@ from hsip.analysis.analysis import get_centroids_and_medoids
 
 class CosClust():
     '''
-    A clustering algorithm based on cosine similarity. Groups samples into clusters based on a 
-    threshold for cosine similarity and assigns labels to each sample.
+    Кластеризационный алгоритм на основе косинусного сходства. Объединяет образцы в кластеры, основываясь на 
+    пороговом значении косинусного сходства, и назначает метки каждому образцу.
 
-    Parameters
-    ----------
+    Параметры
+    ---------
     threshold : float, optional
-        The cosine similarity threshold for determining cluster membership. Default is 0.9.
+        Порог косинусного сходства для определения принадлежности к кластеру. По умолчанию 0.9.
     verbose : bool, optional
-        If True, displays progress and additional information during the clustering process. Default is True.
+        Если установлено в `True`, отображает процесс и дополнительную информацию во время кластеризации. 
+        По умолчанию `True`.
 
-    Attributes
-    ----------
-    threshold : float
-        The cosine similarity threshold for clustering.
-    labels : np.ndarray or None
-        The cluster labels assigned to each sample. Initialized as `None` and populated after `fit` is called.
-    reference_set : list
-        A list of reference samples representing each cluster.
-    centroids : np.ndarray
-        2D array of shape `(n_clusters, n_features)` containing the centroids of the clusters.
-    medoids : np.ndarray
-        2D array of shape `(n_clusters, n_features)` containing the medoids of the clusters.
-
-    Methods
-    -------
-    fit(source_data)
-        Performs clustering on the input data and returns cluster labels.
-
-    Examples
+    Атрибуты
     --------
+    threshold : float
+        Порог косинусного сходства для кластеризации.
+    labels : np.ndarray or None
+        Метки кластеров, назначенные каждому образцу. Инициализируется как `None`, заполняется после вызова метода `fit`.
+    reference_set : list
+        Список эталонных образцов, представляющих каждый кластер.
+    centroids : np.ndarray
+        2D массив формы `(n_clusters, n_features)`, содержащий центроиды кластеров.
+    medoids : np.ndarray
+        2D массив формы `(n_clusters, n_features)`, содержащий медианы кластеров.
+
+    Методы
+    ------
+    fit(source_data)
+        Выполняет кластеризацию входных данных и возвращает метки кластеров.
+
+    Примеры
+    -------
     >>> import numpy as np
     >>> from hsip.clustering.clustering import CosClust
-    >>> data = np.random.rand(100, 50)  # 100 samples with 50 features each
+    >>> data = np.random.rand(100, 50)  # 100 образцов, каждый с 50 признаками
     >>> model = CosClust(threshold=0.8, verbose=True)
     >>> labels = model.fit(data)
     >>> print(labels)
-    array([0, 1, 0, 2, ..., 1])  # Example output
+    array([0, 1, 0, 2, ..., 1])
     '''
         
     def __init__(self, threshold: float = 0.9, verbose=True):
@@ -62,27 +63,27 @@ class CosClust():
         
 
     def fit(self, source_data: np.ndarray):
-        '''
-        Performs clustering on the given data based on cosine similarity.
+    '''
+    Выполняет кластеризацию заданных данных на основе косинусного сходства.
 
-        Parameters
-        ----------
-        source_data : np.ndarray
-            A 2D array of shape (n_samples, n_features) where `n_samples` is the number of samples 
-            and `n_features` is the number of features for each sample.
+    Параметры
+    ---------
+    source_data : np.ndarray
+        2D массив формы `(n_samples, n_features)`, где `n_samples` — количество образцов, 
+        а `n_features` — количество признаков каждого образца.
 
-        Returns
-        -------
-        np.ndarray
-            A 1D array of shape (n_samples,) containing the cluster labels for each sample.
+    Возвращаемые значения
+    ---------------------
+    np.ndarray
+        1D массив формы `(n_samples,)`, содержащий метки кластеров для каждого образца.
 
-        Notes
-        -----
-        - The algorithm proceeds in two steps:
-            1. Initial clustering based on the cosine similarity threshold.
-            2. Adjustment of labels based on the reference set of cluster representatives.
-        - Samples with no cluster assignment are labeled as `-1`.
-        '''
+    Заметки
+    -------
+    - Алгоритм выполняется в два этапа:
+        1. Начальная кластеризация на основе порогового значения косинусного сходства.
+        2. Корректировка меток на основе эталонного набора представителей кластеров.
+    - Образцы, которым не удалось назначить кластер, маркируются как `-1`.
+    '''
         
         if source_data.shape[0] > 512000:
             raise ValueError(f'Very large sample! Recommended no more than 512000 samples. Submitted: {source_data.shape[0]}.')
@@ -128,59 +129,57 @@ class CosClust():
 
 class SCH():
     '''
-    A class for performing hierarchical clustering using SciPy's `linkage` and `fcluster` methods.
+    Класс для выполнения иерархической кластеризации с использованием методов `linkage` и `fcluster` из библиотеки SciPy.
 
-    The `SCH` class provides an interface for hierarchical clustering with customizable linkage 
-    and clustering parameters.
+    Класс `SCH` предоставляет интерфейс для иерархической кластеризации с настраиваемыми параметрами объединения и кластеризации.
 
-    Attributes
-    ----------
-    labels : np.ndarray or None
-        Cluster labels assigned to each data point after fitting the model. Initially set to `None`.
-    linkage_method : str
-        Linkage method used for hierarchical clustering. Supported methods include 
-        `"single"`, `"complete"`, `"average"`, `"weighted"`, `"centroid"`, `"median"`, and `"ward"`.
-    linkage_metric : str
-        Distance metric used to compute pairwise distances between data points. Common metrics 
-        include `"euclidean"`, `"cosine"`, `"cityblock"`, and `"hamming"`.
-    linkage_optimal_ordering : bool
-        If `True`, the linkage matrix will be reordered to minimize the distances between successive leaves.
-    fcluster_t : float
-        The threshold to apply when forming flat clusters. The meaning of `t` depends on the 
-        `fcluster_criterion`.
-    fcluster_criterion : str
-        The criterion to use in forming flat clusters. Supported criteria include `"inconsistent"`, 
-        `"distance"`, and `"maxclust"`.
-    fcluster_depth : int
-        The maximum depth to perform inconsistency calculation if `fcluster_criterion="inconsistent"`. 
-        Ignored for other criteria.
-    centroids : np.ndarray
-        2D array of shape `(n_clusters, n_features)` containing the centroids of the clusters.
-    medoids : np.ndarray
-        2D array of shape `(n_clusters, n_features)` containing the medoids of the clusters.
-
-    Methods
-    -------
-    fit(source_data: np.ndarray) -> np.ndarray
-        Fits the hierarchical clustering model to the provided data and computes cluster labels.
-
-    Parameters
-    ----------
-    linkage_method : str, optional
-        Linkage method for clustering. Default is `"complete"`.
-    linkage_metric : str, optional
-        Distance metric for clustering. Default is `"cosine"`.
-    linkage_optimal_ordering : bool, optional
-        Whether to reorder linkage matrix for optimal leaf ordering. Default is `False`.
-    fcluster_t : float, optional
-        Threshold for forming flat clusters. Default is `0.25`.
-    fcluster_criterion : str, optional
-        Criterion for forming flat clusters. Default is `"distance"`.
-    fcluster_depth : int, optional
-        Depth for inconsistency calculation when `fcluster_criterion="inconsistent"`. Default is `2`.
-
-    Examples
+    Атрибуты
     --------
+    labels : np.ndarray or None
+        Метки кластеров, присвоенные каждой точке данных после обучения модели. Изначально установлено в `None`.
+    linkage_method : str
+        Метод объединения, используемый для иерархической кластеризации. Поддерживаемые методы включают 
+        `"single"`, `"complete"`, `"average"`, `"weighted"`, `"centroid"`, `"median"`, и `"ward"`.
+    linkage_metric : str
+        Метрика расстояния, используемая для вычисления попарных расстояний между точками данных. 
+        Популярные метрики: `"euclidean"`, `"cosine"`, `"cityblock"`, `"hamming"`.
+    linkage_optimal_ordering : bool
+        Если `True`, матрица объединений будет упорядочена для минимизации расстояний между последовательными листьями.
+    fcluster_t : float
+        Порог для формирования плоских кластеров. Значение `t` зависит от `fcluster_criterion`.
+    fcluster_criterion : str
+        Критерий для формирования плоских кластеров. Поддерживаемые критерии: `"inconsistent"`, 
+        `"distance"`, `"maxclust"`.
+    fcluster_depth : int
+        Максимальная глубина для расчета несогласованности, если `fcluster_criterion="inconsistent"`. 
+        Игнорируется для других критериев.
+    centroids : np.ndarray
+        2D массив формы `(n_clusters, n_features)`, содержащий центроиды кластеров.
+    medoids : np.ndarray
+        2D массив формы `(n_clusters, n_features)`, содержащий медианы кластеров.
+
+    Методы
+    ------
+    fit(source_data: np.ndarray) -> np.ndarray
+        Обучает модель иерархической кластеризации на предоставленных данных и вычисляет метки кластеров.
+
+    Параметры
+    ---------
+    linkage_method : str, optional
+        Метод объединения для кластеризации. По умолчанию `"complete"`.
+    linkage_metric : str, optional
+        Метрика расстояния для кластеризации. По умолчанию `"cosine"`.
+    linkage_optimal_ordering : bool, optional
+        Перестраивать ли матрицу объединений для оптимального порядка листьев. По умолчанию `False`.
+    fcluster_t : float, optional
+        Порог для формирования плоских кластеров. По умолчанию `0.25`.
+    fcluster_criterion : str, optional
+        Критерий для формирования плоских кластеров. По умолчанию `"distance"`.
+    fcluster_depth : int, optional
+        Глубина для расчета несогласованности, если `fcluster_criterion="inconsistent"`. По умолчанию `2`.
+
+    Примеры
+    -------
     >>> import numpy as np
     >>> from hsip.clustering.clustering import SCH
     >>> source_data = np.random.rand(10, 5)

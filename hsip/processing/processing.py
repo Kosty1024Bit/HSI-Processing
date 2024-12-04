@@ -3,38 +3,43 @@ from tqdm import tqdm
 
 def normalize(array: np.ndarray):
     '''
-    Normalizes a given NumPy array to the range [0, 1].
-    The function scales the input array such that the minimum value in the array becomes 0 
-    and the maximum value becomes 1. The formula used is:
-    
-    formula
-    
-    Parameters
-    ----------
-    array : np.ndarray
-        A NumPy array to be normalized. The array can be of any shape or type that supports
-        element-wise arithmetic operations.
-    
-    Returns
-    -------
-    np.ndarray
-        A NumPy array of the same shape as the input, with values normalized to the range [0, 1].
-    
-    Examples
-    --------
+    Оболочка для алгоритма кластеризации HDBSCAN.
 
+    Класс `HDBSCAN` упрощает использование алгоритма HDBSCAN, инкапсулируя основную функциональность 
+    класса `hdbscan.HDBSCAN`. Он предоставляет удобный интерфейс для кластеризации данных и получения меток кластеров.
+
+    Атрибуты
+    --------
+    labels : np.ndarray or None
+        Метки кластеров, присвоенные каждой точке данных после обучения модели. Изначально установлено в `None`.
+    centroids : np.ndarray
+        2D массив формы `(n_clusters, n_features)`, содержащий центроиды кластеров.
+    medoids : np.ndarray
+        2D массив формы `(n_clusters, n_features)`, содержащий медианы кластеров.
+
+    Методы
+    ------
+    fit(source_data: np.ndarray) -> np.ndarray
+        Обучает модель HDBSCAN на предоставленных данных и вычисляет метки кластеров.
+
+    Параметры
+    ---------
+    min_cluster_size : int, optional
+        Минимальный размер кластеров. По умолчанию 5.
+    min_samples : int, optional
+        Минимальное количество точек в окрестности, чтобы точка считалась ядровой.
+    cluster_selection_epsilon : float, optional
+        Порог расстояния для выбора кластеров. По умолчанию 0.0.
+
+    Примеры
+    -------
     >>> import numpy as np
-    >>> from hsip.processing.processing import normalize
-    >>> array = np.array([1, 2, 3, 4, 5])
-    >>> normalized_array = normalize(array)
-    >>> print(normalized_array)
-    [0.   0.25 0.5  0.75 1.  ]
-    >>> array = np.array([[1, 2], [3, 4], [5, 6]])
-    >>> normalized_array = normalize(array)
-    >>> print(normalized_array)
-    [[0.   0.2 ]
-     [0.4  0.6 ]
-     [0.8  1.  ]]
+    >>> from hsip.clustering.clustering import HDBSCAN
+    >>> source_data = np.random.rand(100, 5)
+    >>> model = HDBSCAN(min_cluster_size=10)
+    >>> labels = model.fit(source_data)
+    >>> print(labels)
+    [0 0 1 -1 2 2 1 1 3 ...]
     '''
     
     return (array - array.min()) / (array.max() - array.min())
@@ -42,31 +47,31 @@ def normalize(array: np.ndarray):
 
 def rayleigh_scattering(spectral_data: np.ndarray, inplace=False, verbose=True):
     '''
-    Compute the Rayleigh scattering signature for a spectral dataset.
-    
-    Parameters
-    ----------
+    Вычисление сигнатуры рассеяния Рэлея для спектрального набора данных.
+
+    Параметры
+    ---------
     spectral_data : np.ndarray
-        A multi-dimensional NumPy array where the last dimension represents spectral bands.
+        Многомерный массив NumPy, где последняя размерность представляет спектральные диапазоны.
     inplace : bool, default=False
-        If True, the function modifies `spectral_data` by subtracting the computed Rayleigh signature.
+        Если `True`, функция изменяет `spectral_data`, вычитая вычисленную сигнатуру Рэлея.
     verbose : bool, verbose=True
-        If True, displays a progress bar.
+        Если `True`, отображает индикатор прогресса.
 
-    Returns
+    Возвращаемые значения
+    ---------------------
+    np.ndarray
+        1D массив, содержащий сигнатуру рассеяния Рэлея для каждого спектрального диапазона.
+
+    Примеры
     -------
-    np.ndarray:
-        A 1D array containing the Rayleigh scattering signature for each spectral band.
+    Применение фильтра Рэлея к 3D спектральному набору данных:
 
-    Examples
-    --------
-    Apply a sigma filter to a 3D spectral dataset:
-    
     >>> import numpy as np
     >>> from hsip.processing.processing import rayleigh_scattering
-    >>> data = np.random.rand(100, 100, 10) * 10  # Example spectral data
+    >>> data = np.random.rand(100, 100, 10) * 10  # Пример спектральных данных
     >>> rayleigh_signature = rayleigh_scattering(data, inplace=True)
-    >>> rayleigh_signature  # Rayleigh scattering signature
+    >>> rayleigh_signature  # Сигнатура рассеяния Рэлея
     array([...])
     '''
     
@@ -88,37 +93,34 @@ def rayleigh_scattering(spectral_data: np.ndarray, inplace=False, verbose=True):
 
 def sigma_maximum_filter(spectral_data: np.ndarray, sigma: float = 3, thresholds: np.ndarray = None):
     '''
-    Applies a sigma-based maximum filter to the input spectral data, capping values 
-    based on a calculated threshold of mean + sigma * standard deviation.
+    Применяет сигма-ориентированный максимальный фильтр к входным спектральным данным, ограничивая значения 
+    на основе вычисленного порога: среднее значение + сигма * стандартное отклонение.
 
-    Parameters
-    ----------
+    Параметры
+    ---------
     spectral_data : np.ndarray
-        The input spectral data array. It is expected to have a shape where 
-        the last dimension corresponds to the spectral bands.
+        Входной массив спектральных данных. Ожидается, что последняя размерность соответствует спектральным диапазонам.
     sigma : float, optional
-        The multiplier for the standard deviation used in calculating the threshold, 
-        by default 3.
+        Множитель для стандартного отклонения, используемый при расчете порога. По умолчанию 3.
     thresholds : np.ndarray, optional
-        An array to store the calculated thresholds. If provided, it must have a shape 
-        matching the last dimension of `spectral_data`. If `None`, thresholds are 
-        computed and returned internally, by default None.
+        Массив для хранения вычисленных порогов. Если передан, его форма должна совпадать с последней 
+        размерностью `spectral_data`. Если `None`, пороги вычисляются и возвращаются внутренне. По умолчанию None.
 
-    Returns
-    -------
+    Возвращаемые значения
+    ---------------------
     np.ndarray
-        The filtered spectral data with values capped by the calculated thresholds.
+        Отфильтрованные спектральные данные с ограниченными значениями на основе вычисленных порогов.
 
-    Examples
-    --------
-    Apply a sigma filter to a 3D spectral dataset:
-    
+    Примеры
+    -------
+    Применение сигма-фильтра к 3D спектральному набору данных:
+
     >>> import numpy as np
     >>> from hsip.processing.processing import sigma_maximum_filter
-    >>> data = np.random.rand(100, 100, 10) * 10  # Example spectral data
+    >>> data = np.random.rand(100, 100, 10) * 10  # Пример спектральных данных
     >>> thresholds = np.zeros(data.shape[-1:], dtype=np.float32)
     >>> result_with_thresholds = sigma_maximum_filter(data, sigma=2, thresholds=thresholds)
-    >>> thresholds  # Updated thresholds
+    >>> thresholds  # Обновленные пороги
     array([...])
     '''
     

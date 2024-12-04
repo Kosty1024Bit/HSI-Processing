@@ -3,36 +3,30 @@ from hsip.rgb.colors import colors_set
 
 def labels_to_rgb(labels: np.ndarray, RGB_image: np.ndarray = None):
     '''
-    Converts a label mask into an RGB image representation.
+    Преобразует метки в маске в представление в виде изображения RGB.
 
-    This function generates an RGB image where each unique label in the input `labels` array is 
-    assigned a specific color. If an `RGB_image` is provided, the color for each label is 
-    determined by the mean color of the corresponding regions in the `RGB_image`. If not, 
-    predefined colors from a global `colors_set` are used. Warning: `colors_set` - has exactly
-    17 colors in the set, if there are more unique labels, the colors for some will be repeated!
+    Эта функция генерирует RGB-изображение, где каждой уникальной метке из входного массива `labels` 
+    присваивается определенный цвет. Если предоставлено `RGB_image`, цвет каждой метки вычисляется как 
+    среднее значение цветов для соответствующих областей в `RGB_image`. Если изображение не предоставлено, 
+    используются заранее определенные цвета из глобального набора `colors_set`. Внимание: в наборе `colors_set` 
+    только 17 цветов, и если уникальных меток больше, то цвета для некоторых из них будут повторяться!
 
-    Parameters
+    Параметры
     ----------
     labels : np.ndarray
-        A 2D or 3D array representing the label mask. Each unique value corresponds to a different class.
-    RGB_image : np.ndarray, optional
-        A 3D array of shape `(height, width, 3)` representing an existing RGB image. If provided, 
-        the color for each label is calculated as the mean RGB value of the regions corresponding to that label.
+        2D или 3D массив, представляющий маску меток. Каждое уникальное значение соответствует различному классу.
+    RGB_image : np.ndarray, необязательный
+        3D массив формы `(height, width, 3)`, представляющий существующее RGB-изображение. Если предоставлено, 
+        цвет для каждой метки вычисляется как среднее значение RGB для соответствующих регионов в этом изображении.
 
-    Returns
-    -------
+    Возвращает
+    ---------
     np.ndarray
-        A 3D RGB image of shape `(height, width, 3)` with colors assigned to each label.
+        RGB-изображение формы `(height, width, 3)` с присвоенными цветами для каждой метки.
 
-    Notes
-    -----
-    - If `RGB_image` is not provided, the colors are assigned from a predefined `colors_set` array.
-    - This function is useful for visualizing label masks in a colorful, human-readable format.
-
-    Examples
+    Примеры
     --------
-    Example 1: Using a predefined color set:
-
+    Пример 1: Использование заранее определенного набора цветов:
     >>> from hsip.rgb.labels import labels_to_rgb
     >>> labels = np.array([[0, 0, 1],
     ...                    [1, 2, 2]])
@@ -40,8 +34,7 @@ def labels_to_rgb(labels: np.ndarray, RGB_image: np.ndarray = None):
     >>> print(rgb_image.shape)
     (2, 3, 3)
 
-    Example 2: Using an existing RGB image to compute colors:
-    
+    Пример 2: Использование существующего RGB-изображения для вычисления цветов:
     >>> from hsip.rgb.labels import labels_to_rgb
     >>> labels = np.array([[0, 0, 1],
     ...                    [1, 2, 2]])

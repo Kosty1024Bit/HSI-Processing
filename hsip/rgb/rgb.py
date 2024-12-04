@@ -5,35 +5,38 @@ from hsip.processing.processing import normalize
 
 def hsi_synthesize_rgb(spectral_data: np.ndarray, rgb_bands: list | np.ndarray = None, wavelengths: list | np.ndarray = None):
     """
-    Synthesizes an RGB image from hyperspectral data.
+    Синтезирует RGB-изображение из гиперспектральных данных.
 
-    Parameters
+    Параметры
     ----------
     spectral_data : np.ndarray
-        Hyperspectral image data, expected to be a 3D array of shape (height, width, bands).
-    rgb_bands : list of int, optional
-        A list containing the band indices for red, green, and blue channels, in that order.
-        Must be of length 3. If provided, `wavelengths` is ignored.
-    wavelengths : list of float, optional
-        A list containing the wavelengths corresponding to each band in `spectral_data`.
-        If provided, the closest wavelengths to 650 nm (red), 550 nm (green), and 450 nm (blue) are used.
+        Гиперспектральные данные изображения, ожидается, что это 3D массив формы (height, width, bands).
+    rgb_bands : list of int, необязательный
+        Список, содержащий индексы полос для каналов красного, зеленого и синего цветов, в указанном порядке.
+        Должен иметь длину 3. Если указан, `wavelengths` игнорируется.
+    wavelengths : list of float, необязательный
+        Список, содержащий длины волн, соответствующие каждой полосе в `spectral_data`.
+        Если указан, выбираются наиболее близкие длины волн к 650 нм (красный), 550 нм (зеленый) и 450 нм (синий).
 
-    Returns
-    -------
+    Возвращает
+    ---------
     np.ndarray
-        A 3D array of shape (height, width, 3) representing the synthesized RGB image.
+        3D массив формы (height, width, 3), представляющий синтезированное RGB-изображение.
 
-    Examples
+    Примеры
     --------
-    >>> # Using band indices directly:
+    Использование индексов полос напрямую:
+
     >>> from hsip.rgb.rgb import hsi_synthesize_rgb
-    >>> spectral_data = np.random.rand(100, 100, 224)  # Example hyperspectral data
-    >>> rgb_bands = [50, 100, 150]  # Example red, green, blue bands
+    >>> spectral_data = np.random.rand(100, 100, 224)  # Пример гиперспектральных данных
+    >>> rgb_bands = [50, 100, 150]  # Пример полос для красного, зеленого, синего
     >>> rgb_image = synthesize_rgb(spectral_data, rgb_bands=rgb_bands)
     >>> print(rgb_image.shape)
     (100, 100, 3)
-    >>> # Using wavelengths:
-    >>> wavelengths = np.linspace(400, 700, 224)  # Example wavelength data
+
+    Использование длин волн:
+
+    >>> wavelengths = np.linspace(400, 700, 224)  # Пример данных о длинах волн
     >>> rgb_image = synthesize_rgb(spectral_data, wavelengths=wavelengths)
     >>> print(rgb_image.shape)
     (100, 100, 3)
@@ -75,34 +78,35 @@ def hsi_synthesize_rgb(spectral_data: np.ndarray, rgb_bands: list | np.ndarray =
 
     return rgb_image
 
+Напиши документацию в стандарте numpy к этой функции на английском языке:
 
 def simple_synthesize_rgb(band_data: list, sig_max_filt: float = None):
     '''
-    Generate an RGB image from three hyperspectral bands.
+    Генерирует RGB-изображение из трех гиперспектральных полос.
 
-    This function synthesizes a simple RGB image from three provided hyperspectral bands,
-    corresponding to the red, green, and blue channels. Optionally, it applies a sigma 
-    maximum filter to each band for noise reduction before normalization and scaling.
+    Функция синтезирует простое RGB-изображение из трех предоставленных полос,
+    соответствующих каналам красного, зеленого и синего. Опционально, она применяет сигма 
+    максимум-фильтр к каждой полосе для снижения шума перед нормализацией и масштабированием.
 
-    Parameters
+    Параметры
     ----------
     band_data : list of np.ndarray
-        A list containing exactly three 2D arrays, each representing one band of hyperspectral 
-        data for the red, green, and blue channels. Each array must have the same shape.
-    sig_max_filt : float, optional
-        A sigma value to apply the `sigma_maximum_filter` function to each band. If provided, 
-        it is used for noise reduction before synthesizing the RGB image.
+        Список, содержащий ровно три 2D массива, каждый из которых представляет одну полосу данных
+        для каналов красного, зеленого и синего. Каждый массив должен иметь одинаковую форму.
+    sig_max_filt : float, необязательный
+        Значение сигма для применения функции `sigma_maximum_filter` к каждой полосе. Если указано, оно используется 
+        для снижения шума перед синтезом RGB-изображения.
 
-    Returns
-    -------
+    Возвращает
+    ---------
     rgb_image : np.ndarray
-        A 3D array of shape `(height, width, 3)` representing the synthesized RGB image.
-        The output is of type `np.uint8` with pixel values scaled to the range [0, 255].
+        3D массив формы `(height, width, 3)`, представляющий синтезированное RGB-изображение.
+        Выходной тип — `np.uint8` с пиксельными значениями, масштабированными в диапазон [0, 255].
 
-    Examples
+    Примеры
     --------
-    Generate an RGB image with sigma maximum filtering
-
+    Генерация RGB-изображения с применением сигма максимум-фильтрации:
+    
     >>> import numpy as np
     >>> from hsip.rgb.rgb import simple_synthesize_rgb
     >>> band_red = np.random.rand(100, 100)
