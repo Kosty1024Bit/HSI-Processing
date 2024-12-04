@@ -2,7 +2,6 @@ import numpy as np
 
 import matplotlib.pyplot as plt
 
-Напиши документацию в стандарте numpy к этой функции на русском языке:
 
 def show_correlation_matrix(corr_matrix: np.ndarray, label_axis: list, path: str = None):
     '''
