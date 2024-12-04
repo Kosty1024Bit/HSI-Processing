@@ -45,6 +45,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="hsip.analysis.html">Анализ сигнатур</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hsip.clustering.html">Кластеризация гиперспектральных данных</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.graphics.html">Визуализация данных</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hsip.processing.html">Методы обработки гиперспектральных данных</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hsip.reader.html">Функции для чтения гиперспектральных данных</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hsip.rgb.html">Сентез цветных изображений</a></li>
@@ -81,24 +82,53 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="hsip.html">hsip package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="hsip.clustering.html">Кластеризация гиперспектральных данных</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="hsip.clustering.html#id2">Методы кластеризации:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hsip.clustering.html#module-hsip.clustering.clustering">Методы кластеризации:</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="hsip.clustering.html#hsip.clustering.clustering.CosClust"><code class="docutils literal notranslate"><span class="pre">CosClust</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="hsip.clustering.html#hsip.clustering.clustering.HDBSCAN"><code class="docutils literal notranslate"><span class="pre">HDBSCAN</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="hsip.clustering.html#hsip.clustering.clustering.SCH"><code class="docutils literal notranslate"><span class="pre">SCH</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="hsip.processing.html">Методы обработки гиперспектральных данных</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="hsip.processing.html#id2">Методы обработки:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hsip.processing.html#module-hsip.processing.processing">Методы обработки:</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="hsip.processing.html#hsip.processing.processing.normalize"><code class="docutils literal notranslate"><span class="pre">normalize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="hsip.processing.html#hsip.processing.processing.rayleigh_scattering"><code class="docutils literal notranslate"><span class="pre">rayleigh_scattering()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="hsip.processing.html#hsip.processing.processing.sigma_maximum_filter"><code class="docutils literal notranslate"><span class="pre">sigma_maximum_filter()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="hsip.reader.html">Функции для чтения гиперспектральных данных</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="hsip.reader.html#id2">Функции для чтения:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hsip.reader.html#module-hsip.reader.reader">Функции для чтения:</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="hsip.reader.html#hsip.reader.reader.open_AVIRIS"><code class="docutils literal notranslate"><span class="pre">open_AVIRIS()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="hsip.reader.html#hsip.reader.reader.open_ENVI"><code class="docutils literal notranslate"><span class="pre">open_ENVI()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="hsip.reader.html#hsip.reader.reader.open_ERDAS"><code class="docutils literal notranslate"><span class="pre">open_ERDAS()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="hsip.reader.html#hsip.reader.reader.open_SpyFile"><code class="docutils literal notranslate"><span class="pre">open_SpyFile()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="hsip.reader.html#hsip.reader.reader.open_TIF"><code class="docutils literal notranslate"><span class="pre">open_TIF()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="hsip.rgb.html">Сентез цветных изображений</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="hsip.rgb.html#id2">Методы для синтеза цветных изображений:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="hsip.rgb.html#id3">Класс с предопределенным набором цветов:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hsip.rgb.html#module-hsip.rgb.rgb">Методы для синтеза цветных изображений:</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="hsip.rgb.html#hsip.rgb.rgb.hsi_synthesize_rgb"><code class="docutils literal notranslate"><span class="pre">hsi_synthesize_rgb()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="hsip.rgb.html#hsip.rgb.rgb.simple_synthesize_rgb"><code class="docutils literal notranslate"><span class="pre">simple_synthesize_rgb()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="hsip.rgb.html#hsip.rgb.labels.labels_to_rgb"><code class="docutils literal notranslate"><span class="pre">labels_to_rgb()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="hsip.rgb.html#module-hsip.rgb.colors">Класс с предопределенным набором цветов:</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="hsip.rgb.html#hsip.rgb.colors.Color"><code class="docutils literal notranslate"><span class="pre">Color</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="hsip.swemd.html">Разложение на эмпирические моды (EMD)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="hsip.swemd.html#methods-for-decomposition-into-emd">Methods for decomposition into EMD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hsip.swemd.html#module-hsip.swemd.swemd">Methods for decomposition into EMD</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="hsip.swemd.html#hsip.swemd.swemd.SWEMD"><code class="docutils literal notranslate"><span class="pre">SWEMD()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="hsip.swemd.html#hsip.swemd.swemd.SWEMD_signal"><code class="docutils literal notranslate"><span class="pre">SWEMD_signal()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

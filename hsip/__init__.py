@@ -1,1 +1,1 @@
-from hsip import analysis, clustering, processing, reader, rgb, swemd
+from hsip import analysis, clustering, graphics, processing, reader, rgb, swemd

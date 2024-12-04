@@ -44,6 +44,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../hsip.analysis.html">Анализ сигнатур</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../hsip.clustering.html">Кластеризация гиперспектральных данных</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hsip.graphics.html">Визуализация данных</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../hsip.processing.html">Методы обработки гиперспектральных данных</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../hsip.reader.html">Функции для чтения гиперспектральных данных</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../hsip.rgb.html">Сентез цветных изображений</a></li>
@@ -86,7 +87,7 @@
 <span class="sd">    Рассчитывает и возвращает IMF и окна для каждого каждого сигнала, указанного в `data`.</span>
 
 <span class="sd">    Параметры</span>
-<span class="sd">    ----------</span>
+<span class="sd">    ---------</span>
 <span class="sd">    x : np.ndarray</span>
 <span class="sd">        Массив размерности 3 (height * width * bands), размерности 2 (n_samples * bands), или просто один образец.</span>
 <span class="sd">    number_of_modes : int, по умолчанию=4</span>
@@ -98,14 +99,14 @@
 <span class="sd">        Если передано целое число, это будет размер скользящего окна только для первого IMF.</span>
 <span class="sd">        </span>
 <span class="sd">    Возвращает</span>
-<span class="sd">    ---------</span>
+<span class="sd">    ----------</span>
 <span class="sd">    IMFs : list</span>
 <span class="sd">        Эмпирические моды для каждого образца.</span>
 <span class="sd">    err_windows_size : list</span>
 <span class="sd">        Размеры окон для каждого уровня эмпирических мод.</span>
 
 <span class="sd">    Примеры</span>
-<span class="sd">    --------</span>
+<span class="sd">    -------</span>
 <span class="sd">    Вычисление EMD: длины окон равны трем для 1-ой и 2-ой моды, 5 для 3-ий моды и автоматически для остальных.</span>
 
 <span class="sd">    &gt;&gt;&gt; import numpy as np</span>
@@ -156,7 +157,7 @@
 <span class="sd">    Возвращает IMF для одномерного образца.</span>
 
 <span class="sd">    Параметры</span>
-<span class="sd">    ----------</span>
+<span class="sd">    ---------</span>
 <span class="sd">    x : np.ndarray</span>
 <span class="sd">        Одномерный сигнал.</span>
 <span class="sd">    number_of_modes : int, по умолчанию=4</span>
@@ -168,14 +169,14 @@
 <span class="sd">        Если передано целое число, это будет размер скользящего окна только для первого IMF.</span>
 <span class="sd">        </span>
 <span class="sd">    Возвращает</span>
-<span class="sd">    ---------</span>
+<span class="sd">    ----------</span>
 <span class="sd">    IMFs : list</span>
 <span class="sd">        Эмпирические моды для каждого образца.</span>
 <span class="sd">    err_windows_size : list</span>
 <span class="sd">        Размеры окон для каждого уровня эмпирических мод.</span>
 
 <span class="sd">    Примеры</span>
-<span class="sd">    --------</span>
+<span class="sd">    -------</span>
 <span class="sd">    Вычисление EMD: длины окон равны трем для 1-ой и 2-ой моды, 5 для 3-ий моды и автоматически для остальных.</span>
 
 <span class="sd">    &gt;&gt;&gt; import numpy as np</span>

@@ -1,0 +1,159 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Визуализация данных &mdash; документация HSI-Processing 1.0.0</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=e35015f7"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/translations.js?v=5b699b7f"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Алфавитный указатель" href="genindex.html" />
+    <link rel="search" title="Поиск" href="search.html" />
+    <link rel="next" title="Методы обработки гиперспектральных данных" href="hsip.processing.html" />
+    <link rel="prev" title="Кластеризация гиперспектральных данных" href="hsip.clustering.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            HSI-Processing
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Поиск в документации" aria-label="Поиск в документации" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Меню навигации">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="hsip.analysis.html">Анализ сигнатур</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.clustering.html">Кластеризация гиперспектральных данных</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Визуализация данных</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-hsip.graphics.graphics">Методы визуализации данных</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#hsip.graphics.graphics.show_correlation_matrix"><code class="docutils literal notranslate"><span class="pre">show_correlation_matrix()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.processing.html">Методы обработки гиперспектральных данных</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.reader.html">Функции для чтения гиперспектральных данных</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.rgb.html">Сентез цветных изображений</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.swemd.html">Разложение на эмпирические моды (EMD)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Меню навигации для мобильных устройств" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">HSI-Processing</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Навигация по страницам">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Визуализация данных</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/hsip.graphics.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>Визуализация данных<a class="headerlink" href="#id1" title="Ссылка на этот заголовок"></a></h1>
+<p>Для правильного анализа промежуточных и конечных результатов, особенно при работе с большими массивами данных, удобнее всего рассматривать их в графической форме. Для этого предоставлен функционал, использующий модуль matplotlib, с готовой надстройкой, которая упрощает использование и облегчает интерпретацию входных данных.</p>
+<section id="module-hsip.graphics.graphics">
+<span id="id2"></span><h2>Методы визуализации данных<a class="headerlink" href="#module-hsip.graphics.graphics" title="Ссылка на этот заголовок"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="hsip.graphics.graphics.show_correlation_matrix">
+<span class="sig-prename descclassname"><span class="pre">hsip.graphics.graphics.</span></span><span class="sig-name descname"><span class="pre">show_correlation_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">corr_matrix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_axis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsip/graphics/graphics.html#show_correlation_matrix"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#hsip.graphics.graphics.show_correlation_matrix" title="Ссылка на это определение"></a></dt>
+<dd><p>Отображение матрицы корреляции с аннотированными значениями.</p>
+<p>Эта функция визуализирует матрицу корреляции с аннотированными значениями, где каждый элемент матрицы
+отображается на соответствующей позиции с точностью до двух знаков после запятой.</p>
+<section id="id3">
+<h3>Параметры<a class="headerlink" href="#id3" title="Ссылка на этот заголовок"></a></h3>
+<dl class="simple">
+<dt>corr_matrix<span class="classifier">np.ndarray</span></dt><dd><p>Квадратная матрица корреляции, которая будет отображена в виде тепловой карты.</p>
+</dd>
+<dt>label_axis<span class="classifier">list</span></dt><dd><p>Список меток для осей X и Y, который используется для подписей в графике.</p>
+</dd>
+<dt>path<span class="classifier">str, optional</span></dt><dd><p>Путь, по которому сохранить изображение. Если параметр не указан (по умолчанию <cite>None</cite>), то изображение
+будет показано в окне.</p>
+</dd>
+</dl>
+</section>
+<section id="id4">
+<h3>Возвращает<a class="headerlink" href="#id4" title="Ссылка на этот заголовок"></a></h3>
+<p>None</p>
+</section>
+<section id="id5">
+<h3>Пример<a class="headerlink" href="#id5" title="Ссылка на этот заголовок"></a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corr_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">label_axis</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">show_correlation_matrix</span><span class="p">(</span><span class="n">corr_matrix</span><span class="p">,</span> <span class="n">label_axis</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Нижняя область">
+        <a href="hsip.clustering.html" class="btn btn-neutral float-left" title="Кластеризация гиперспектральных данных" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
+        <a href="hsip.processing.html" class="btn btn-neutral float-right" title="Методы обработки гиперспектральных данных" accesskey="n" rel="next">Следующая <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Авторские права 2024, Константин Пухкий. </p>
+  </div>
+
+  Собрано при помощи <a href="https://www.sphinx-doc.org/">Sphinx</a> с использованием
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">темы,</a>
+    предоставленной <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -19,6 +19,7 @@ HSI Processing documentation
 
    hsip.analysis
    hsip.clustering
+   hsip.graphics
    hsip.processing
    hsip.reader
    hsip.rgb

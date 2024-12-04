@@ -20,7 +20,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Алфавитный указатель" href="genindex.html" />
     <link rel="search" title="Поиск" href="search.html" />
-    <link rel="next" title="Методы обработки гиперспектральных данных" href="hsip.processing.html" />
+    <link rel="next" title="Визуализация данных" href="hsip.graphics.html" />
     <link rel="prev" title="Анализ сигнатур" href="hsip.analysis.html" /> 
 </head>
 
@@ -68,6 +68,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.graphics.html">Визуализация данных</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hsip.processing.html">Методы обработки гиперспектральных данных</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hsip.reader.html">Функции для чтения гиперспектральных данных</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hsip.rgb.html">Сентез цветных изображений</a></li>
@@ -155,7 +156,37 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="hsip.clustering.clustering.CosClust.fit">
 <span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsip/clustering/clustering.html#CosClust.fit"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#hsip.clustering.clustering.CosClust.fit" title="Ссылка на это определение"></a></dt>
-<dd></dd></dl>
+<dd><p>Выполняет кластеризацию заданных данных на основе косинусного сходства.</p>
+<section id="id7">
+<h4>Параметры<a class="headerlink" href="#id7" title="Ссылка на этот заголовок"></a></h4>
+<dl class="simple">
+<dt>source_data<span class="classifier">np.ndarray</span></dt><dd><p>2D массив формы <cite>(n_samples, n_features)</cite>, где <cite>n_samples</cite> — количество образцов,
+а <cite>n_features</cite> — количество признаков каждого образца.</p>
+</dd>
+</dl>
+</section>
+<section id="id8">
+<h4>Возвращаемые значения<a class="headerlink" href="#id8" title="Ссылка на этот заголовок"></a></h4>
+<dl class="simple">
+<dt>np.ndarray</dt><dd><p>1D массив формы <cite>(n_samples,)</cite>, содержащий метки кластеров для каждого образца.</p>
+</dd>
+</dl>
+</section>
+<section id="id9">
+<h4>Заметки<a class="headerlink" href="#id9" title="Ссылка на этот заголовок"></a></h4>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Алгоритм выполняется в два этапа:</dt><dd><ol class="arabic simple">
+<li><p>Начальная кластеризация на основе порогового значения косинусного сходства.</p></li>
+<li><p>Корректировка меток на основе эталонного набора представителей кластеров.</p></li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><p>Образцы, которым не удалось назначить кластер, маркируются как <cite>-1</cite>.</p></li>
+</ul>
+</section>
+</dd></dl>
 
 </section>
 </dd></dl>
@@ -239,8 +270,8 @@ clustering data and retrieving cluster labels.</p>
 <dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Класс для выполнения иерархической кластеризации с использованием методов <cite>linkage</cite> и <cite>fcluster</cite> из библиотеки SciPy.</p>
 <p>Класс <cite>SCH</cite> предоставляет интерфейс для иерархической кластеризации с настраиваемыми параметрами объединения и кластеризации.</p>
-<section id="id7">
-<h3>Атрибуты<a class="headerlink" href="#id7" title="Ссылка на этот заголовок"></a></h3>
+<section id="id10">
+<h3>Атрибуты<a class="headerlink" href="#id10" title="Ссылка на этот заголовок"></a></h3>
 <dl class="simple">
 <dt>labels<span class="classifier">np.ndarray or None</span></dt><dd><p>Метки кластеров, присвоенные каждой точке данных после обучения модели. Изначально установлено в <cite>None</cite>.</p>
 </dd>
@@ -266,15 +297,15 @@ clustering data and retrieving cluster labels.</p>
 </dd>
 </dl>
 </section>
-<section id="id8">
-<h3>Методы<a class="headerlink" href="#id8" title="Ссылка на этот заголовок"></a></h3>
+<section id="id11">
+<h3>Методы<a class="headerlink" href="#id11" title="Ссылка на этот заголовок"></a></h3>
 <dl class="simple">
 <dt>fit(source_data: np.ndarray) -&gt; np.ndarray</dt><dd><p>Обучает модель иерархической кластеризации на предоставленных данных и вычисляет метки кластеров.</p>
 </dd>
 </dl>
 </section>
-<section id="id9">
-<h3>Параметры<a class="headerlink" href="#id9" title="Ссылка на этот заголовок"></a></h3>
+<section id="id12">
+<h3>Параметры<a class="headerlink" href="#id12" title="Ссылка на этот заголовок"></a></h3>
 <dl class="simple">
 <dt>linkage_method<span class="classifier">str, optional</span></dt><dd><p>Метод объединения для кластеризации. По умолчанию <cite>«complete»</cite>.</p>
 </dd>
@@ -290,8 +321,8 @@ clustering data and retrieving cluster labels.</p>
 </dd>
 </dl>
 </section>
-<section id="id10">
-<h3>Примеры<a class="headerlink" href="#id10" title="Ссылка на этот заголовок"></a></h3>
+<section id="id13">
+<h3>Примеры<a class="headerlink" href="#id13" title="Ссылка на этот заголовок"></a></h3>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hsip.clustering.clustering</span> <span class="kn">import</span> <span class="n">SCH</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">source_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
@@ -317,7 +348,7 @@ clustering data and retrieving cluster labels.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Нижняя область">
         <a href="hsip.analysis.html" class="btn btn-neutral float-left" title="Анализ сигнатур" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
-        <a href="hsip.processing.html" class="btn btn-neutral float-right" title="Методы обработки гиперспектральных данных" accesskey="n" rel="next">Следующая <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="hsip.graphics.html" class="btn btn-neutral float-right" title="Визуализация данных" accesskey="n" rel="next">Следующая <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
