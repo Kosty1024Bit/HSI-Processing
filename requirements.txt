@@ -12,3 +12,5 @@ sphinx-rtd-theme==3.0.2
 docxbuilder==1.2.0
 
 scipy==1.14.1
+
+matplotlib==3.9.2
