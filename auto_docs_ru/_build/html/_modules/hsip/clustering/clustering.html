@@ -1,0 +1,400 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>hsip.clustering.clustering &mdash; документация HSI-Processing 1.0.0</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=e35015f7"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/translations.js?v=5b699b7f"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Алфавитный указатель" href="../../../genindex.html" />
+    <link rel="search" title="Поиск" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            HSI-Processing
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Поиск в документации" aria-label="Поиск в документации" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Меню навигации">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../hsip.analysis.html">Анализ сигнатур</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hsip.clustering.html">Кластеризация гиперспектральных данных</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hsip.processing.html">Методы обработки гиперспектральных данных</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hsip.reader.html">Функции для чтения гиперспектральных данных</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hsip.rgb.html">Сентез цветных изображений</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hsip.swemd.html">Разложение на эмпирические моды (EMD)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Меню навигации для мобильных устройств" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">HSI-Processing</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Навигация по страницам">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Код модуля</a></li>
+      <li class="breadcrumb-item active">hsip.clustering.clustering</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Исходный код hsip.clustering.clustering</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">scipy.spatial.distance</span> <span class="kn">import</span> <span class="n">cdist</span>
+<span class="kn">import</span> <span class="nn">scipy.cluster.hierarchy</span> <span class="k">as</span> <span class="nn">sch</span>
+
+<span class="kn">from</span> <span class="nn">hdbscan</span> <span class="kn">import</span> <span class="n">HDBSCAN</span> <span class="k">as</span> <span class="n">source_HDBSCAN</span>
+
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+
+<span class="kn">from</span> <span class="nn">hsip.analysis.analysis</span> <span class="kn">import</span> <span class="n">get_centroids_and_medoids</span>
+
+
+<div class="viewcode-block" id="CosClust">
+<a class="viewcode-back" href="../../../hsip.clustering.html#hsip.clustering.clustering.CosClust">[документация]</a>
+<span class="k">class</span> <span class="nc">CosClust</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Кластеризационный алгоритм на основе косинусного сходства. Объединяет образцы в кластеры, основываясь на </span>
+<span class="sd">    пороговом значении косинусного сходства, и назначает метки каждому образцу.</span>
+
+<span class="sd">    Параметры</span>
+<span class="sd">    ---------</span>
+<span class="sd">    threshold : float, optional</span>
+<span class="sd">        Порог косинусного сходства для определения принадлежности к кластеру. По умолчанию 0.9.</span>
+<span class="sd">    verbose : bool, optional</span>
+<span class="sd">        Если установлено в `True`, отображает процесс и дополнительную информацию во время кластеризации. </span>
+<span class="sd">        По умолчанию `True`.</span>
+
+<span class="sd">    Атрибуты</span>
+<span class="sd">    --------</span>
+<span class="sd">    threshold : float</span>
+<span class="sd">        Порог косинусного сходства для кластеризации.</span>
+<span class="sd">    labels : np.ndarray or None</span>
+<span class="sd">        Метки кластеров, назначенные каждому образцу. Инициализируется как `None`, заполняется после вызова метода `fit`.</span>
+<span class="sd">    reference_set : list</span>
+<span class="sd">        Список эталонных образцов, представляющих каждый кластер.</span>
+<span class="sd">    centroids : np.ndarray</span>
+<span class="sd">        2D массив формы `(n_clusters, n_features)`, содержащий центроиды кластеров.</span>
+<span class="sd">    medoids : np.ndarray</span>
+<span class="sd">        2D массив формы `(n_clusters, n_features)`, содержащий медианы кластеров.</span>
+
+<span class="sd">    Методы</span>
+<span class="sd">    ------</span>
+<span class="sd">    fit(source_data)</span>
+<span class="sd">        Выполняет кластеризацию входных данных и возвращает метки кластеров.</span>
+
+<span class="sd">    Примеры</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from hsip.clustering.clustering import CosClust</span>
+<span class="sd">    &gt;&gt;&gt; data = np.random.rand(100, 50)  # 100 образцов, каждый с 50 признаками</span>
+<span class="sd">    &gt;&gt;&gt; model = CosClust(threshold=0.8, verbose=True)</span>
+<span class="sd">    &gt;&gt;&gt; labels = model.fit(data)</span>
+<span class="sd">    &gt;&gt;&gt; print(labels)</span>
+<span class="sd">    array([0, 1, 0, 2, ..., 1])</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+        
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="o">=</span> <span class="n">threshold</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">verbose</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reference_set</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">centroids</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">medoids</span> <span class="o">=</span> <span class="kc">None</span>
+        
+
+<div class="viewcode-block" id="CosClust.fit">
+<a class="viewcode-back" href="../../../hsip.clustering.html#hsip.clustering.clustering.CosClust.fit">[документация]</a>
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source_data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">source_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">512000</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Very large sample! Recommended no more than 512000 samples. Submitted: </span><span class="si">{</span><span class="n">source_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
+
+        <span class="n">n_clust</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">source_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">fill_value</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">id_reference_set</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">n_samples</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">source_data</span><span class="o">.</span><span class="n">shape</span>
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CosClust take a step 1/2&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_samples</span><span class="p">),</span> <span class="n">disable</span><span class="o">=</span><span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="n">corr_array</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">cdist</span><span class="p">(</span><span class="n">source_data</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">],</span> <span class="n">source_data</span><span class="p">,</span> <span class="s2">&quot;cosine&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+                <span class="n">bool_mask</span> <span class="o">=</span> <span class="n">corr_array</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span>
+                <span class="n">bool_mask</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="n">bool_mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">n_clust</span>
+
+                <span class="n">n_clust</span> <span class="o">+=</span> <span class="mi">1</span>
+
+                <span class="n">id_reference_set</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">reference_set</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">source_data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+        <span class="n">tmp_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">source_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">fill_value</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CosClust take a step 2/2&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_samples</span><span class="p">),</span> <span class="n">disable</span><span class="o">=</span><span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">):</span>
+            <span class="n">tmp_corr_array</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">cdist</span><span class="p">(</span><span class="n">source_data</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">],</span> <span class="n">source_data</span><span class="p">[</span><span class="n">id_reference_set</span><span class="p">],</span> <span class="s2">&quot;cosine&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">id_reference_set</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">==</span> <span class="n">i</span><span class="p">:</span>
+                <span class="n">tmp_corr_array</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+            <span class="n">tmp_labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp_corr_array</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="n">tmp_labels</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">centroids</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">medoids</span> <span class="o">=</span> <span class="n">get_centroids_and_medoids</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="n">source_data</span><span class="p">,</span> <span class="s1">&#39;cosine&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">labels</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="SCH">
+<a class="viewcode-back" href="../../../hsip.clustering.html#hsip.clustering.clustering.SCH">[документация]</a>
+<span class="k">class</span> <span class="nc">SCH</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Класс для выполнения иерархической кластеризации с использованием методов `linkage` и `fcluster` из библиотеки SciPy.</span>
+
+<span class="sd">    Класс `SCH` предоставляет интерфейс для иерархической кластеризации с настраиваемыми параметрами объединения и кластеризации.</span>
+
+<span class="sd">    Атрибуты</span>
+<span class="sd">    --------</span>
+<span class="sd">    labels : np.ndarray or None</span>
+<span class="sd">        Метки кластеров, присвоенные каждой точке данных после обучения модели. Изначально установлено в `None`.</span>
+<span class="sd">    linkage_method : str</span>
+<span class="sd">        Метод объединения, используемый для иерархической кластеризации. Поддерживаемые методы включают </span>
+<span class="sd">        `&quot;single&quot;`, `&quot;complete&quot;`, `&quot;average&quot;`, `&quot;weighted&quot;`, `&quot;centroid&quot;`, `&quot;median&quot;`, и `&quot;ward&quot;`.</span>
+<span class="sd">    linkage_metric : str</span>
+<span class="sd">        Метрика расстояния, используемая для вычисления попарных расстояний между точками данных. </span>
+<span class="sd">        Популярные метрики: `&quot;euclidean&quot;`, `&quot;cosine&quot;`, `&quot;cityblock&quot;`, `&quot;hamming&quot;`.</span>
+<span class="sd">    linkage_optimal_ordering : bool</span>
+<span class="sd">        Если `True`, матрица объединений будет упорядочена для минимизации расстояний между последовательными листьями.</span>
+<span class="sd">    fcluster_t : float</span>
+<span class="sd">        Порог для формирования плоских кластеров. Значение `t` зависит от `fcluster_criterion`.</span>
+<span class="sd">    fcluster_criterion : str</span>
+<span class="sd">        Критерий для формирования плоских кластеров. Поддерживаемые критерии: `&quot;inconsistent&quot;`, </span>
+<span class="sd">        `&quot;distance&quot;`, `&quot;maxclust&quot;`.</span>
+<span class="sd">    fcluster_depth : int</span>
+<span class="sd">        Максимальная глубина для расчета несогласованности, если `fcluster_criterion=&quot;inconsistent&quot;`. </span>
+<span class="sd">        Игнорируется для других критериев.</span>
+<span class="sd">    centroids : np.ndarray</span>
+<span class="sd">        2D массив формы `(n_clusters, n_features)`, содержащий центроиды кластеров.</span>
+<span class="sd">    medoids : np.ndarray</span>
+<span class="sd">        2D массив формы `(n_clusters, n_features)`, содержащий медианы кластеров.</span>
+
+<span class="sd">    Методы</span>
+<span class="sd">    ------</span>
+<span class="sd">    fit(source_data: np.ndarray) -&gt; np.ndarray</span>
+<span class="sd">        Обучает модель иерархической кластеризации на предоставленных данных и вычисляет метки кластеров.</span>
+
+<span class="sd">    Параметры</span>
+<span class="sd">    ---------</span>
+<span class="sd">    linkage_method : str, optional</span>
+<span class="sd">        Метод объединения для кластеризации. По умолчанию `&quot;complete&quot;`.</span>
+<span class="sd">    linkage_metric : str, optional</span>
+<span class="sd">        Метрика расстояния для кластеризации. По умолчанию `&quot;cosine&quot;`.</span>
+<span class="sd">    linkage_optimal_ordering : bool, optional</span>
+<span class="sd">        Перестраивать ли матрицу объединений для оптимального порядка листьев. По умолчанию `False`.</span>
+<span class="sd">    fcluster_t : float, optional</span>
+<span class="sd">        Порог для формирования плоских кластеров. По умолчанию `0.25`.</span>
+<span class="sd">    fcluster_criterion : str, optional</span>
+<span class="sd">        Критерий для формирования плоских кластеров. По умолчанию `&quot;distance&quot;`.</span>
+<span class="sd">    fcluster_depth : int, optional</span>
+<span class="sd">        Глубина для расчета несогласованности, если `fcluster_criterion=&quot;inconsistent&quot;`. По умолчанию `2`.</span>
+
+<span class="sd">    Примеры</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from hsip.clustering.clustering import SCH</span>
+<span class="sd">    &gt;&gt;&gt; source_data = np.random.rand(10, 5)</span>
+<span class="sd">    &gt;&gt;&gt; model = SCH()</span>
+<span class="sd">    &gt;&gt;&gt; labels = model.fit(source_data)</span>
+<span class="sd">    &gt;&gt;&gt; print(labels)</span>
+<span class="sd">    [1 1 2 2 3 3 4 4 5 5]</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">linkage_method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;complete&quot;</span><span class="p">,</span>
+            <span class="n">linkage_metric</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;cosine&quot;</span><span class="p">,</span>
+            <span class="n">linkage_optimal_ordering</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="n">fcluster_t</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.25</span><span class="p">,</span>
+            <span class="n">fcluster_criterion</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;distance&quot;</span><span class="p">,</span>
+            <span class="n">fcluster_depth</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">linkage_method</span> <span class="o">=</span> <span class="n">linkage_method</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linkage_metric</span> <span class="o">=</span> <span class="n">linkage_metric</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linkage_optimal_ordering</span> <span class="o">=</span> <span class="n">linkage_optimal_ordering</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">fcluster_t</span> <span class="o">=</span> <span class="n">fcluster_t</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fcluster_criterion</span> <span class="o">=</span> <span class="n">fcluster_criterion</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fcluster_depth</span> <span class="o">=</span> <span class="n">fcluster_depth</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">centroids</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">medoids</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+<div class="viewcode-block" id="SCH.fit">
+<a class="viewcode-back" href="../../../hsip.clustering.html#hsip.clustering.clustering.SCH.fit">[документация]</a>
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source_data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">source_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">32000</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Very large sample! Recommended no more than 32000 samples. Submitted: </span><span class="si">{</span><span class="n">source_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
+
+        <span class="n">Z</span> <span class="o">=</span> <span class="n">sch</span><span class="o">.</span><span class="n">linkage</span><span class="p">(</span>
+            <span class="n">y</span><span class="o">=</span><span class="n">source_data</span><span class="p">,</span>
+            <span class="n">method</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">linkage_method</span><span class="p">,</span>
+            <span class="n">metric</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">linkage_metric</span><span class="p">,</span>
+            <span class="n">optimal_ordering</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">linkage_optimal_ordering</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="n">sch</span><span class="o">.</span><span class="n">fcluster</span><span class="p">(</span>
+            <span class="n">Z</span><span class="o">=</span><span class="n">Z</span><span class="p">,</span>
+            <span class="n">t</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fcluster_t</span><span class="p">,</span>
+            <span class="n">criterion</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fcluster_criterion</span><span class="p">,</span>
+            <span class="n">depth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fcluster_depth</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">centroids</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">medoids</span> <span class="o">=</span> <span class="n">get_centroids_and_medoids</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="n">source_data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">linkage_metric</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">labels</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="HDBSCAN">
+<a class="viewcode-back" href="../../../hsip.clustering.html#hsip.clustering.clustering.HDBSCAN">[документация]</a>
+<span class="k">class</span> <span class="nc">HDBSCAN</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    A wrapper class for the HDBSCAN clustering algorithm.</span>
+
+<span class="sd">    The `HDBSCAN` class simplifies the usage of the HDBSCAN clustering algorithm by encapsulating </span>
+<span class="sd">    the core functionality of the `hdbscan.HDBSCAN` class. It provides a streamlined interface for </span>
+<span class="sd">    clustering data and retrieving cluster labels.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    labels : np.ndarray or None</span>
+<span class="sd">        Cluster labels assigned to each data point after fitting the model. Initially set to `None`.</span>
+<span class="sd">    centroids : np.ndarray</span>
+<span class="sd">        2D array of shape `(n_clusters, n_features)` containing the centroids of the clusters.</span>
+<span class="sd">    medoids : np.ndarray</span>
+<span class="sd">        2D array of shape `(n_clusters, n_features)` containing the medoids of the clusters.</span>
+
+<span class="sd">    Methods</span>
+<span class="sd">    -------</span>
+<span class="sd">    fit(source_data: np.ndarray) -&gt; np.ndarray</span>
+<span class="sd">        Fits the HDBSCAN clustering model to the provided data and computes cluster labels.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    min_cluster_size : int, optional</span>
+<span class="sd">        The minimum size of clusters. Default is 5.</span>
+<span class="sd">    min_samples : int, optional</span>
+<span class="sd">        The minimum number of samples in a neighborhood for a point to be considered a core point. </span>
+<span class="sd">    cluster_selection_epsilon : float, optional</span>
+<span class="sd">        The distance threshold for cluster selection. Default is 0.0.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from hsip.clustering.clustering import HDBSCAN</span>
+<span class="sd">    &gt;&gt;&gt; source_data = np.random.rand(100, 5)</span>
+<span class="sd">    &gt;&gt;&gt; model = HDBSCAN(min_cluster_size=10)</span>
+<span class="sd">    &gt;&gt;&gt; labels = model.fit(source_data)</span>
+<span class="sd">    &gt;&gt;&gt; print(labels)</span>
+<span class="sd">    [0 0 1 -1 2 2 1 1 3 ...]</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__hdbscan__</span> <span class="o">=</span> <span class="n">source_HDBSCAN</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="kc">None</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">centroids</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">medoids</span> <span class="o">=</span> <span class="kc">None</span>
+
+        
+<div class="viewcode-block" id="HDBSCAN.fit">
+<a class="viewcode-back" href="../../../hsip.clustering.html#hsip.clustering.clustering.HDBSCAN.fit">[документация]</a>
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source_data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">source_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">64000</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Very large sample! Recommended no more than 64000 samples. Submitted: </span><span class="si">{</span><span class="n">source_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__hdbscan__</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">source_data</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">centroids</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">medoids</span> <span class="o">=</span> <span class="n">get_centroids_and_medoids</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="n">source_data</span><span class="p">,</span> <span class="s1">&#39;euclidean&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">labels</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Авторские права 2024, Константин Пухкий. </p>
+  </div>
+
+  Собрано при помощи <a href="https://www.sphinx-doc.org/">Sphinx</a> с использованием
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">темы,</a>
+    предоставленной <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

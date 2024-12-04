@@ -1,0 +1,346 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Кластеризация гиперспектральных данных &mdash; документация HSI-Processing 1.0.0</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=e35015f7"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/translations.js?v=5b699b7f"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Алфавитный указатель" href="genindex.html" />
+    <link rel="search" title="Поиск" href="search.html" />
+    <link rel="next" title="Методы обработки гиперспектральных данных" href="hsip.processing.html" />
+    <link rel="prev" title="Анализ сигнатур" href="hsip.analysis.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            HSI-Processing
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Поиск в документации" aria-label="Поиск в документации" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Меню навигации">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="hsip.analysis.html">Анализ сигнатур</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Кластеризация гиперспектральных данных</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-hsip.clustering.clustering">Методы кластеризации:</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#hsip.clustering.clustering.CosClust"><code class="docutils literal notranslate"><span class="pre">CosClust</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#hsip.clustering.clustering.CosClust.fit"><code class="docutils literal notranslate"><span class="pre">CosClust.fit()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#hsip.clustering.clustering.HDBSCAN"><code class="docutils literal notranslate"><span class="pre">HDBSCAN</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#hsip.clustering.clustering.HDBSCAN.labels"><code class="docutils literal notranslate"><span class="pre">HDBSCAN.labels</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hsip.clustering.clustering.HDBSCAN.centroids"><code class="docutils literal notranslate"><span class="pre">HDBSCAN.centroids</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hsip.clustering.clustering.HDBSCAN.medoids"><code class="docutils literal notranslate"><span class="pre">HDBSCAN.medoids</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hsip.clustering.clustering.HDBSCAN.fit"><code class="docutils literal notranslate"><span class="pre">HDBSCAN.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">HDBSCAN.fit()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#hsip.clustering.clustering.SCH"><code class="docutils literal notranslate"><span class="pre">SCH</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#hsip.clustering.clustering.SCH.fit"><code class="docutils literal notranslate"><span class="pre">SCH.fit()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.processing.html">Методы обработки гиперспектральных данных</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.reader.html">Функции для чтения гиперспектральных данных</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.rgb.html">Сентез цветных изображений</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.swemd.html">Разложение на эмпирические моды (EMD)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Меню навигации для мобильных устройств" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">HSI-Processing</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Навигация по страницам">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Кластеризация гиперспектральных данных</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/hsip.clustering.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>Кластеризация гиперспектральных данных<a class="headerlink" href="#id1" title="Ссылка на этот заголовок"></a></h1>
+<p>Одним из основных методов для обработки ГСИ является кластеризация.</p>
+<section id="module-hsip.clustering.clustering">
+<span id="id2"></span><h2>Методы кластеризации:<a class="headerlink" href="#module-hsip.clustering.clustering" title="Ссылка на этот заголовок"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hsip.clustering.clustering.CosClust">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hsip.clustering.clustering.</span></span><span class="sig-name descname"><span class="pre">CosClust</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.9</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsip/clustering/clustering.html#CosClust"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#hsip.clustering.clustering.CosClust" title="Ссылка на это определение"></a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Кластеризационный алгоритм на основе косинусного сходства. Объединяет образцы в кластеры, основываясь на
+пороговом значении косинусного сходства, и назначает метки каждому образцу.</p>
+<section id="id3">
+<h3>Параметры<a class="headerlink" href="#id3" title="Ссылка на этот заголовок"></a></h3>
+<dl class="simple">
+<dt>threshold<span class="classifier">float, optional</span></dt><dd><p>Порог косинусного сходства для определения принадлежности к кластеру. По умолчанию 0.9.</p>
+</dd>
+<dt>verbose<span class="classifier">bool, optional</span></dt><dd><p>Если установлено в <cite>True</cite>, отображает процесс и дополнительную информацию во время кластеризации.
+По умолчанию <cite>True</cite>.</p>
+</dd>
+</dl>
+</section>
+<section id="id4">
+<h3>Атрибуты<a class="headerlink" href="#id4" title="Ссылка на этот заголовок"></a></h3>
+<dl class="simple">
+<dt>threshold<span class="classifier">float</span></dt><dd><p>Порог косинусного сходства для кластеризации.</p>
+</dd>
+<dt>labels<span class="classifier">np.ndarray or None</span></dt><dd><p>Метки кластеров, назначенные каждому образцу. Инициализируется как <cite>None</cite>, заполняется после вызова метода <cite>fit</cite>.</p>
+</dd>
+<dt>reference_set<span class="classifier">list</span></dt><dd><p>Список эталонных образцов, представляющих каждый кластер.</p>
+</dd>
+<dt>centroids<span class="classifier">np.ndarray</span></dt><dd><p>2D массив формы <cite>(n_clusters, n_features)</cite>, содержащий центроиды кластеров.</p>
+</dd>
+<dt>medoids<span class="classifier">np.ndarray</span></dt><dd><p>2D массив формы <cite>(n_clusters, n_features)</cite>, содержащий медианы кластеров.</p>
+</dd>
+</dl>
+</section>
+<section id="id5">
+<h3>Методы<a class="headerlink" href="#id5" title="Ссылка на этот заголовок"></a></h3>
+<dl class="simple">
+<dt>fit(source_data)</dt><dd><p>Выполняет кластеризацию входных данных и возвращает метки кластеров.</p>
+</dd>
+</dl>
+</section>
+<section id="id6">
+<h3>Примеры<a class="headerlink" href="#id6" title="Ссылка на этот заголовок"></a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hsip.clustering.clustering</span> <span class="kn">import</span> <span class="n">CosClust</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>  <span class="c1"># 100 образцов, каждый с 50 признаками</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">CosClust</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">labels</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
+<span class="go">array([0, 1, 0, 2, ..., 1])</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="hsip.clustering.clustering.CosClust.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsip/clustering/clustering.html#CosClust.fit"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#hsip.clustering.clustering.CosClust.fit" title="Ссылка на это определение"></a></dt>
+<dd></dd></dl>
+
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="hsip.clustering.clustering.HDBSCAN">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hsip.clustering.clustering.</span></span><span class="sig-name descname"><span class="pre">HDBSCAN</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsip/clustering/clustering.html#HDBSCAN"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#hsip.clustering.clustering.HDBSCAN" title="Ссылка на это определение"></a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A wrapper class for the HDBSCAN clustering algorithm.</p>
+<p>The <cite>HDBSCAN</cite> class simplifies the usage of the HDBSCAN clustering algorithm by encapsulating
+the core functionality of the <cite>hdbscan.HDBSCAN</cite> class. It provides a streamlined interface for
+clustering data and retrieving cluster labels.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hsip.clustering.clustering.HDBSCAN.labels">
+<span class="sig-name descname"><span class="pre">labels</span></span><a class="headerlink" href="#hsip.clustering.clustering.HDBSCAN.labels" title="Ссылка на это определение"></a></dt>
+<dd><p>Cluster labels assigned to each data point after fitting the model. Initially set to <cite>None</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray or None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hsip.clustering.clustering.HDBSCAN.centroids">
+<span class="sig-name descname"><span class="pre">centroids</span></span><a class="headerlink" href="#hsip.clustering.clustering.HDBSCAN.centroids" title="Ссылка на это определение"></a></dt>
+<dd><p>2D array of shape <cite>(n_clusters, n_features)</cite> containing the centroids of the clusters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hsip.clustering.clustering.HDBSCAN.medoids">
+<span class="sig-name descname"><span class="pre">medoids</span></span><a class="headerlink" href="#hsip.clustering.clustering.HDBSCAN.medoids" title="Ссылка на это определение"></a></dt>
+<dd><p>2D array of shape <cite>(n_clusters, n_features)</cite> containing the medoids of the clusters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hsip.clustering.clustering.HDBSCAN.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">np.ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">np.ndarray</span></span></span><a class="reference internal" href="_modules/hsip/clustering/clustering.html#HDBSCAN.fit"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#hsip.clustering.clustering.HDBSCAN.fit" title="Ссылка на это определение"></a></dt>
+<dd><p>Fits the HDBSCAN clustering model to the provided data and computes cluster labels.</p>
+</dd></dl>
+
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>min_cluster_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The minimum size of clusters. Default is 5.</p></li>
+<li><p><strong>min_samples</strong> (<em>int</em><em>, </em><em>optional</em>) – The minimum number of samples in a neighborhood for a point to be considered a core point.</p></li>
+<li><p><strong>cluster_selection_epsilon</strong> (<em>float</em><em>, </em><em>optional</em>) – The distance threshold for cluster selection. Default is 0.0.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Примеры</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hsip.clustering.clustering</span> <span class="kn">import</span> <span class="n">HDBSCAN</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">source_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">HDBSCAN</span><span class="p">(</span><span class="n">min_cluster_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">labels</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">source_data</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
+<span class="go">[0 0 1 -1 2 2 1 1 3 ...]</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsip/clustering/clustering.html#HDBSCAN.fit"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#id0" title="Ссылка на это определение"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="hsip.clustering.clustering.SCH">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hsip.clustering.clustering.</span></span><span class="sig-name descname"><span class="pre">SCH</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">linkage_method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'complete'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linkage_metric</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'cosine'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linkage_optimal_ordering</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fcluster_t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fcluster_criterion</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'distance'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fcluster_depth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsip/clustering/clustering.html#SCH"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#hsip.clustering.clustering.SCH" title="Ссылка на это определение"></a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Класс для выполнения иерархической кластеризации с использованием методов <cite>linkage</cite> и <cite>fcluster</cite> из библиотеки SciPy.</p>
+<p>Класс <cite>SCH</cite> предоставляет интерфейс для иерархической кластеризации с настраиваемыми параметрами объединения и кластеризации.</p>
+<section id="id7">
+<h3>Атрибуты<a class="headerlink" href="#id7" title="Ссылка на этот заголовок"></a></h3>
+<dl class="simple">
+<dt>labels<span class="classifier">np.ndarray or None</span></dt><dd><p>Метки кластеров, присвоенные каждой точке данных после обучения модели. Изначально установлено в <cite>None</cite>.</p>
+</dd>
+<dt>linkage_method<span class="classifier">str</span></dt><dd><p>Метод объединения, используемый для иерархической кластеризации. Поддерживаемые методы включают
+<cite>«single»</cite>, <cite>«complete»</cite>, <cite>«average»</cite>, <cite>«weighted»</cite>, <cite>«centroid»</cite>, <cite>«median»</cite>, и <cite>«ward»</cite>.</p>
+</dd>
+<dt>linkage_metric<span class="classifier">str</span></dt><dd><p>Метрика расстояния, используемая для вычисления попарных расстояний между точками данных.
+Популярные метрики: <cite>«euclidean»</cite>, <cite>«cosine»</cite>, <cite>«cityblock»</cite>, <cite>«hamming»</cite>.</p>
+</dd>
+<dt>linkage_optimal_ordering<span class="classifier">bool</span></dt><dd><p>Если <cite>True</cite>, матрица объединений будет упорядочена для минимизации расстояний между последовательными листьями.</p>
+</dd>
+<dt>fcluster_t<span class="classifier">float</span></dt><dd><p>Порог для формирования плоских кластеров. Значение <cite>t</cite> зависит от <cite>fcluster_criterion</cite>.</p>
+</dd>
+<dt>fcluster_criterion<span class="classifier">str</span></dt><dd><p>Критерий для формирования плоских кластеров. Поддерживаемые критерии: <cite>«inconsistent»</cite>,
+<cite>«distance»</cite>, <cite>«maxclust»</cite>.</p>
+</dd>
+<dt>fcluster_depth<span class="classifier">int</span></dt><dd><p>Максимальная глубина для расчета несогласованности, если <cite>fcluster_criterion=»inconsistent»</cite>.
+Игнорируется для других критериев.</p>
+</dd>
+<dt>centroids<span class="classifier">np.ndarray</span></dt><dd><p>2D массив формы <cite>(n_clusters, n_features)</cite>, содержащий центроиды кластеров.</p>
+</dd>
+<dt>medoids<span class="classifier">np.ndarray</span></dt><dd><p>2D массив формы <cite>(n_clusters, n_features)</cite>, содержащий медианы кластеров.</p>
+</dd>
+</dl>
+</section>
+<section id="id8">
+<h3>Методы<a class="headerlink" href="#id8" title="Ссылка на этот заголовок"></a></h3>
+<dl class="simple">
+<dt>fit(source_data: np.ndarray) -&gt; np.ndarray</dt><dd><p>Обучает модель иерархической кластеризации на предоставленных данных и вычисляет метки кластеров.</p>
+</dd>
+</dl>
+</section>
+<section id="id9">
+<h3>Параметры<a class="headerlink" href="#id9" title="Ссылка на этот заголовок"></a></h3>
+<dl class="simple">
+<dt>linkage_method<span class="classifier">str, optional</span></dt><dd><p>Метод объединения для кластеризации. По умолчанию <cite>«complete»</cite>.</p>
+</dd>
+<dt>linkage_metric<span class="classifier">str, optional</span></dt><dd><p>Метрика расстояния для кластеризации. По умолчанию <cite>«cosine»</cite>.</p>
+</dd>
+<dt>linkage_optimal_ordering<span class="classifier">bool, optional</span></dt><dd><p>Перестраивать ли матрицу объединений для оптимального порядка листьев. По умолчанию <cite>False</cite>.</p>
+</dd>
+<dt>fcluster_t<span class="classifier">float, optional</span></dt><dd><p>Порог для формирования плоских кластеров. По умолчанию <cite>0.25</cite>.</p>
+</dd>
+<dt>fcluster_criterion<span class="classifier">str, optional</span></dt><dd><p>Критерий для формирования плоских кластеров. По умолчанию <cite>«distance»</cite>.</p>
+</dd>
+<dt>fcluster_depth<span class="classifier">int, optional</span></dt><dd><p>Глубина для расчета несогласованности, если <cite>fcluster_criterion=»inconsistent»</cite>. По умолчанию <cite>2</cite>.</p>
+</dd>
+</dl>
+</section>
+<section id="id10">
+<h3>Примеры<a class="headerlink" href="#id10" title="Ссылка на этот заголовок"></a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hsip.clustering.clustering</span> <span class="kn">import</span> <span class="n">SCH</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">source_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">SCH</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">labels</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">source_data</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
+<span class="go">[1 1 2 2 3 3 4 4 5 5]</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="hsip.clustering.clustering.SCH.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsip/clustering/clustering.html#SCH.fit"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#hsip.clustering.clustering.SCH.fit" title="Ссылка на это определение"></a></dt>
+<dd></dd></dl>
+
+</section>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Нижняя область">
+        <a href="hsip.analysis.html" class="btn btn-neutral float-left" title="Анализ сигнатур" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
+        <a href="hsip.processing.html" class="btn btn-neutral float-right" title="Методы обработки гиперспектральных данных" accesskey="n" rel="next">Следующая <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Авторские права 2024, Константин Пухкий. </p>
+  </div>
+
+  Собрано при помощи <a href="https://www.sphinx-doc.org/">Sphinx</a> с использованием
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">темы,</a>
+    предоставленной <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

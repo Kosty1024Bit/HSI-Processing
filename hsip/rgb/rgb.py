@@ -8,7 +8,7 @@ def hsi_synthesize_rgb(spectral_data: np.ndarray, rgb_bands: list | np.ndarray =
     Синтезирует RGB-изображение из гиперспектральных данных.
 
     Параметры
-    ----------
+    ---------
     spectral_data : np.ndarray
         Гиперспектральные данные изображения, ожидается, что это 3D массив формы (height, width, bands).
     rgb_bands : list of int, необязательный
@@ -19,12 +19,12 @@ def hsi_synthesize_rgb(spectral_data: np.ndarray, rgb_bands: list | np.ndarray =
         Если указан, выбираются наиболее близкие длины волн к 650 нм (красный), 550 нм (зеленый) и 450 нм (синий).
 
     Возвращает
-    ---------
+    ----------
     np.ndarray
         3D массив формы (height, width, 3), представляющий синтезированное RGB-изображение.
 
     Примеры
-    --------
+    -------
     Использование индексов полос напрямую:
 
     >>> from hsip.rgb.rgb import hsi_synthesize_rgb
@@ -78,8 +78,6 @@ def hsi_synthesize_rgb(spectral_data: np.ndarray, rgb_bands: list | np.ndarray =
 
     return rgb_image
 
-Напиши документацию в стандарте numpy к этой функции на английском языке:
-
 def simple_synthesize_rgb(band_data: list, sig_max_filt: float = None):
     '''
     Генерирует RGB-изображение из трех гиперспектральных полос.
@@ -89,7 +87,7 @@ def simple_synthesize_rgb(band_data: list, sig_max_filt: float = None):
     максимум-фильтр к каждой полосе для снижения шума перед нормализацией и масштабированием.
 
     Параметры
-    ----------
+    ---------
     band_data : list of np.ndarray
         Список, содержащий ровно три 2D массива, каждый из которых представляет одну полосу данных
         для каналов красного, зеленого и синего. Каждый массив должен иметь одинаковую форму.
@@ -98,13 +96,13 @@ def simple_synthesize_rgb(band_data: list, sig_max_filt: float = None):
         для снижения шума перед синтезом RGB-изображения.
 
     Возвращает
-    ---------
+    ----------
     rgb_image : np.ndarray
         3D массив формы `(height, width, 3)`, представляющий синтезированное RGB-изображение.
         Выходной тип — `np.uint8` с пиксельными значениями, масштабированными в диапазон [0, 255].
 
     Примеры
-    --------
+    -------
     Генерация RGB-изображения с применением сигма максимум-фильтрации:
     
     >>> import numpy as np
