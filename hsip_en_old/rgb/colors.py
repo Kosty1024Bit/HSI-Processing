@@ -3,54 +3,54 @@ import numpy as np
 
 class Color:
     '''
-    Утилитный класс для управления и доступа к предустановленному набору цветов.
+    A utility class for managing and accessing a predefined set of colors.
 
-    Этот класс предоставляет коллекцию значений цветов в формате RGB в диапазоне [0, 1] 
-    и методы для получения одного или нескольких цветов по индексу или срезу. 
-    Он также поддерживает модульную индексацию для циклического обращения к набору цветов.
+    This class provides a collection of RGB color values in the range [0, 1], 
+    and methods to retrieve single or multiple colors by index or slice. 
+    It also supports modular indexing to wrap around the color set.
 
-    Атрибуты
-    --------
-    colors : np.ndarray
-        Двумерный массив формы `(n_colors, 3)`, содержащий значения цветов RGB в диапазоне [0, 1].
-
-    Методы
-    ------
-    __get_color__(index)
-        Получает один цвет или подмножество цветов по индексу или срезу.
-    __getitem__(index)
-        Псевдоним для метода `__get_color__`, позволяет использовать квадратные скобки для индексации.
-    __len__()
-        Возвращает общее количество цветов в палитре.
-    __iter__()
-        Возвращает итератор по цветам.
-
-    Параметры
+    Attributes
     ----------
-    Нет
+    colors : np.ndarray
+        A 2D array of shape `(n_colors, 3)` containing RGB color values in the range [0, 1].
 
-    Примеры
+    Methods
     -------
-    Создание экземпляра класса `Color` и получение цветов:
+    __get_color__(index)
+        Retrieves a single color or a subset of colors by index or slice.
+    __getitem__(index)
+        Alias for `__get_color__`, allows indexing with square brackets.
+    __len__()
+        Returns the total number of colors in the palette.
+    __iter__()
+        Returns an iterator over the colors.
 
+    Parameters
+    ----------
+    None
+
+    Examples
+    --------
+    Create an instance of the `Color` class and retrieve colors:
+    
     >>> from hsip.rgb.colors import Color
     >>> color_palette = Color()
 
-    Получение одного цвета с использованием индекса:
+    Access a single color using an index:
     >>> color_palette[0]
     array([0.90196078, 0.09803922, 0.29411765])
 
-    Получение нескольких цветов с использованием среза:
+    Access multiple colors using a slice:
     >>> color_palette[1:4]
     array([[0.23529412, 0.70588235, 0.29411765],
            [0.        , 0.50980392, 0.78431373],
            [0.96078431, 0.50980392, 0.18823529]])
 
-    Модульная индексация:
+    Modular indexing wraps around:
     >>> color_palette[20]
-    array([0.23529412, 0.70588235, 0.29411765])  # Индекс 20 соответствует индексу 1 (20 % len(colors))
+    array([0.23529412, 0.70588235, 0.29411765])  # Index 20 maps to 1 (20 % len(colors))
 
-    Итерация по цветам:
+    Iterate through the colors:
     >>> for color in color_palette:
     ...     print(color)
     array([0.90196078, 0.09803922, 0.29411765])

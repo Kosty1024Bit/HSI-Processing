@@ -10,20 +10,20 @@ import tifffile as tfl
 
 def open_SpyFile(path_lan: str):
     '''
-    Opens a hyperspectral image in LAN format.
+    Открывает гиперспектральное изображение в формате SpyFile.
 
-    Parameters
-    ----------
+    Параметры
+    ---------
     path_lan : str
-        Path to the LAN file to be opened.
+        Путь к LAN-файлу, который необходимо открыть.
 
-    Returns
-    -------
+    Возвращаемые значения
+    ---------------------
     SpectralLibrary
-        A `SpyFile` object containing the hyperspectral data.
+        Объект `SpyFile`, содержащий гиперспектральные данные.
 
-    Examples
-    --------
+    Примеры
+    -------
     >>> from hsip.reader.reader import open_SpyFile
     >>> hsi = open_SpyFile("example.lan")
     >>> print(hsi)
@@ -36,30 +36,30 @@ def open_SpyFile(path_lan: str):
     
 def open_ENVI(path_hdr: str, path_img: str):
     '''
-    Opens a hyperspectral image in ENVI format and converts it to a NumPy array.
+    Открывает гиперспектральное изображение в формате ENVI и конвертирует его в массив NumPy.
 
-    Parameters
-    ----------
+    Параметры
+    ---------
     path_hdr : str
-        Path to the ENVI header file (.hdr).
+        Путь к заголовочному файлу ENVI (.hdr).
     path_img : str
-        Path to the ENVI image file (.img).
+        Путь к изображению ENVI (.img).
 
-    Returns
-    -------
+    Возвращаемые значения
+    ---------------------
     np.ndarray
-        A NumPy array of the hyperspectral data, with `dtype=float`.
+        Массив NumPy с гиперспектральными данными, с типом данных `dtype=float`.
 
-    Notes
-    -----
-    - The ENVI image is opened as a memory-mapped array and then loaded fully into memory as a float array.
+    Примечания
+    ---------
+    - Изображение ENVI открывается как массив с отображением в память, а затем полностью загружается в память как массив с типом `float`.
 
-    Examples
-    --------
+    Примеры
+    -------
     >>> from hsip.reader.reader import open_ENVI
     >>> hsi = open_ENVI("example.hdr", "example.img")
     >>> print(hsi.shape)
-    (100, 100, 224)  # Example dimensions
+    (100, 100, 224)  # Примерные размеры
     '''
     
     hsi_envi = envi.open(path_hdr, path_img)
@@ -69,22 +69,22 @@ def open_ENVI(path_hdr: str, path_img: str):
     
 def open_AVIRIS(path_rfl: str, path_spc: str):
     '''
-    Opens a hyperspectral image in AVIRIS format.
+    Открывает гиперспектральное изображение в формате AVIRIS.
 
-    Parameters
-    ----------
+    Параметры
+    ---------
     path_rfl : str
-        Path to the AVIRIS reflectance data file (.rfl).
+        Путь к файлу данных отражения AVIRIS (.rfl).
     path_spc : str
-        Path to the AVIRIS spectral calibration file (.spc).
+        Путь к файлу спектральной калибровки AVIRIS (.spc).
 
-    Returns
-    -------
+    Возвращаемые значения
+    ---------------------
     SpectralLibrary
-        A `SpyFile` object containing the AVIRIS hyperspectral data.
+        Объект `SpyFile`, содержащий гиперспектральные данные AVIRIS.
 
-    Examples
-    --------
+    Примеры
+    -------
     >>> from hsip.reader.reader import open_AVIRIS
     >>> hsi = open_AVIRIS("example.rfl", "example.spc")
     >>> print(hsi)
@@ -96,21 +96,21 @@ def open_AVIRIS(path_rfl: str, path_spc: str):
 
 def open_ERDAS(path: str):
     '''
-    Opens a hyperspectral image in ERDAS Imagine format.
+    Открывает гиперспектральное изображение в формате ERDAS Imagine.
 
-    Parameters
-    ----------
+    Параметры
+    ---------
     path : str
-        Path to the ERDAS Imagine file to be opened.
+        Путь к файлу ERDAS Imagine, который необходимо открыть.
 
-    Returns
-    -------
+    Возвращаемые значения
+    ---------------------
     SpectralLibrary
-        A `SpyFile` object containing the hyperspectral data.
+        Объект `SpyFile`, содержащий гиперспектральные данные.
 
-    Examples
-    --------
-   >>> from hsip.reader.reader import open_ERDAS
+    Примеры
+    -------
+    >>> from hsip.reader.reader import open_ERDAS
     >>> hsi = open_ERDAS("example.img")
     >>> print(hsi)
     SpyFile: [shape=(100, 100, 224), dtype=float32]
@@ -122,28 +122,28 @@ def open_ERDAS(path: str):
 
 def open_TIF(path_tif: str):
     '''
-    Opens a hyperspectral image in GeoTIFF format.
+    Открывает гиперспектральное изображение в формате GeoTIFF.
 
-    Parameters
-    ----------
+    Параметры
+    ---------
     path_tif : str
-        Path to the GeoTIFF file to be opened.
+        Путь к файлу GeoTIFF, который необходимо открыть.
 
-    Returns
-    -------
+    Возвращаемые значения
+    ---------------------
     np.ndarray
-        A NumPy array containing the hyperspectral data.
+        Массив NumPy, содержащий гиперспектральные данные.
 
-    Notes
-    -----
-    - The GeoTIFF data is loaded into memory using the `tifffile` library and copied as a NumPy array.
+    Примечания
+    ---------
+    - Данные GeoTIFF загружаются в память с использованием библиотеки `tifffile` и копируются как массив NumPy.
 
-    Examples
-    --------
-    >>> >>> from hsip.reader.reader import open_TIF
+    Примеры
+    -------
+    >>> from hsip.reader.reader import open_TIF
     >>> hsi = open_TIF("example.tif")
     >>> print(hsi.shape)
-    (100, 100, 224)  # Example dimensions
+    (100, 100, 224)
     '''
     
     hsi_tif = tfl.TiffFile(path_tif)

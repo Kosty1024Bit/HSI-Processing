@@ -4,34 +4,34 @@ from tqdm import tqdm
 
 def SWEMD(data: np.ndarray, number_of_modes:int = 4, windows_size: list = [3], verbose: bool = True):
     '''
-    Рассчитывает и возвращает IMF и окна для каждого каждого сигнала, указанного в `data`.
+    Returns for a 1D signal its IMF and windows for each of them.
 
-    Параметры
+    Parameters
     ----------
     x : np.ndarray
-        Массив размерности 3 (height * width * bands), размерности 2 (n_samples * bands), или просто один образец.
-    number_of_modes : int, по умолчанию=4
-        Количество IMF, которые необходимо вычислить для входного сигнала.
-    windows_size : list или tuple of int, по умолчанию=3
-        Размер окон для каждой моды, начиная с первой. Если передан список, то каждый элемент указывает размер окна для соответствующего IMF. 
-        Если список переданных размеров меньше, чем указано в `number_of_modes`, то последующие размеры скользящих окон будут вычислены автоматически.
-        Если в списке указан элемент со значением -1, то размер этого окна будет также вычислен автоматически.
-        Если передано целое число, это будет размер скользящего окна только для первого IMF.
-        
-    Возвращает
-    ---------
+        An array of dimension 3 (height * width * bands), dimension 2 (n_samples * bands), or just a single sample.
+    number_of_modes : int, default=4
+        The number of IMFs to calculate for the input signal.
+    windows_size : list or tuple of int, default=3
+        The size of windows for each mode, starting with the first. If the list type is passed, then each element will indicate the size of the window starting with the first IMF. 
+        The list of passed sizes can be less than specified in `number_of_modes`, in which case subsequent sizes of sliding windows will be calculated automatically.
+        The list can be passed a value equal to -1, in which case the window size will also be calculated automatically.
+        If int is passed, this number will be the size of the sliding window only for the first IMF.
+    
+    Returns
+    -------
     IMFs : list
-        Эмпирические моды для каждого образца.
+        Empirical modes for each sample.
     err_windows_size : list
-        Размеры окон для каждого уровня эмпирических мод.
+        Window sizes for each level of empirical modes.
 
-    Примеры
+    Examples
     --------
-    Вычисление EMD: длины окон равны трем для 1-ой и 2-ой моды, 5 для 3-ий моды и автоматически для остальных.
+    EMD calculation: window lengths equal three for the 1st and 2nd modes, 5 for the 3rd mode, and automatic for the rest.
 
     >>> import numpy as np
     >>> from hsip.swemd.swemd import SWEMD
-    >>> data = np.random.rand(1000, 1000, 100) * 10  # Пример спектральных данных
+    >>> data = np.random.rand(1000, 1000, 100) * 10  # Example spectral data
     >>> IMFs, windows = SWEMD(data, number_of_modes=8, windows_size=[3, 3, 5])
     >>> print(IMFs.shape, windows.shape)
     (8, 1000, 1000, 100), (8, 1000, 1000)
@@ -71,34 +71,34 @@ def SWEMD(data: np.ndarray, number_of_modes:int = 4, windows_size: list = [3], v
 @jit(nopython=True)
 def SWEMD_signal(iSample: np.ndarray, number_of_modes: int = 4, windows_size: list = [3]):
     '''
-    Возвращает IMF для одномерного образца.
+    Returns IMFs for each sample.
 
-    Параметры
+    Parameters
     ----------
     x : np.ndarray
-        Одномерный сигнал.
-    number_of_modes : int, по умолчанию=4
-        Количество IMF, которые необходимо вычислить для входного сигнала.
-    windows_size : list или tuple of int, по умолчанию=3
-        Размер окон для каждой моды, начиная с первой. Если передан список, то каждый элемент указывает размер окна для соответствующего IMF. 
-        Если список переданных размеров меньше, чем указано в `number_of_modes`, то последующие размеры скользящих окон будут вычислены автоматически.
-        Если в списке указан элемент со значением -1, то размер этого окна будет также вычислен автоматически.
-        Если передано целое число, это будет размер скользящего окна только для первого IMF.
-        
-    Возвращает
-    ---------
+        One-dimensional signal.
+    number_of_modes : int, default=4
+        The number of IMFs to calculate for the input signal.
+    windows_size : list or tuple of int, default=3
+        The size of windows for each mode, starting with the first. If the list type is passed, then each element will indicate the size of the window starting with the first IMF. 
+        The list of passed sizes can be less than specified in `number_of_modes`, in which case subsequent sizes of sliding windows will be calculated automatically.
+        The list can be passed a value equal to -1, in which case the window size will also be calculated automatically.
+        If int is passed, this number will be the size of the sliding window only for the first IMF.
+    
+    Returns
+    -------
     IMFs : list
-        Эмпирические моды для каждого образца.
+        Empirical modes for each sample.
     err_windows_size : list
-        Размеры окон для каждого уровня эмпирических мод.
+        Window sizes for each level of empirical modes.
 
-    Примеры
+    Examples
     --------
-    Вычисление EMD: длины окон равны трем для 1-ой и 2-ой моды, 5 для 3-ий моды и автоматически для остальных.
+    EMD calculation: window lengths equal three for the 1st and 2nd modes, 5 for the 3rd mode, and automatic for the rest.
 
     >>> import numpy as np
     >>> from hsip.swemd.swemd import SWEMD_signal
-    >>> data = np.random.rand(100) * 10  # Пример спектральных данных
+    >>> data = np.random.rand(100) * 10  # Example spectral data
     >>> IMFs, windows = SWEMD(data, number_of_modes=8, windows_size=[3, 3, 5])
     >>> print(IMFs.shape, windows.shape)
     (100), (8)

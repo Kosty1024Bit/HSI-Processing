@@ -5,35 +5,36 @@ from scipy.spatial.distance import cdist
 
 def get_centroids_and_medoids(labels, data, metric='cosine'):
     '''
-    Compute centroids and medoids for clusters in labeled data.
+    Вычисление центроидов и медианов для кластеров в размеченных данных.
 
-    This function calculates the centroids and medoids for each cluster in the provided data, 
-    given cluster labels. Centroids are the mean of all points in a cluster, while medoids
-    are calculated as the point in the cluster closest to the centroid based on the
-    specified distance metric.
-    
-    Parameters
-    ----------
+    Функция вычисляет центроиды и медианы для каждого кластера в предоставленных данных, 
+    учитывая метки кластеров. Центроиды — это среднее значение всех точек в кластере, 
+    а медианы определяются как точка кластера, наиболее близкая к центроиду, 
+    в соответствии с заданной метрикой расстояния.
+
+    Параметры
+    ---------
     labels : np.ndarray
-        1D array of cluster labels for the data points. Points with the same label are considered 
-        to belong to the same cluster.
+        1D массив меток кластеров для точек данных. Точки с одинаковой меткой 
+        считаются принадлежащими одному и тому же кластеру.
     data : np.ndarray
-        2D array of shape `(n_samples, n_features)` containing the data points.
+        2D массив формы `(n_samples, n_features)`, содержащий точки данных.
     metric : str, optional
-        The distance metric used to calculate the medoids. Default is `'cosine'`. 
-        Other valid metrics include `'euclidean'`, `'manhattan'`, and others supported by 
-        `scipy.spatial.distance.cdist`.
+        Метрика расстояния, используемая для вычисления медианов. По умолчанию `'cosine'`.
+        Другие допустимые метрики включают `'euclidean'`, `'manhattan'` и другие, поддерживаемые 
+        функцией `scipy.spatial.distance.cdist`.
 
-    Returns
-    -------
+    Возвращаемые значения
+    ---------------------
     centroids : np.ndarray
-        2D array of shape `(n_clusters, n_features)` containing the centroids of the clusters.
+        2D массив формы `(n_clusters, n_features)`, содержащий центроиды кластеров.
     medoids : np.ndarray
-        2D array of shape `(n_clusters, n_features)` containing the medoids of the clusters.
+        2D массив формы `(n_clusters, n_features)`, содержащий медианы кластеров.
 
-    Examples
-    --------
-    Compute centroids and medoids for cosine similarity
+    Примеры
+    -------
+    Вычисление центроидов и медианов для косинусного сходства
+
     >>> import numpy as np
     >>> from hsip.analysis.analysis import get_centroids_and_medoids
     >>> labels = np.array([0, 0, 1, 1, 2, 2])
@@ -43,15 +44,15 @@ def get_centroids_and_medoids(labels, data, metric='cosine'):
     ...     [5, 6], [6, 7]
     ... ])
     >>> centroids, medoids = get_centroids_and_medoids(labels, data, metric='cosine')
-    >>> print("Centroids:")
+    >>> print("Центроиды:")
     >>> print(centroids)
-    Centroids:
+    Центроиды:
     [[1.5 2.5]
      [3.5 4.5]
      [5.5 6.5]]
-    >>> print("Medoids:")
+    >>> print("Медианы:")
     >>> print(medoids)
-    Medoids:
+    Медианы:
     [[1. 2.]
      [3. 4.]
      [5. 6.]]
@@ -72,30 +73,32 @@ def get_centroids_and_medoids(labels, data, metric='cosine'):
 
 def get_cross_correlation_matrix(data: np.ndarray, metric: str='euclidean'):
     '''
-    Compute the cross-correlation matrix for a given dataset.
+    Вычисление матрицы перекрёстной корреляции для заданного набора данных.
 
-    This function calculates the pairwise distances between all rows in the input data 
-    using the specified distance metric and returns the resulting cross-correlation matrix.
+    Эта функция вычисляет попарные расстояния между всеми строками входных данных 
+    с использованием указанной метрики расстояния и возвращает полученную матрицу 
+    перекрёстной корреляции.
 
-    Parameters
-    ----------
+    Параметры
+    ---------
     data : np.ndarray
-        2D array of shape `(n_samples, n_features)` containing the input data, where `n_samples` 
-        is the number of data points and `n_features` is the number of features.
+        2D массив формы `(n_samples, n_features)`, содержащий входные данные, где `n_samples` — 
+        количество точек данных, а `n_features` — количество признаков.
     metric : str, optional
-        The distance metric to use for calculating pairwise distances. Default is `'euclidean'`. 
-        Supported metrics include `'euclidean'`, `'manhattan'`, `'cosine'`, and others supported by 
-        `scipy.spatial.distance.cdist`.
+        Метрика расстояния, используемая для вычисления попарных расстояний. По умолчанию `'euclidean'`.
+        Поддерживаемые метрики включают `'euclidean'`, `'manhattan'`, `'cosine'` и другие, 
+        доступные в `scipy.spatial.distance.cdist`.
 
-    Returns
-    -------
+    Возвращаемые значения
+    ---------------------
     cross_corr_mat : np.ndarray
-        2D array of shape `(n_samples, n_samples)` containing the pairwise distances between 
-        all data points in the input data.
+        2D массив формы `(n_samples, n_samples)`, содержащий попарные расстояния между всеми 
+        точками данных во входных данных.
 
-    Examples
-    --------
-    Compute cross-correlation matrix with the default Euclidean metric
+    Примеры
+    -------
+    Вычисление матрицы перекрёстной корреляции с метрикой Евклида по умолчанию
+    
     >>> import numpy as np
     >>> from hsip.analysis.analysis import get_cross_correlation_matrix
     >>> data = np.array([[0, 1], [1, 2], [2, 3], [3, 4]])
