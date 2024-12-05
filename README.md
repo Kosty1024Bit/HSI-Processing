@@ -1,6 +1,22 @@
-# HSI Processing
-"Moffett Field" hyperspectral image.
+# Добро пожаловатиь в HSI-Processing!
 ![rgb_mf](https://user-images.githubusercontent.com/32631025/130922046-b5047a45-c37f-43c6-bbb0-5baf80286ff3.png)
+
+## Установка
+1. Убедитесь, что у вас установлен Python 3.10+ и `pip`.
+
+2. Установка пакета напрямую из GitHub
+
+```bash
+pip install git+https://github.com/Kosty1024Bit/HSI-Processing.git
+```
+
+3. Клонирование репозитория и локальная установка
+
+```bash
+git clone git+https://github.com/Kosty1024Bit/HSI-Processing.git
+cd HSI-Processing
+pip install -e .
+```
 
 ## Useful links:
 [Download HSI Moffett Field (Yandex Disk)](https://disk.yandex.ru/d/spFt8e40w839OQ)
