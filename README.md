@@ -1,8 +1,24 @@
-# HSI Processing
-"Moffett Field" hyperspectral image.
+# Добро пожаловатиь в HSI-Processing!
 ![rgb_mf](https://user-images.githubusercontent.com/32631025/130922046-b5047a45-c37f-43c6-bbb0-5baf80286ff3.png)
 
-## Useful links:
+## Установка
+1. Убедитесь, что у вас установлен Python 3.10+ и `pip`.
+
+2. Установка пакета напрямую из GitHub
+
+```bash
+pip install git+https://github.com/Kosty1024Bit/HSI-Processing.git
+```
+
+3. Клонирование репозитория и локальная установка
+
+```bash
+git clone git+https://github.com/Kosty1024Bit/HSI-Processing.git
+cd HSI-Processing
+pip install -e .
+```
+
+## Полезные ссылки:
 [Download HSI Moffett Field (Yandex Disk)](https://disk.yandex.ru/d/spFt8e40w839OQ)
 
 [Download HSI jasperRidge2_F224 (Yandex Disk)](https://disk.yandex.ru/d/LdILQV3pF945mQ)
@@ -33,7 +49,7 @@ hsi = np.array(hsi_envi.open_memmap(writble = True), dtype = float)
 ___
 [www.spectralpython.net](https://www.spectralpython.net/)
 
-Spectral Python (SPy) is a pure Python module for processing hyperspectral image data. It has functions for reading, displaying, manipulating, and classifying hyperspectral imagery.
+Spectral Python (SPy) — это модуль Python для обработки данных гиперспектральных изображений. Он имеет функции для чтения, отображения, обработки и классификации гиперспектральных изображений.
 
 
 ## Лицензия
