@@ -15,7 +15,7 @@ HSI Processing documentation
 
 .. toctree::
    :maxdepth: 3
-   :caption: Contents:
+   :caption: Содержание:
 
    hsip.analysis
    hsip.clustering

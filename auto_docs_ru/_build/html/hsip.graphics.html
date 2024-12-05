@@ -43,13 +43,15 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Меню навигации">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Содержание:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="hsip.analysis.html">Анализ сигнатур</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hsip.clustering.html">Кластеризация гиперспектральных данных</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Визуализация данных</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#module-hsip.graphics.graphics">Методы визуализации данных</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#hsip.graphics.graphics.show_correlation_matrix"><code class="docutils literal notranslate"><span class="pre">show_correlation_matrix()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hsip.graphics.graphics.show_curves"><code class="docutils literal notranslate"><span class="pre">show_curves()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hsip.graphics.graphics.show_image"><code class="docutils literal notranslate"><span class="pre">show_image()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -117,6 +119,101 @@
 <span class="gp">&gt;&gt;&gt; </span><span class="n">corr_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">label_axis</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">show_correlation_matrix</span><span class="p">(</span><span class="n">corr_matrix</span><span class="p">,</span> <span class="n">label_axis</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hsip.graphics.graphics.show_curves">
+<span class="sig-prename descclassname"><span class="pre">hsip.graphics.graphics.</span></span><span class="sig-name descname"><span class="pre">show_curves</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">curves</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlabel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Номер</span> <span class="pre">канала'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Величина'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_img</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">4.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsip/graphics/graphics.html#show_curves"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#hsip.graphics.graphics.show_curves" title="Ссылка на это определение"></a></dt>
+<dd><p>Отображение набора кривых с возможностью настройки меток, цветов и сохранения.</p>
+<p>Функция визуализирует набор кривых, где каждая строка массива <cite>curves</cite> соответствует одной кривой.
+Можно задавать метки для легенды, цвета кривых и параметры отображения.</p>
+<section id="id6">
+<h3>Параметры<a class="headerlink" href="#id6" title="Ссылка на этот заголовок"></a></h3>
+<dl class="simple">
+<dt>curves<span class="classifier">np.ndarray</span></dt><dd><p>Двумерный массив размером <cite>(n_curves, n_points)</cite>, где каждая строка представляет одну кривую.
+Если передан одномерный массив, он автоматически преобразуется в массив с одной строкой.</p>
+</dd>
+<dt>labels<span class="classifier">list | np.ndarray, optional</span></dt><dd><p>Метки для каждой кривой. Если не указаны (по умолчанию <cite>None</cite>), кривые будут отображены без легенды.</p>
+</dd>
+<dt>colors<span class="classifier">list | np.ndarray, optional</span></dt><dd><p>Цвета для кривых. Если не указаны (по умолчанию <cite>None</cite>), используются заранее заданные цвета.
+Количество цветов должно совпадать с количеством кривых.</p>
+</dd>
+<dt>xlabel<span class="classifier">str, optional</span></dt><dd><p>Метка оси X (по умолчанию <cite>„Номер канала“</cite>).</p>
+</dd>
+<dt>ylabel<span class="classifier">str, optional</span></dt><dd><p>Метка оси Y (по умолчанию <cite>„Величина“</cite>).</p>
+</dd>
+<dt>title<span class="classifier">str, optional</span></dt><dd><p>Заголовок графика (по умолчанию <cite>None</cite>).</p>
+</dd>
+<dt>path<span class="classifier">str, optional</span></dt><dd><p>Путь для сохранения изображения. Если не указан (по умолчанию <cite>None</cite>), изображение отображается в окне.</p>
+</dd>
+<dt>scale_img<span class="classifier">float, optional</span></dt><dd><p>Коэффициент масштабирования размера изображения (по умолчанию <cite>4.0</cite>).</p>
+</dd>
+</dl>
+</section>
+<section id="id7">
+<h3>Возвращает<a class="headerlink" href="#id7" title="Ссылка на этот заголовок"></a></h3>
+<p>None</p>
+</section>
+<section id="id8">
+<h3>Пример<a class="headerlink" href="#id8" title="Ссылка на этот заголовок"></a></h3>
+<p>Отображение трёх кривых с разными метками и цветами:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">curves</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Кривая 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Кривая 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Кривая 3&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">colors</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">show_curves</span><span class="p">(</span><span class="n">curves</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Пример графика&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Сохранение графика в файл:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">show_curves</span><span class="p">(</span><span class="n">curves</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="s1">&#39;curves_plot.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hsip.graphics.graphics.show_image">
+<span class="sig-prename descclassname"><span class="pre">hsip.graphics.graphics.</span></span><span class="sig-name descname"><span class="pre">show_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_bar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_img</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsip/graphics/graphics.html#show_image"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#hsip.graphics.graphics.show_image" title="Ссылка на это определение"></a></dt>
+<dd><p>Отображение изображения с возможностью сохранения и масштабирования.</p>
+<p>Функция визуализирует переданное изображение. Поддерживается отображение
+цветных RGB изображений и одноканальных изображений с настройкой цветовой шкалы.
+Также можно сохранить изображение в файл, указав путь в параметре <cite>path</cite>.</p>
+<section id="id9">
+<h3>Параметры<a class="headerlink" href="#id9" title="Ссылка на этот заголовок"></a></h3>
+<dl class="simple">
+<dt>image<span class="classifier">np.ndarray</span></dt><dd><p>Массив изображения. Для RGB изображения тип данных должен быть <cite>uint8</cite>,
+а размерность массива — <cite>(height, width, 3)</cite>. Для одноканального изображения
+допускаются другие типы данных и размерность <cite>(height, width)</cite>.</p>
+</dd>
+<dt>path<span class="classifier">str, optional</span></dt><dd><p>Путь для сохранения изображения. Если не указан (по умолчанию <cite>None</cite>),
+изображение будет отображено в окне.</p>
+</dd>
+<dt>color_bar<span class="classifier">bool, optional</span></dt><dd><p>Если <cite>True</cite>, для одноканальных изображений добавляется цветовая шкала (по умолчанию <cite>False</cite>).
+Для RGB изображений этот параметр игнорируется.</p>
+</dd>
+<dt>scale_img<span class="classifier">float, optional</span></dt><dd><p>Коэффициент масштабирования изображения. Например, при значении 2.0 изображение
+будет отображено в два раза крупнее (по умолчанию <cite>1.0</cite>).</p>
+</dd>
+</dl>
+</section>
+<section id="id10">
+<h3>Возвращает<a class="headerlink" href="#id10" title="Ссылка на этот заголовок"></a></h3>
+<p>None</p>
+</section>
+<section id="id11">
+<h3>Пример<a class="headerlink" href="#id11" title="Ссылка на этот заголовок"></a></h3>
+<p>Отображение и сохранение RGB изображения:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rgb_image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">show_image</span><span class="p">(</span><span class="n">rgb_image</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="s1">&#39;rgb_image.png&#39;</span><span class="p">,</span> <span class="n">scale_img</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Отображение одноканального изображения с цветовой шкалой:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">grayscale_image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">show_image</span><span class="p">(</span><span class="n">grayscale_image</span><span class="p">,</span> <span class="n">color_bar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
