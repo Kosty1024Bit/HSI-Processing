@@ -12,7 +12,7 @@ setup(
     long_description=open("README.md", "r", encoding="utf-8").read(),
     long_description_content_type="text/markdown",
     url="https://github.com/Kosty1024Bit/HSI-Processing",
-    packages=["hsip"],
+    packages=find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: Apache-2.0 license",  # Укажите вашу лицензию
