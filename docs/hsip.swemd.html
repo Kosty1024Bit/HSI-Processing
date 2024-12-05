@@ -1,25 +1,26 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html class="writer-html5" lang="ru" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Empirical mode decomposition (EMD) &mdash; HSI Processing 1.0.0 documentation</title>
+  <title>Разложение на эмпирические моды (EMD) &mdash; документация HSI-Processing 1.0.0</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=8d563738"></script>
+      <script src="_static/documentation_options.js?v=e35015f7"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/translations.js?v=5b699b7f"></script>
     <script src="_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Color image synthesis" href="hsip.rgb.html" /> 
+    <link rel="index" title="Алфавитный указатель" href="genindex.html" />
+    <link rel="search" title="Поиск" href="search.html" />
+    <link rel="prev" title="Сентез цветных изображений" href="hsip.rgb.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -31,24 +32,25 @@
           
           
           <a href="index.html" class="icon icon-home">
-            HSI Processing
+            HSI-Processing
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Поиск в документации" aria-label="Поиск в документации" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Меню навигации">
+              <p class="caption" role="heading"><span class="caption-text">Содержание:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="hsip.analysis.html">Signature analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hsip.clustering.html">Clustering of hyperspectral data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hsip.processing.html">Methods of processing hyperspectral data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hsip.reader.html">Hyperspectral data reading tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hsip.rgb.html">Color image synthesis</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Empirical mode decomposition (EMD)</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="hsip.analysis.html">Анализ сигнатур</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.clustering.html">Кластеризация гиперспектральных данных</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.graphics.html">Визуализация данных</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.processing.html">Методы обработки гиперспектральных данных</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.reader.html">Функции для чтения гиперспектральных данных</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.rgb.html">Сентез цветных изображений</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Разложение на эмпирические моды (EMD)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#module-hsip.swemd.swemd">Methods for decomposition into EMD</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#hsip.swemd.swemd.SWEMD"><code class="docutils literal notranslate"><span class="pre">SWEMD()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#hsip.swemd.swemd.SWEMD_signal"><code class="docutils literal notranslate"><span class="pre">SWEMD_signal()</span></code></a></li>
@@ -62,19 +64,19 @@
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Меню навигации для мобильных устройств" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">HSI Processing</a>
+          <a href="index.html">HSI-Processing</a>
       </nav>
 
       <div class="wy-nav-content">
         <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
+          <div role="navigation" aria-label="Навигация по страницам">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Empirical mode decomposition (EMD)</li>
+      <li class="breadcrumb-item active">Разложение на эмпирические моды (EMD)</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/hsip.swemd.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/hsip.swemd.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
       </li>
   </ul>
   <hr/>
@@ -82,90 +84,104 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="empirical-mode-decomposition-emd">
-<h1>Empirical mode decomposition (EMD)<a class="headerlink" href="#empirical-mode-decomposition-emd" title="Link to this heading"></a></h1>
-<p>Empirical Mode Decomposition (EMD) is a signal processing method used to decompose a signal into a set of intrinsic mode functions (IMFs), which are oscillatory components obtained adaptively from the data. The method iteratively identifies local extrema, constructs upper and lower envelopes using spline interpolation, and computes a local mean to extract IMFs. A significant drawback of EMD lies in the accuracy of defining the local mean and envelopes, particularly near the boundaries of the data, where end effects can lead to distortions. These boundary issues and the reliance on spline interpolation may result in inaccuracies in the extracted modes.</p>
+  <section id="emd">
+<h1>Разложение на эмпирические моды (EMD)<a class="headerlink" href="#emd" title="Ссылка на этот заголовок"></a></h1>
+<p>Разложение на эмпирические моды — это метод обработки сигналов, используемый для разложения сигнала на набор собственных мод (IMFs), которые представляют собой осцилляторные компоненты. Метод итеративно выявляет локальные экстремумы, строит верхние и нижние огибающие с использованием сплайн-интерполяции и вычисляет локальное среднее для извлечения IMFs. Существенным недостатком EMD является точность определения локального среднего и огибающих, особенно вблизи границ данных, где выход за границы может привести к искажениям. Эти пограничные проблемы и зависимость от сплайн-интерполяции могут вызвать неточности в извлеченных модах.</p>
 <a class="reference internal image-reference" href="_images/classic_emd_1.png"><img alt="_images/classic_emd_1.png" src="_images/classic_emd_1.png" style="width: 695.2px; height: 244.0px;" />
 </a>
 <a class="reference internal image-reference" href="_images/classic_emd_2.png"><img alt="_images/classic_emd_2.png" src="_images/classic_emd_2.png" style="width: 695.2px; height: 244.0px;" />
 </a>
-<p>The 1D-EMD decomposition algorithm, adapted for hyperspectral image (HSI) analysis, incorporates several updates compared to the classical approach:
-1. Precise calculation of the local mean using a moving average window instead of the arithmetic mean of the envelope maxima and minima of the signal.
-2. Introduction of a rule for computing the local mean when the window extends beyond the range of spectral channels.
-3. Flexibility to adapt the window size to scales smaller than the distance between adjacent zero-crossings in the current empirical mode (EM) or the initial window width.
-4. Noise suppression in EMs by increasing the initial window size and applying it multiple times.</p>
+<p>Алгоритм разложения SWEMD, адаптированный для анализа гиперспектральных изображений, включает несколько обновлений по сравнению с классическим подходом:</p>
+<ol class="arabic simple">
+<li><p>Точное вычисление локального среднего с использованием скользящего среднего окна, а не арифметического среднего значений максимума и минимума огибающих сигнала.</p></li>
+<li><p>Введение правила для вычисления локального среднего, когда окно выходит за пределы диапазона спектральных каналов.</p></li>
+<li><p>Гибкость в адаптации размера окна к меньшим масштабам, чем расстояние между соседними нулевыми пересечениями в текущей эмпирической моде (EM) или начальная ширина окна.</p></li>
+<li><p>Подавление шума в эмпирических модах путем увеличения начального размера окна и его многократного применения.</p></li>
+</ol>
 <a class="reference internal image-reference" href="_images/swemd.png"><img alt="_images/swemd.png" src="_images/swemd.png" style="width: 695.2px; height: 244.0px;" />
 </a>
 <section id="module-hsip.swemd.swemd">
-<span id="methods-for-decomposition-into-emd"></span><h2>Methods for decomposition into EMD<a class="headerlink" href="#module-hsip.swemd.swemd" title="Link to this heading"></a></h2>
+<span id="methods-for-decomposition-into-emd"></span><h2>Methods for decomposition into EMD<a class="headerlink" href="#module-hsip.swemd.swemd" title="Ссылка на этот заголовок"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="hsip.swemd.swemd.SWEMD">
-<span class="sig-prename descclassname"><span class="pre">hsip.swemd.swemd.</span></span><span class="sig-name descname"><span class="pre">SWEMD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_of_modes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">windows_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[3]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsip/swemd/swemd.html#SWEMD"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsip.swemd.swemd.SWEMD" title="Link to this definition"></a></dt>
-<dd><p>Returns for a 1D signal its IMF and windows for each of them.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>x</strong> (<em>np.ndarray</em>) – An array of dimension 3 (height * width * bands), dimension 2 (n_samples * bands), or just a single sample.</p></li>
-<li><p><strong>number_of_modes</strong> (<em>int</em><em>, </em><em>default=4</em>) – The number of IMFs to calculate for the input signal.</p></li>
-<li><p><strong>windows_size</strong> (<em>list</em><em> or </em><em>tuple</em><em> of </em><em>int</em><em>, </em><em>default=3</em>) – The size of windows for each mode, starting with the first. If the list type is passed, then each element will indicate the size of the window starting with the first IMF.
-The list of passed sizes can be less than specified in <cite>number_of_modes</cite>, in which case subsequent sizes of sliding windows will be calculated automatically.
-The list can be passed a value equal to -1, in which case the window size will also be calculated automatically.
-If int is passed, this number will be the size of the sliding window only for the first IMF.</p></li>
-</ul>
+<span class="sig-prename descclassname"><span class="pre">hsip.swemd.swemd.</span></span><span class="sig-name descname"><span class="pre">SWEMD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_of_modes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">windows_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[3]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsip/swemd/swemd.html#SWEMD"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#hsip.swemd.swemd.SWEMD" title="Ссылка на это определение"></a></dt>
+<dd><p>Рассчитывает и возвращает IMF и окна для каждого каждого сигнала, указанного в <cite>data</cite>.</p>
+<section id="id1">
+<h3>Параметры<a class="headerlink" href="#id1" title="Ссылка на этот заголовок"></a></h3>
+<dl class="simple">
+<dt>x<span class="classifier">np.ndarray</span></dt><dd><p>Массив размерности 3 (height * width * bands), размерности 2 (n_samples * bands), или просто один образец.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>IMFs</strong> (<em>list</em>) – Empirical modes for each sample.</p></li>
-<li><p><strong>err_windows_size</strong> (<em>list</em>) – Window sizes for each level of empirical modes.</p></li>
-</ul>
-</p>
+<dt>number_of_modes<span class="classifier">int, по умолчанию=4</span></dt><dd><p>Количество IMF, которые необходимо вычислить для входного сигнала.</p>
+</dd>
+<dt>windows_size<span class="classifier">list или tuple of int, по умолчанию=3</span></dt><dd><p>Размер окон для каждой моды, начиная с первой. Если передан список, то каждый элемент указывает размер окна для соответствующего IMF.
+Если список переданных размеров меньше, чем указано в <cite>number_of_modes</cite>, то последующие размеры скользящих окон будут вычислены автоматически.
+Если в списке указан элемент со значением -1, то размер этого окна будет также вычислен автоматически.
+Если передано целое число, это будет размер скользящего окна только для первого IMF.</p>
 </dd>
 </dl>
-<p class="rubric">Examples</p>
-<p>EMD calculation: window lengths equal three for the 1st and 2nd modes, 5 for the 3rd mode, and automatic for the rest.</p>
+</section>
+<section id="id2">
+<h3>Возвращает<a class="headerlink" href="#id2" title="Ссылка на этот заголовок"></a></h3>
+<dl class="simple">
+<dt>IMFs<span class="classifier">list</span></dt><dd><p>Эмпирические моды для каждого образца.</p>
+</dd>
+<dt>err_windows_size<span class="classifier">list</span></dt><dd><p>Размеры окон для каждого уровня эмпирических мод.</p>
+</dd>
+</dl>
+</section>
+<section id="id3">
+<h3>Примеры<a class="headerlink" href="#id3" title="Ссылка на этот заголовок"></a></h3>
+<p>Вычисление EMD: длины окон равны трем для 1-ой и 2-ой моды, 5 для 3-ий моды и автоматически для остальных.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hsip.swemd.swemd</span> <span class="kn">import</span> <span class="n">SWEMD</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>  <span class="c1"># Example spectral data</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>  <span class="c1"># Пример спектральных данных</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">IMFs</span><span class="p">,</span> <span class="n">windows</span> <span class="o">=</span> <span class="n">SWEMD</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">number_of_modes</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">windows_size</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">IMFs</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">windows</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="go">(8, 1000, 1000, 100), (8, 1000, 1000)</span>
 </pre></div>
 </div>
+</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="hsip.swemd.swemd.SWEMD_signal">
-<span class="sig-prename descclassname"><span class="pre">hsip.swemd.swemd.</span></span><span class="sig-name descname"><span class="pre">SWEMD_signal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iSample</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_of_modes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">windows_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[3]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsip/swemd/swemd.html#SWEMD_signal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsip.swemd.swemd.SWEMD_signal" title="Link to this definition"></a></dt>
-<dd><p>Returns IMFs for each sample.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>x</strong> (<em>np.ndarray</em>) – One-dimensional signal.</p></li>
-<li><p><strong>number_of_modes</strong> (<em>int</em><em>, </em><em>default=4</em>) – The number of IMFs to calculate for the input signal.</p></li>
-<li><p><strong>windows_size</strong> (<em>list</em><em> or </em><em>tuple</em><em> of </em><em>int</em><em>, </em><em>default=3</em>) – The size of windows for each mode, starting with the first. If the list type is passed, then each element will indicate the size of the window starting with the first IMF.
-The list of passed sizes can be less than specified in <cite>number_of_modes</cite>, in which case subsequent sizes of sliding windows will be calculated automatically.
-The list can be passed a value equal to -1, in which case the window size will also be calculated automatically.
-If int is passed, this number will be the size of the sliding window only for the first IMF.</p></li>
-</ul>
+<span class="sig-prename descclassname"><span class="pre">hsip.swemd.swemd.</span></span><span class="sig-name descname"><span class="pre">SWEMD_signal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iSample</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_of_modes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">windows_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[3]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsip/swemd/swemd.html#SWEMD_signal"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#hsip.swemd.swemd.SWEMD_signal" title="Ссылка на это определение"></a></dt>
+<dd><p>Возвращает IMF для одномерного образца.</p>
+<section id="id4">
+<h3>Параметры<a class="headerlink" href="#id4" title="Ссылка на этот заголовок"></a></h3>
+<dl class="simple">
+<dt>x<span class="classifier">np.ndarray</span></dt><dd><p>Одномерный сигнал.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>IMFs</strong> (<em>list</em>) – Empirical modes for each sample.</p></li>
-<li><p><strong>err_windows_size</strong> (<em>list</em>) – Window sizes for each level of empirical modes.</p></li>
-</ul>
-</p>
+<dt>number_of_modes<span class="classifier">int, по умолчанию=4</span></dt><dd><p>Количество IMF, которые необходимо вычислить для входного сигнала.</p>
+</dd>
+<dt>windows_size<span class="classifier">list или tuple of int, по умолчанию=3</span></dt><dd><p>Размер окон для каждой моды, начиная с первой. Если передан список, то каждый элемент указывает размер окна для соответствующего IMF.
+Если список переданных размеров меньше, чем указано в <cite>number_of_modes</cite>, то последующие размеры скользящих окон будут вычислены автоматически.
+Если в списке указан элемент со значением -1, то размер этого окна будет также вычислен автоматически.
+Если передано целое число, это будет размер скользящего окна только для первого IMF.</p>
 </dd>
 </dl>
-<p class="rubric">Examples</p>
-<p>EMD calculation: window lengths equal three for the 1st and 2nd modes, 5 for the 3rd mode, and automatic for the rest.</p>
+</section>
+<section id="id5">
+<h3>Возвращает<a class="headerlink" href="#id5" title="Ссылка на этот заголовок"></a></h3>
+<dl class="simple">
+<dt>IMFs<span class="classifier">list</span></dt><dd><p>Эмпирические моды для каждого образца.</p>
+</dd>
+<dt>err_windows_size<span class="classifier">list</span></dt><dd><p>Размеры окон для каждого уровня эмпирических мод.</p>
+</dd>
+</dl>
+</section>
+<section id="id6">
+<h3>Примеры<a class="headerlink" href="#id6" title="Ссылка на этот заголовок"></a></h3>
+<p>Вычисление EMD: длины окон равны трем для 1-ой и 2-ой моды, 5 для 3-ий моды и автоматически для остальных.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hsip.swemd.swemd</span> <span class="kn">import</span> <span class="n">SWEMD_signal</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>  <span class="c1"># Example spectral data</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>  <span class="c1"># Пример спектральных данных</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">IMFs</span><span class="p">,</span> <span class="n">windows</span> <span class="o">=</span> <span class="n">SWEMD</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">number_of_modes</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">windows_size</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">IMFs</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">windows</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="go">(100), (8)</span>
 </pre></div>
 </div>
+</section>
 </dd></dl>
 
 </section>
@@ -174,19 +190,19 @@ If int is passed, this number will be the size of the sliding window only for th
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="hsip.rgb.html" class="btn btn-neutral float-left" title="Color image synthesis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Нижняя область">
+        <a href="hsip.rgb.html" class="btn btn-neutral float-left" title="Сентез цветных изображений" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, Pukhkii Konstantin.</p>
+    <p>&#169; Авторские права 2024, Константин Пухкий. </p>
   </div>
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Собрано при помощи <a href="https://www.sphinx-doc.org/">Sphinx</a> с использованием
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">темы,</a>
+    предоставленной <a href="https://readthedocs.org">Read the Docs</a>.
    
 
 </footer>

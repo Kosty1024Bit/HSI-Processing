@@ -1,23 +1,24 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../../">
+<html class="writer-html5" lang="ru" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>hsip.rgb.labels &mdash; HSI Processing 1.0.0 documentation</title>
+  <title>hsip.rgb.labels &mdash; документация HSI-Processing 1.0.0</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../../../_static/documentation_options.js?v=e35015f7"></script>
       <script src="../../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/translations.js?v=5b699b7f"></script>
     <script src="../../../_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" /> 
+    <link rel="index" title="Алфавитный указатель" href="../../../genindex.html" />
+    <link rel="search" title="Поиск" href="../../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -29,41 +30,42 @@
           
           
           <a href="../../../index.html" class="icon icon-home">
-            HSI Processing
+            HSI-Processing
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Поиск в документации" aria-label="Поиск в документации" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Меню навигации">
+              <p class="caption" role="heading"><span class="caption-text">Содержание:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../hsip.analysis.html">Signature analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../hsip.clustering.html">Clustering of hyperspectral data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../hsip.processing.html">Methods of processing hyperspectral data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../hsip.reader.html">Hyperspectral data reading tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../hsip.rgb.html">Color image synthesis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../hsip.swemd.html">Empirical mode decomposition (EMD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hsip.analysis.html">Анализ сигнатур</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hsip.clustering.html">Кластеризация гиперспектральных данных</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hsip.graphics.html">Визуализация данных</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hsip.processing.html">Методы обработки гиперспектральных данных</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hsip.reader.html">Функции для чтения гиперспектральных данных</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hsip.rgb.html">Сентез цветных изображений</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hsip.swemd.html">Разложение на эмпирические моды (EMD)</a></li>
 </ul>
 
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Меню навигации для мобильных устройств" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../index.html">HSI Processing</a>
+          <a href="../../../index.html">HSI-Processing</a>
       </nav>
 
       <div class="wy-nav-content">
         <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
+          <div role="navigation" aria-label="Навигация по страницам">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Код модуля</a></li>
       <li class="breadcrumb-item active">hsip.rgb.labels</li>
       <li class="wy-breadcrumbs-aside">
       </li>
@@ -73,43 +75,38 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for hsip.rgb.labels</h1><div class="highlight"><pre>
+  <h1>Исходный код hsip.rgb.labels</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">hsip.rgb.colors</span> <span class="kn">import</span> <span class="n">colors_set</span>
 
 <div class="viewcode-block" id="labels_to_rgb">
-<a class="viewcode-back" href="../../../hsip.rgb.html#hsip.rgb.labels.labels_to_rgb">[docs]</a>
+<a class="viewcode-back" href="../../../hsip.rgb.html#hsip.rgb.labels.labels_to_rgb">[документация]</a>
 <span class="k">def</span> <span class="nf">labels_to_rgb</span><span class="p">(</span><span class="n">labels</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">RGB_image</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Converts a label mask into an RGB image representation.</span>
+<span class="sd">    Преобразует метки в маске в представление в виде изображения RGB.</span>
 
-<span class="sd">    This function generates an RGB image where each unique label in the input `labels` array is </span>
-<span class="sd">    assigned a specific color. If an `RGB_image` is provided, the color for each label is </span>
-<span class="sd">    determined by the mean color of the corresponding regions in the `RGB_image`. If not, </span>
-<span class="sd">    predefined colors from a global `colors_set` are used. Warning: `colors_set` - has exactly</span>
-<span class="sd">    17 colors in the set, if there are more unique labels, the colors for some will be repeated!</span>
+<span class="sd">    Эта функция генерирует RGB-изображение, где каждой уникальной метке из входного массива `labels` </span>
+<span class="sd">    присваивается определенный цвет. Если предоставлено `RGB_image`, цвет каждой метки вычисляется как </span>
+<span class="sd">    среднее значение цветов для соответствующих областей в `RGB_image`. Если изображение не предоставлено, </span>
+<span class="sd">    используются заранее определенные цвета из глобального набора `colors_set`. Внимание: в наборе `colors_set` </span>
+<span class="sd">    только 17 цветов, и если уникальных меток больше, то цвета для некоторых из них будут повторяться!</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
+<span class="sd">    Параметры</span>
+<span class="sd">    ---------</span>
 <span class="sd">    labels : np.ndarray</span>
-<span class="sd">        A 2D or 3D array representing the label mask. Each unique value corresponds to a different class.</span>
-<span class="sd">    RGB_image : np.ndarray, optional</span>
-<span class="sd">        A 3D array of shape `(height, width, 3)` representing an existing RGB image. If provided, </span>
-<span class="sd">        the color for each label is calculated as the mean RGB value of the regions corresponding to that label.</span>
+<span class="sd">        2D или 3D массив, представляющий маску меток. Каждое уникальное значение соответствует различному классу.</span>
+<span class="sd">    RGB_image : np.ndarray, необязательный</span>
+<span class="sd">        3D массив формы `(height, width, 3)`, представляющий существующее RGB-изображение. Если предоставлено, </span>
+<span class="sd">        цвет для каждой метки вычисляется как среднее значение RGB для соответствующих регионов в этом изображении.</span>
 
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
+<span class="sd">    Возвращает</span>
+<span class="sd">    ----------</span>
 <span class="sd">    np.ndarray</span>
-<span class="sd">        A 3D RGB image of shape `(height, width, 3)` with colors assigned to each label.</span>
+<span class="sd">        RGB-изображение формы `(height, width, 3)` с присвоенными цветами для каждой метки.</span>
 
-<span class="sd">    Notes</span>
-<span class="sd">    -----</span>
-<span class="sd">    - If `RGB_image` is not provided, the colors are assigned from a predefined `colors_set` array.</span>
-<span class="sd">    - This function is useful for visualizing label masks in a colorful, human-readable format.</span>
-
-<span class="sd">    Examples</span>
-<span class="sd">    --------</span>
-<span class="sd">    Example 1: Using a predefined color set:</span>
+<span class="sd">    Примеры</span>
+<span class="sd">    -------</span>
+<span class="sd">    Пример 1: Использование заранее определенного набора цветов:</span>
 
 <span class="sd">    &gt;&gt;&gt; from hsip.rgb.labels import labels_to_rgb</span>
 <span class="sd">    &gt;&gt;&gt; labels = np.array([[0, 0, 1],</span>
@@ -118,7 +115,7 @@
 <span class="sd">    &gt;&gt;&gt; print(rgb_image.shape)</span>
 <span class="sd">    (2, 3, 3)</span>
 
-<span class="sd">    Example 2: Using an existing RGB image to compute colors:</span>
+<span class="sd">    Пример 2: Использование существующего RGB-изображения для вычисления цветов:</span>
 <span class="sd">    </span>
 <span class="sd">    &gt;&gt;&gt; from hsip.rgb.labels import labels_to_rgb</span>
 <span class="sd">    &gt;&gt;&gt; labels = np.array([[0, 0, 1],</span>
@@ -157,12 +154,12 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, Pukhkii Konstantin.</p>
+    <p>&#169; Авторские права 2024, Константин Пухкий. </p>
   </div>
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Собрано при помощи <a href="https://www.sphinx-doc.org/">Sphinx</a> с использованием
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">темы,</a>
+    предоставленной <a href="https://readthedocs.org">Read the Docs</a>.
    
 
 </footer>

@@ -1,23 +1,24 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../../">
+<html class="writer-html5" lang="ru" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>hsip.reader.reader &mdash; HSI Processing 1.0.0 documentation</title>
+  <title>hsip.reader.reader &mdash; документация HSI-Processing 1.0.0</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../../../_static/documentation_options.js?v=e35015f7"></script>
       <script src="../../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/translations.js?v=5b699b7f"></script>
     <script src="../../../_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" /> 
+    <link rel="index" title="Алфавитный указатель" href="../../../genindex.html" />
+    <link rel="search" title="Поиск" href="../../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -29,41 +30,42 @@
           
           
           <a href="../../../index.html" class="icon icon-home">
-            HSI Processing
+            HSI-Processing
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Поиск в документации" aria-label="Поиск в документации" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Меню навигации">
+              <p class="caption" role="heading"><span class="caption-text">Содержание:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../hsip.analysis.html">Signature analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../hsip.clustering.html">Clustering of hyperspectral data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../hsip.processing.html">Methods of processing hyperspectral data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../hsip.reader.html">Hyperspectral data reading tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../hsip.rgb.html">Color image synthesis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../hsip.swemd.html">Empirical mode decomposition (EMD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hsip.analysis.html">Анализ сигнатур</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hsip.clustering.html">Кластеризация гиперспектральных данных</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hsip.graphics.html">Визуализация данных</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hsip.processing.html">Методы обработки гиперспектральных данных</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hsip.reader.html">Функции для чтения гиперспектральных данных</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hsip.rgb.html">Сентез цветных изображений</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hsip.swemd.html">Разложение на эмпирические моды (EMD)</a></li>
 </ul>
 
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Меню навигации для мобильных устройств" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../index.html">HSI Processing</a>
+          <a href="../../../index.html">HSI-Processing</a>
       </nav>
 
       <div class="wy-nav-content">
         <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
+          <div role="navigation" aria-label="Навигация по страницам">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Код модуля</a></li>
       <li class="breadcrumb-item active">hsip.reader.reader</li>
       <li class="wy-breadcrumbs-aside">
       </li>
@@ -73,7 +75,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for hsip.reader.reader</h1><div class="highlight"><pre>
+  <h1>Исходный код hsip.reader.reader</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="kn">import</span> <span class="nn">spectral.io.spyfile</span> <span class="k">as</span> <span class="nn">spyfile</span>
@@ -85,23 +87,23 @@
 
 
 <div class="viewcode-block" id="open_SpyFile">
-<a class="viewcode-back" href="../../../hsip.reader.html#hsip.reader.reader.open_SpyFile">[docs]</a>
+<a class="viewcode-back" href="../../../hsip.reader.html#hsip.reader.reader.open_SpyFile">[документация]</a>
 <span class="k">def</span> <span class="nf">open_SpyFile</span><span class="p">(</span><span class="n">path_lan</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Opens a hyperspectral image in LAN format.</span>
+<span class="sd">    Открывает гиперспектральное изображение в формате SpyFile.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
+<span class="sd">    Параметры</span>
+<span class="sd">    ---------</span>
 <span class="sd">    path_lan : str</span>
-<span class="sd">        Path to the LAN file to be opened.</span>
+<span class="sd">        Путь к LAN-файлу, который необходимо открыть.</span>
 
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
+<span class="sd">    Возвращаемые значения</span>
+<span class="sd">    ---------------------</span>
 <span class="sd">    SpectralLibrary</span>
-<span class="sd">        A `SpyFile` object containing the hyperspectral data.</span>
+<span class="sd">        Объект `SpyFile`, содержащий гиперспектральные данные.</span>
 
-<span class="sd">    Examples</span>
-<span class="sd">    --------</span>
+<span class="sd">    Примеры</span>
+<span class="sd">    -------</span>
 <span class="sd">    &gt;&gt;&gt; from hsip.reader.reader import open_SpyFile</span>
 <span class="sd">    &gt;&gt;&gt; hsi = open_SpyFile(&quot;example.lan&quot;)</span>
 <span class="sd">    &gt;&gt;&gt; print(hsi)</span>
@@ -114,33 +116,29 @@
     
     
 <div class="viewcode-block" id="open_ENVI">
-<a class="viewcode-back" href="../../../hsip.reader.html#hsip.reader.reader.open_ENVI">[docs]</a>
+<a class="viewcode-back" href="../../../hsip.reader.html#hsip.reader.reader.open_ENVI">[документация]</a>
 <span class="k">def</span> <span class="nf">open_ENVI</span><span class="p">(</span><span class="n">path_hdr</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">path_img</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Opens a hyperspectral image in ENVI format and converts it to a NumPy array.</span>
+<span class="sd">    Открывает гиперспектральное изображение в формате ENVI и конвертирует его в массив NumPy.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
+<span class="sd">    Параметры</span>
+<span class="sd">    ---------</span>
 <span class="sd">    path_hdr : str</span>
-<span class="sd">        Path to the ENVI header file (.hdr).</span>
+<span class="sd">        Путь к заголовочному файлу ENVI (.hdr).</span>
 <span class="sd">    path_img : str</span>
-<span class="sd">        Path to the ENVI image file (.img).</span>
+<span class="sd">        Путь к изображению ENVI (.img).</span>
 
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
+<span class="sd">    Возвращаемые значения</span>
+<span class="sd">    ---------------------</span>
 <span class="sd">    np.ndarray</span>
-<span class="sd">        A NumPy array of the hyperspectral data, with `dtype=float`.</span>
+<span class="sd">        Массив NumPy с гиперспектральными данными, с типом данных `dtype=float`.</span>
 
-<span class="sd">    Notes</span>
-<span class="sd">    -----</span>
-<span class="sd">    - The ENVI image is opened as a memory-mapped array and then loaded fully into memory as a float array.</span>
-
-<span class="sd">    Examples</span>
-<span class="sd">    --------</span>
+<span class="sd">    Примеры</span>
+<span class="sd">    -------</span>
 <span class="sd">    &gt;&gt;&gt; from hsip.reader.reader import open_ENVI</span>
 <span class="sd">    &gt;&gt;&gt; hsi = open_ENVI(&quot;example.hdr&quot;, &quot;example.img&quot;)</span>
 <span class="sd">    &gt;&gt;&gt; print(hsi.shape)</span>
-<span class="sd">    (100, 100, 224)  # Example dimensions</span>
+<span class="sd">    (100, 100, 224)  # Примерные размеры</span>
 <span class="sd">    &#39;&#39;&#39;</span>
     
     <span class="n">hsi_envi</span> <span class="o">=</span> <span class="n">envi</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">path_hdr</span><span class="p">,</span> <span class="n">path_img</span><span class="p">)</span>
@@ -150,25 +148,25 @@
 
     
 <div class="viewcode-block" id="open_AVIRIS">
-<a class="viewcode-back" href="../../../hsip.reader.html#hsip.reader.reader.open_AVIRIS">[docs]</a>
+<a class="viewcode-back" href="../../../hsip.reader.html#hsip.reader.reader.open_AVIRIS">[документация]</a>
 <span class="k">def</span> <span class="nf">open_AVIRIS</span><span class="p">(</span><span class="n">path_rfl</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">path_spc</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Opens a hyperspectral image in AVIRIS format.</span>
+<span class="sd">    Открывает гиперспектральное изображение в формате AVIRIS.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
+<span class="sd">    Параметры</span>
+<span class="sd">    ---------</span>
 <span class="sd">    path_rfl : str</span>
-<span class="sd">        Path to the AVIRIS reflectance data file (.rfl).</span>
+<span class="sd">        Путь к файлу данных отражения AVIRIS (.rfl).</span>
 <span class="sd">    path_spc : str</span>
-<span class="sd">        Path to the AVIRIS spectral calibration file (.spc).</span>
+<span class="sd">        Путь к файлу спектральной калибровки AVIRIS (.spc).</span>
 
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
+<span class="sd">    Возвращаемые значения</span>
+<span class="sd">    ---------------------</span>
 <span class="sd">    SpectralLibrary</span>
-<span class="sd">        A `SpyFile` object containing the AVIRIS hyperspectral data.</span>
+<span class="sd">        Объект `SpyFile`, содержащий гиперспектральные данные AVIRIS.</span>
 
-<span class="sd">    Examples</span>
-<span class="sd">    --------</span>
+<span class="sd">    Примеры</span>
+<span class="sd">    -------</span>
 <span class="sd">    &gt;&gt;&gt; from hsip.reader.reader import open_AVIRIS</span>
 <span class="sd">    &gt;&gt;&gt; hsi = open_AVIRIS(&quot;example.rfl&quot;, &quot;example.spc&quot;)</span>
 <span class="sd">    &gt;&gt;&gt; print(hsi)</span>
@@ -180,23 +178,23 @@
 
 
 <div class="viewcode-block" id="open_ERDAS">
-<a class="viewcode-back" href="../../../hsip.reader.html#hsip.reader.reader.open_ERDAS">[docs]</a>
+<a class="viewcode-back" href="../../../hsip.reader.html#hsip.reader.reader.open_ERDAS">[документация]</a>
 <span class="k">def</span> <span class="nf">open_ERDAS</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Opens a hyperspectral image in ERDAS Imagine format.</span>
+<span class="sd">    Открывает гиперспектральное изображение в формате ERDAS Imagine.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
+<span class="sd">    Параметры</span>
+<span class="sd">    ---------</span>
 <span class="sd">    path : str</span>
-<span class="sd">        Path to the ERDAS Imagine file to be opened.</span>
+<span class="sd">        Путь к файлу ERDAS Imagine, который необходимо открыть.</span>
 
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
+<span class="sd">    Возвращаемые значения</span>
+<span class="sd">    ---------------------</span>
 <span class="sd">    SpectralLibrary</span>
-<span class="sd">        A `SpyFile` object containing the hyperspectral data.</span>
+<span class="sd">        Объект `SpyFile`, содержащий гиперспектральные данные.</span>
 
-<span class="sd">    Examples</span>
-<span class="sd">    --------</span>
+<span class="sd">    Примеры</span>
+<span class="sd">    -------</span>
 <span class="sd">    &gt;&gt;&gt; from hsip.reader.reader import open_ERDAS</span>
 <span class="sd">    &gt;&gt;&gt; hsi = open_ERDAS(&quot;example.img&quot;)</span>
 <span class="sd">    &gt;&gt;&gt; print(hsi)</span>
@@ -209,31 +207,27 @@
 
 
 <div class="viewcode-block" id="open_TIF">
-<a class="viewcode-back" href="../../../hsip.reader.html#hsip.reader.reader.open_TIF">[docs]</a>
+<a class="viewcode-back" href="../../../hsip.reader.html#hsip.reader.reader.open_TIF">[документация]</a>
 <span class="k">def</span> <span class="nf">open_TIF</span><span class="p">(</span><span class="n">path_tif</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Opens a hyperspectral image in GeoTIFF format.</span>
+<span class="sd">    Открывает гиперспектральное изображение в формате GeoTIFF.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
+<span class="sd">    Параметры</span>
+<span class="sd">    ---------</span>
 <span class="sd">    path_tif : str</span>
-<span class="sd">        Path to the GeoTIFF file to be opened.</span>
+<span class="sd">        Путь к файлу GeoTIFF, который необходимо открыть.</span>
 
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
+<span class="sd">    Возвращаемые значения</span>
+<span class="sd">    ---------------------</span>
 <span class="sd">    np.ndarray</span>
-<span class="sd">        A NumPy array containing the hyperspectral data.</span>
+<span class="sd">        Массив NumPy, содержащий гиперспектральные данные.</span>
 
-<span class="sd">    Notes</span>
-<span class="sd">    -----</span>
-<span class="sd">    - The GeoTIFF data is loaded into memory using the `tifffile` library and copied as a NumPy array.</span>
-
-<span class="sd">    Examples</span>
-<span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; &gt;&gt;&gt; from hsip.reader.reader import open_TIF</span>
+<span class="sd">    Примеры</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; from hsip.reader.reader import open_TIF</span>
 <span class="sd">    &gt;&gt;&gt; hsi = open_TIF(&quot;example.tif&quot;)</span>
 <span class="sd">    &gt;&gt;&gt; print(hsi.shape)</span>
-<span class="sd">    (100, 100, 224)  # Example dimensions</span>
+<span class="sd">    (100, 100, 224)</span>
 <span class="sd">    &#39;&#39;&#39;</span>
     
     <span class="n">hsi_tif</span> <span class="o">=</span> <span class="n">tfl</span><span class="o">.</span><span class="n">TiffFile</span><span class="p">(</span><span class="n">path_tif</span><span class="p">)</span>
@@ -249,12 +243,12 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, Pukhkii Konstantin.</p>
+    <p>&#169; Авторские права 2024, Константин Пухкий. </p>
   </div>
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Собрано при помощи <a href="https://www.sphinx-doc.org/">Sphinx</a> с использованием
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">темы,</a>
+    предоставленной <a href="https://readthedocs.org">Read the Docs</a>.
    
 
 </footer>

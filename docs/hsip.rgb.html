@@ -1,26 +1,27 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html class="writer-html5" lang="ru" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Color image synthesis &mdash; HSI Processing 1.0.0 documentation</title>
+  <title>Сентез цветных изображений &mdash; документация HSI-Processing 1.0.0</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=8d563738"></script>
+      <script src="_static/documentation_options.js?v=e35015f7"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/translations.js?v=5b699b7f"></script>
     <script src="_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Empirical mode decomposition (EMD)" href="hsip.swemd.html" />
-    <link rel="prev" title="Hyperspectral data reading tools" href="hsip.reader.html" /> 
+    <link rel="index" title="Алфавитный указатель" href="genindex.html" />
+    <link rel="search" title="Поиск" href="search.html" />
+    <link rel="next" title="Разложение на эмпирические моды (EMD)" href="hsip.swemd.html" />
+    <link rel="prev" title="Функции для чтения гиперспектральных данных" href="hsip.reader.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -32,62 +33,56 @@
           
           
           <a href="index.html" class="icon icon-home">
-            HSI Processing
+            HSI-Processing
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Поиск в документации" aria-label="Поиск в документации" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Меню навигации">
+              <p class="caption" role="heading"><span class="caption-text">Содержание:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="hsip.analysis.html">Signature analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hsip.clustering.html">Clustering of hyperspectral data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hsip.processing.html">Methods of processing hyperspectral data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hsip.reader.html">Hyperspectral data reading tools</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Color image synthesis</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#module-hsip.rgb.rgb">Methods for RGB synthesis:</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="hsip.analysis.html">Анализ сигнатур</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.clustering.html">Кластеризация гиперспектральных данных</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.graphics.html">Визуализация данных</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.processing.html">Методы обработки гиперспектральных данных</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.reader.html">Функции для чтения гиперспектральных данных</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Сентез цветных изображений</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-hsip.rgb.rgb">Методы для синтеза цветных изображений:</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#hsip.rgb.rgb.hsi_synthesize_rgb"><code class="docutils literal notranslate"><span class="pre">hsi_synthesize_rgb()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#hsip.rgb.rgb.simple_synthesize_rgb"><code class="docutils literal notranslate"><span class="pre">simple_synthesize_rgb()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#hsip.rgb.labels.labels_to_rgb"><code class="docutils literal notranslate"><span class="pre">labels_to_rgb()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#module-hsip.rgb.colors">Class with a predefined set of colors:</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#hsip.rgb.colors.Color"><code class="docutils literal notranslate"><span class="pre">Color</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#hsip.rgb.colors.Color.colors"><code class="docutils literal notranslate"><span class="pre">Color.colors</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#hsip.rgb.colors.Color.__get_color__"><code class="docutils literal notranslate"><span class="pre">Color.__get_color__()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#hsip.rgb.colors.Color.__getitem__"><code class="docutils literal notranslate"><span class="pre">Color.__getitem__()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#hsip.rgb.colors.Color.__len__"><code class="docutils literal notranslate"><span class="pre">Color.__len__()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#hsip.rgb.colors.Color.__iter__"><code class="docutils literal notranslate"><span class="pre">Color.__iter__()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-hsip.rgb.colors">Класс с предопределенным набором цветов:</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#hsip.rgb.colors.Color"><code class="docutils literal notranslate"><span class="pre">Color</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="hsip.swemd.html">Empirical mode decomposition (EMD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hsip.swemd.html">Разложение на эмпирические моды (EMD)</a></li>
 </ul>
 
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Меню навигации для мобильных устройств" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">HSI Processing</a>
+          <a href="index.html">HSI-Processing</a>
       </nav>
 
       <div class="wy-nav-content">
         <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
+          <div role="navigation" aria-label="Навигация по страницам">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Color image synthesis</li>
+      <li class="breadcrumb-item active">Сентез цветных изображений</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/hsip.rgb.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/hsip.rgb.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
       </li>
   </ul>
   <hr/>
@@ -95,75 +90,85 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="color-image-synthesis">
-<h1>Color image synthesis<a class="headerlink" href="#color-image-synthesis" title="Link to this heading"></a></h1>
-<p>Just like hyperspectral images, color images also consist of multiple channels. This functionality allows for the reconstruction of color images from HSI data with colors that closely resemble reality. Additionally, it enables the creation of color images composed of the most informative channels, which can be used for semantic clustering.</p>
+  <section id="id1">
+<h1>Сентез цветных изображений<a class="headerlink" href="#id1" title="Ссылка на этот заголовок"></a></h1>
+<p>Как и гиперспектральные изображения, цветные изображения также состоят из нескольких каналов. Эти функции позволяют синтезировать цветные изображения из гиперспектральных данных, максимально приближенными к реальности. Кроме того, функционал позволяет создавать цветные изображения, состоящие из наиболее информативных каналов, которые можно использовать для семантической кластеризации.</p>
 <section id="module-hsip.rgb.rgb">
-<span id="methods-for-rgb-synthesis"></span><h2>Methods for RGB synthesis:<a class="headerlink" href="#module-hsip.rgb.rgb" title="Link to this heading"></a></h2>
+<span id="id2"></span><h2>Методы для синтеза цветных изображений:<a class="headerlink" href="#module-hsip.rgb.rgb" title="Ссылка на этот заголовок"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="hsip.rgb.rgb.hsi_synthesize_rgb">
-<span class="sig-prename descclassname"><span class="pre">hsip.rgb.rgb.</span></span><span class="sig-name descname"><span class="pre">hsi_synthesize_rgb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spectral_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rgb_bands</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelengths</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsip/rgb/rgb.html#hsi_synthesize_rgb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsip.rgb.rgb.hsi_synthesize_rgb" title="Link to this definition"></a></dt>
-<dd><p>Synthesizes an RGB image from hyperspectral data.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>spectral_data</strong> (<em>np.ndarray</em>) – Hyperspectral image data, expected to be a 3D array of shape (height, width, bands).</p></li>
-<li><p><strong>rgb_bands</strong> (<em>list</em><em> of </em><em>int</em><em>, </em><em>optional</em>) – A list containing the band indices for red, green, and blue channels, in that order.
-Must be of length 3. If provided, <cite>wavelengths</cite> is ignored.</p></li>
-<li><p><strong>wavelengths</strong> (<em>list</em><em> of </em><em>float</em><em>, </em><em>optional</em>) – A list containing the wavelengths corresponding to each band in <cite>spectral_data</cite>.
-If provided, the closest wavelengths to 650 nm (red), 550 nm (green), and 450 nm (blue) are used.</p></li>
-</ul>
+<span class="sig-prename descclassname"><span class="pre">hsip.rgb.rgb.</span></span><span class="sig-name descname"><span class="pre">hsi_synthesize_rgb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spectral_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rgb_bands</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelengths</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsip/rgb/rgb.html#hsi_synthesize_rgb"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#hsip.rgb.rgb.hsi_synthesize_rgb" title="Ссылка на это определение"></a></dt>
+<dd><p>Синтезирует RGB-изображение из гиперспектральных данных.</p>
+<section id="id3">
+<h3>Параметры<a class="headerlink" href="#id3" title="Ссылка на этот заголовок"></a></h3>
+<dl class="simple">
+<dt>spectral_data<span class="classifier">np.ndarray</span></dt><dd><p>Гиперспектральные данные изображения, ожидается, что это 3D массив формы (height, width, bands).</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A 3D array of shape (height, width, 3) representing the synthesized RGB image.</p>
+<dt>rgb_bands<span class="classifier">list of int, необязательный</span></dt><dd><p>Список, содержащий индексы полос для каналов красного, зеленого и синего цветов, в указанном порядке.
+Должен иметь длину 3. Если указан, <cite>wavelengths</cite> игнорируется.</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>np.ndarray</p>
+<dt>wavelengths<span class="classifier">list of float, необязательный</span></dt><dd><p>Список, содержащий длины волн, соответствующие каждой полосе в <cite>spectral_data</cite>.
+Если указан, выбираются наиболее близкие длины волн к 650 нм (красный), 550 нм (зеленый) и 450 нм (синий).</p>
 </dd>
 </dl>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Using band indices directly:</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hsip.rgb.rgb</span> <span class="kn">import</span> <span class="n">hsi_synthesize_rgb</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">spectral_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">224</span><span class="p">)</span>  <span class="c1"># Example hyperspectral data</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rgb_bands</span> <span class="o">=</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">150</span><span class="p">]</span>  <span class="c1"># Example red, green, blue bands</span>
+</section>
+<section id="id4">
+<h3>Возвращает<a class="headerlink" href="#id4" title="Ссылка на этот заголовок"></a></h3>
+<dl class="simple">
+<dt>np.ndarray</dt><dd><p>3D массив формы (height, width, 3), представляющий синтезированное RGB-изображение.</p>
+</dd>
+</dl>
+</section>
+<section id="id5">
+<h3>Примеры<a class="headerlink" href="#id5" title="Ссылка на этот заголовок"></a></h3>
+<p>Использование индексов полос напрямую:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hsip.rgb.rgb</span> <span class="kn">import</span> <span class="n">hsi_synthesize_rgb</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">spectral_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">224</span><span class="p">)</span>  <span class="c1"># Пример гиперспектральных данных</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rgb_bands</span> <span class="o">=</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">150</span><span class="p">]</span>  <span class="c1"># Пример полос для красного, зеленого, синего</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">rgb_image</span> <span class="o">=</span> <span class="n">synthesize_rgb</span><span class="p">(</span><span class="n">spectral_data</span><span class="p">,</span> <span class="n">rgb_bands</span><span class="o">=</span><span class="n">rgb_bands</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">rgb_image</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="go">(100, 100, 3)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Using wavelengths:</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">wavelengths</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">700</span><span class="p">,</span> <span class="mi">224</span><span class="p">)</span>  <span class="c1"># Example wavelength data</span>
+</pre></div>
+</div>
+<p>Использование длин волн:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">wavelengths</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">700</span><span class="p">,</span> <span class="mi">224</span><span class="p">)</span>  <span class="c1"># Пример данных о длинах волн</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">rgb_image</span> <span class="o">=</span> <span class="n">synthesize_rgb</span><span class="p">(</span><span class="n">spectral_data</span><span class="p">,</span> <span class="n">wavelengths</span><span class="o">=</span><span class="n">wavelengths</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">rgb_image</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="go">(100, 100, 3)</span>
 </pre></div>
 </div>
+</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="hsip.rgb.rgb.simple_synthesize_rgb">
-<span class="sig-prename descclassname"><span class="pre">hsip.rgb.rgb.</span></span><span class="sig-name descname"><span class="pre">simple_synthesize_rgb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">band_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sig_max_filt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsip/rgb/rgb.html#simple_synthesize_rgb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsip.rgb.rgb.simple_synthesize_rgb" title="Link to this definition"></a></dt>
-<dd><p>Generate an RGB image from three hyperspectral bands.</p>
-<p>This function synthesizes a simple RGB image from three provided hyperspectral bands,
-corresponding to the red, green, and blue channels. Optionally, it applies a sigma
-maximum filter to each band for noise reduction before normalization and scaling.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>band_data</strong> (<em>list</em><em> of </em><em>np.ndarray</em>) – A list containing exactly three 2D arrays, each representing one band of hyperspectral
-data for the red, green, and blue channels. Each array must have the same shape.</p></li>
-<li><p><strong>sig_max_filt</strong> (<em>float</em><em>, </em><em>optional</em>) – A sigma value to apply the <cite>sigma_maximum_filter</cite> function to each band. If provided,
-it is used for noise reduction before synthesizing the RGB image.</p></li>
-</ul>
+<span class="sig-prename descclassname"><span class="pre">hsip.rgb.rgb.</span></span><span class="sig-name descname"><span class="pre">simple_synthesize_rgb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">band_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sig_max_filt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsip/rgb/rgb.html#simple_synthesize_rgb"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#hsip.rgb.rgb.simple_synthesize_rgb" title="Ссылка на это определение"></a></dt>
+<dd><p>Генерирует RGB-изображение из трех гиперспектральных полос.</p>
+<p>Функция синтезирует простое RGB-изображение из трех предоставленных полос,
+соответствующих каналам красного, зеленого и синего. Опционально, она применяет сигма
+максимум-фильтр к каждой полосе для снижения шума перед нормализацией и масштабированием.</p>
+<section id="id6">
+<h3>Параметры<a class="headerlink" href="#id6" title="Ссылка на этот заголовок"></a></h3>
+<dl class="simple">
+<dt>band_data<span class="classifier">list of np.ndarray</span></dt><dd><p>Список, содержащий ровно три 2D массива, каждый из которых представляет одну полосу данных
+для каналов красного, зеленого и синего. Каждый массив должен иметь одинаковую форму.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>rgb_image</strong> – A 3D array of shape <cite>(height, width, 3)</cite> representing the synthesized RGB image.
-The output is of type <cite>np.uint8</cite> with pixel values scaled to the range [0, 255].</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>np.ndarray</p>
+<dt>sig_max_filt<span class="classifier">float, необязательный</span></dt><dd><p>Значение сигма для применения функции <cite>sigma_maximum_filter</cite> к каждой полосе. Если указано, оно используется
+для снижения шума перед синтезом RGB-изображения.</p>
 </dd>
 </dl>
-<p class="rubric">Examples</p>
-<p>Generate an RGB image with sigma maximum filtering</p>
+</section>
+<section id="id7">
+<h3>Возвращает<a class="headerlink" href="#id7" title="Ссылка на этот заголовок"></a></h3>
+<dl class="simple">
+<dt>rgb_image<span class="classifier">np.ndarray</span></dt><dd><p>3D массив формы <cite>(height, width, 3)</cite>, представляющий синтезированное RGB-изображение.
+Выходной тип — <cite>np.uint8</cite> с пиксельными значениями, масштабированными в диапазон [0, 255].</p>
+</dd>
+</dl>
+</section>
+<section id="id8">
+<h3>Примеры<a class="headerlink" href="#id8" title="Ссылка на этот заголовок"></a></h3>
+<p>Генерация RGB-изображения с применением сигма максимум-фильтрации:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hsip.rgb.rgb</span> <span class="kn">import</span> <span class="n">simple_synthesize_rgb</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">band_red</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
@@ -175,39 +180,38 @@ The output is of type <cite>np.uint8</cite> with pixel values scaled to the rang
 <span class="go">(100, 100, 3)</span>
 </pre></div>
 </div>
+</section>
 </dd></dl>
 
 <dl class="py function" id="module-hsip.rgb.labels">
 <dt class="sig sig-object py" id="hsip.rgb.labels.labels_to_rgb">
-<span class="sig-prename descclassname"><span class="pre">hsip.rgb.labels.</span></span><span class="sig-name descname"><span class="pre">labels_to_rgb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">RGB_image</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsip/rgb/labels.html#labels_to_rgb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsip.rgb.labels.labels_to_rgb" title="Link to this definition"></a></dt>
-<dd><p>Converts a label mask into an RGB image representation.</p>
-<p>This function generates an RGB image where each unique label in the input <cite>labels</cite> array is
-assigned a specific color. If an <cite>RGB_image</cite> is provided, the color for each label is
-determined by the mean color of the corresponding regions in the <cite>RGB_image</cite>. If not,
-predefined colors from a global <cite>colors_set</cite> are used. Warning: <cite>colors_set</cite> - has exactly
-17 colors in the set, if there are more unique labels, the colors for some will be repeated!</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>labels</strong> (<em>np.ndarray</em>) – A 2D or 3D array representing the label mask. Each unique value corresponds to a different class.</p></li>
-<li><p><strong>RGB_image</strong> (<em>np.ndarray</em><em>, </em><em>optional</em>) – A 3D array of shape <cite>(height, width, 3)</cite> representing an existing RGB image. If provided,
-the color for each label is calculated as the mean RGB value of the regions corresponding to that label.</p></li>
-</ul>
+<span class="sig-prename descclassname"><span class="pre">hsip.rgb.labels.</span></span><span class="sig-name descname"><span class="pre">labels_to_rgb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">RGB_image</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsip/rgb/labels.html#labels_to_rgb"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#hsip.rgb.labels.labels_to_rgb" title="Ссылка на это определение"></a></dt>
+<dd><p>Преобразует метки в маске в представление в виде изображения RGB.</p>
+<p>Эта функция генерирует RGB-изображение, где каждой уникальной метке из входного массива <cite>labels</cite>
+присваивается определенный цвет. Если предоставлено <cite>RGB_image</cite>, цвет каждой метки вычисляется как
+среднее значение цветов для соответствующих областей в <cite>RGB_image</cite>. Если изображение не предоставлено,
+используются заранее определенные цвета из глобального набора <cite>colors_set</cite>. Внимание: в наборе <cite>colors_set</cite>
+только 17 цветов, и если уникальных меток больше, то цвета для некоторых из них будут повторяться!</p>
+<section id="id9">
+<h3>Параметры<a class="headerlink" href="#id9" title="Ссылка на этот заголовок"></a></h3>
+<dl class="simple">
+<dt>labels<span class="classifier">np.ndarray</span></dt><dd><p>2D или 3D массив, представляющий маску меток. Каждое уникальное значение соответствует различному классу.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A 3D RGB image of shape <cite>(height, width, 3)</cite> with colors assigned to each label.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>np.ndarray</p>
+<dt>RGB_image<span class="classifier">np.ndarray, необязательный</span></dt><dd><p>3D массив формы <cite>(height, width, 3)</cite>, представляющий существующее RGB-изображение. Если предоставлено,
+цвет для каждой метки вычисляется как среднее значение RGB для соответствующих регионов в этом изображении.</p>
 </dd>
 </dl>
-<p class="rubric">Notes</p>
-<ul class="simple">
-<li><p>If <cite>RGB_image</cite> is not provided, the colors are assigned from a predefined <cite>colors_set</cite> array.</p></li>
-<li><p>This function is useful for visualizing label masks in a colorful, human-readable format.</p></li>
-</ul>
-<p class="rubric">Examples</p>
-<p>Example 1: Using a predefined color set:</p>
+</section>
+<section id="id10">
+<h3>Возвращает<a class="headerlink" href="#id10" title="Ссылка на этот заголовок"></a></h3>
+<dl class="simple">
+<dt>np.ndarray</dt><dd><p>RGB-изображение формы <cite>(height, width, 3)</cite> с присвоенными цветами для каждой метки.</p>
+</dd>
+</dl>
+</section>
+<section id="id11">
+<h3>Примеры<a class="headerlink" href="#id11" title="Ссылка на этот заголовок"></a></h3>
+<p>Пример 1: Использование заранее определенного набора цветов:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hsip.rgb.labels</span> <span class="kn">import</span> <span class="n">labels_to_rgb</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
 <span class="gp">... </span>                   <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
@@ -216,7 +220,7 @@ the color for each label is calculated as the mean RGB value of the regions corr
 <span class="go">(2, 3, 3)</span>
 </pre></div>
 </div>
-<p>Example 2: Using an existing RGB image to compute colors:</p>
+<p>Пример 2: Использование существующего RGB-изображения для вычисления цветов:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hsip.rgb.labels</span> <span class="kn">import</span> <span class="n">labels_to_rgb</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
 <span class="gp">... </span>                   <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
@@ -226,82 +230,78 @@ the color for each label is calculated as the mean RGB value of the regions corr
 <span class="go">(2, 3, 3)</span>
 </pre></div>
 </div>
+</section>
 </dd></dl>
 
+<p>В некоторых случаях, когда требуется выделить различные области, сегменты или графики, важно использовать контрастный набор цветов, который позволяет ясно различать эти элементы и визуально выделить их.</p>
 </section>
 <section id="module-hsip.rgb.colors">
-<span id="class-with-a-predefined-set-of-colors"></span><h2>Class with a predefined set of colors:<a class="headerlink" href="#module-hsip.rgb.colors" title="Link to this heading"></a></h2>
+<span id="id12"></span><h2>Класс с предопределенным набором цветов:<a class="headerlink" href="#module-hsip.rgb.colors" title="Ссылка на этот заголовок"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="hsip.rgb.colors.Color">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hsip.rgb.colors.</span></span><span class="sig-name descname"><span class="pre">Color</span></span><a class="reference internal" href="_modules/hsip/rgb/colors.html#Color"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsip.rgb.colors.Color" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>A utility class for managing and accessing a predefined set of colors.</p>
-<p>This class provides a collection of RGB color values in the range [0, 1],
-and methods to retrieve single or multiple colors by index or slice.
-It also supports modular indexing to wrap around the color set.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="hsip.rgb.colors.Color.colors">
-<span class="sig-name descname"><span class="pre">colors</span></span><a class="headerlink" href="#hsip.rgb.colors.Color.colors" title="Link to this definition"></a></dt>
-<dd><p>A 2D array of shape <cite>(n_colors, 3)</cite> containing RGB color values in the range [0, 1].</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>np.ndarray</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hsip.rgb.colors.</span></span><span class="sig-name descname"><span class="pre">Color</span></span><a class="reference internal" href="_modules/hsip/rgb/colors.html#Color"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#hsip.rgb.colors.Color" title="Ссылка на это определение"></a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Утилитный класс для управления и доступа к предустановленному набору цветов.</p>
+<p>Этот класс предоставляет коллекцию значений цветов в формате RGB в диапазоне [0, 1]
+и методы для получения одного или нескольких цветов по индексу или срезу.
+Он также поддерживает модульную индексацию для циклического обращения к набору цветов.</p>
+<section id="id13">
+<h3>Атрибуты<a class="headerlink" href="#id13" title="Ссылка на этот заголовок"></a></h3>
+<dl class="simple">
+<dt>colors<span class="classifier">np.ndarray</span></dt><dd><p>Двумерный массив формы <cite>(n_colors, 3)</cite>, содержащий значения цветов RGB в диапазоне [0, 1].</p>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hsip.rgb.colors.Color.__get_color__">
-<span class="sig-name descname"><span class="pre">__get_color__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsip/rgb/colors.html#Color.__get_color__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsip.rgb.colors.Color.__get_color__" title="Link to this definition"></a></dt>
-<dd><p>Retrieves a single color or a subset of colors by index or slice.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hsip.rgb.colors.Color.__getitem__">
-<span class="sig-name descname"><span class="pre">__getitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsip/rgb/colors.html#Color.__getitem__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsip.rgb.colors.Color.__getitem__" title="Link to this definition"></a></dt>
-<dd><p>Alias for <cite>__get_color__</cite>, allows indexing with square brackets.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hsip.rgb.colors.Color.__len__">
-<span class="sig-name descname"><span class="pre">__len__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsip/rgb/colors.html#Color.__len__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsip.rgb.colors.Color.__len__" title="Link to this definition"></a></dt>
-<dd><p>Returns the total number of colors in the palette.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hsip.rgb.colors.Color.__iter__">
-<span class="sig-name descname"><span class="pre">__iter__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsip/rgb/colors.html#Color.__iter__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsip.rgb.colors.Color.__iter__" title="Link to this definition"></a></dt>
-<dd><p>Returns an iterator over the colors.</p>
-</dd></dl>
-
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>None</strong></p>
+</section>
+<section id="id14">
+<h3>Методы<a class="headerlink" href="#id14" title="Ссылка на этот заголовок"></a></h3>
+<dl class="simple">
+<dt>__get_color__(index)</dt><dd><p>Получает один цвет или подмножество цветов по индексу или срезу.</p>
+</dd>
+<dt>__getitem__(index)</dt><dd><p>Псевдоним для метода <cite>__get_color__</cite>, позволяет использовать квадратные скобки для индексации.</p>
+</dd>
+<dt>__len__()</dt><dd><p>Возвращает общее количество цветов в палитре.</p>
+</dd>
+<dt>__iter__()</dt><dd><p>Возвращает итератор по цветам.</p>
 </dd>
 </dl>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Create an instance of the `Color` class and retrieve colors:</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hsip.rgb.colors</span> <span class="kn">import</span> <span class="n">Color</span>
+</section>
+<section id="id15">
+<h3>Параметры<a class="headerlink" href="#id15" title="Ссылка на этот заголовок"></a></h3>
+<p>Нет</p>
+</section>
+<section id="id16">
+<h3>Примеры<a class="headerlink" href="#id16" title="Ссылка на этот заголовок"></a></h3>
+<p>Создание экземпляра класса <cite>Color</cite> и получение цветов:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hsip.rgb.colors</span> <span class="kn">import</span> <span class="n">Color</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">color_palette</span> <span class="o">=</span> <span class="n">Color</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Access a single color using an index:</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">color_palette</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Получение одного цвета с использованием индекса:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">color_palette</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="go">array([0.90196078, 0.09803922, 0.29411765])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Access multiple colors using a slice:</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">color_palette</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Получение нескольких цветов с использованием среза:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">color_palette</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
 <span class="go">array([[0.23529412, 0.70588235, 0.29411765],</span>
 <span class="go">       [0.        , 0.50980392, 0.78431373],</span>
 <span class="go">       [0.96078431, 0.50980392, 0.18823529]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Modular indexing wraps around:</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">color_palette</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span>
-<span class="go">array([0.23529412, 0.70588235, 0.29411765])  # Index 20 maps to 1 (20 % len(colors))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Iterate through the colors:</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">color</span> <span class="ow">in</span> <span class="n">color_palette</span><span class="p">:</span>
+</pre></div>
+</div>
+<p>Модульная индексация:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">color_palette</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span>
+<span class="go">array([0.23529412, 0.70588235, 0.29411765])  # Индекс 20 соответствует индексу 1 (20 % len(colors))</span>
+</pre></div>
+</div>
+<p>Итерация по цветам:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">color</span> <span class="ow">in</span> <span class="n">color_palette</span><span class="p">:</span>
 <span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
 <span class="go">array([0.90196078, 0.09803922, 0.29411765])</span>
 <span class="go">array([0.23529412, 0.70588235, 0.29411765])</span>
 <span class="go">...</span>
 </pre></div>
 </div>
+</section>
 </dd></dl>
 
 </section>
@@ -310,20 +310,20 @@ It also supports modular indexing to wrap around the color set.</p>
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="hsip.reader.html" class="btn btn-neutral float-left" title="Hyperspectral data reading tools" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="hsip.swemd.html" class="btn btn-neutral float-right" title="Empirical mode decomposition (EMD)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Нижняя область">
+        <a href="hsip.reader.html" class="btn btn-neutral float-left" title="Функции для чтения гиперспектральных данных" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
+        <a href="hsip.swemd.html" class="btn btn-neutral float-right" title="Разложение на эмпирические моды (EMD)" accesskey="n" rel="next">Следующая <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, Pukhkii Konstantin.</p>
+    <p>&#169; Авторские права 2024, Константин Пухкий. </p>
   </div>
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Собрано при помощи <a href="https://www.sphinx-doc.org/">Sphinx</a> с использованием
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">темы,</a>
+    предоставленной <a href="https://readthedocs.org">Read the Docs</a>.
    
 
 </footer>

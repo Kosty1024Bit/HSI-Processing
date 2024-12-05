@@ -1,23 +1,24 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../../">
+<html class="writer-html5" lang="ru" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>hsip.analysis.analysis &mdash; HSI Processing 1.0.0 documentation</title>
+  <title>hsip.analysis.analysis &mdash; документация HSI-Processing 1.0.0</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../../../_static/documentation_options.js?v=e35015f7"></script>
       <script src="../../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/translations.js?v=5b699b7f"></script>
     <script src="../../../_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" /> 
+    <link rel="index" title="Алфавитный указатель" href="../../../genindex.html" />
+    <link rel="search" title="Поиск" href="../../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -29,41 +30,42 @@
           
           
           <a href="../../../index.html" class="icon icon-home">
-            HSI Processing
+            HSI-Processing
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Поиск в документации" aria-label="Поиск в документации" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Меню навигации">
+              <p class="caption" role="heading"><span class="caption-text">Содержание:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../hsip.analysis.html">Signature analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../hsip.clustering.html">Clustering of hyperspectral data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../hsip.processing.html">Methods of processing hyperspectral data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../hsip.reader.html">Hyperspectral data reading tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../hsip.rgb.html">Color image synthesis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../hsip.swemd.html">Empirical mode decomposition (EMD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hsip.analysis.html">Анализ сигнатур</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hsip.clustering.html">Кластеризация гиперспектральных данных</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hsip.graphics.html">Визуализация данных</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hsip.processing.html">Методы обработки гиперспектральных данных</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hsip.reader.html">Функции для чтения гиперспектральных данных</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hsip.rgb.html">Сентез цветных изображений</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hsip.swemd.html">Разложение на эмпирические моды (EMD)</a></li>
 </ul>
 
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Меню навигации для мобильных устройств" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../index.html">HSI Processing</a>
+          <a href="../../../index.html">HSI-Processing</a>
       </nav>
 
       <div class="wy-nav-content">
         <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
+          <div role="navigation" aria-label="Навигация по страницам">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Код модуля</a></li>
       <li class="breadcrumb-item active">hsip.analysis.analysis</li>
       <li class="wy-breadcrumbs-aside">
       </li>
@@ -73,45 +75,45 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for hsip.analysis.analysis</h1><div class="highlight"><pre>
+  <h1>Исходный код hsip.analysis.analysis</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="kn">from</span> <span class="nn">scipy.spatial.distance</span> <span class="kn">import</span> <span class="n">cdist</span>
 
 
 <div class="viewcode-block" id="get_centroids_and_medoids">
-<a class="viewcode-back" href="../../../hsip.analysis.html#hsip.analysis.analysis.get_centroids_and_medoids">[docs]</a>
+<a class="viewcode-back" href="../../../hsip.analysis.html#hsip.analysis.analysis.get_centroids_and_medoids">[документация]</a>
 <span class="k">def</span> <span class="nf">get_centroids_and_medoids</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Compute centroids and medoids for clusters in labeled data.</span>
+<span class="sd">    Вычисление центроидов и медианов для кластеров в размеченных данных.</span>
 
-<span class="sd">    This function calculates the centroids and medoids for each cluster in the provided data, </span>
-<span class="sd">    given cluster labels. Centroids are the mean of all points in a cluster, while medoids</span>
-<span class="sd">    are calculated as the point in the cluster closest to the centroid based on the</span>
-<span class="sd">    specified distance metric.</span>
-<span class="sd">    </span>
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
+<span class="sd">    Функция вычисляет центроиды и медианы для каждого кластера в предоставленных данных, </span>
+<span class="sd">    учитывая метки кластеров. Центроиды — это среднее значение всех точек в кластере, </span>
+<span class="sd">    а медианы определяются как точка кластера, наиболее близкая к центроиду, </span>
+<span class="sd">    в соответствии с заданной метрикой расстояния.</span>
+
+<span class="sd">    Параметры</span>
+<span class="sd">    ---------</span>
 <span class="sd">    labels : np.ndarray</span>
-<span class="sd">        1D array of cluster labels for the data points. Points with the same label are considered </span>
-<span class="sd">        to belong to the same cluster.</span>
+<span class="sd">        1D массив меток кластеров для точек данных. Точки с одинаковой меткой </span>
+<span class="sd">        считаются принадлежащими одному и тому же кластеру.</span>
 <span class="sd">    data : np.ndarray</span>
-<span class="sd">        2D array of shape `(n_samples, n_features)` containing the data points.</span>
+<span class="sd">        2D массив формы `(n_samples, n_features)`, содержащий точки данных.</span>
 <span class="sd">    metric : str, optional</span>
-<span class="sd">        The distance metric used to calculate the medoids. Default is `&#39;cosine&#39;`. </span>
-<span class="sd">        Other valid metrics include `&#39;euclidean&#39;`, `&#39;manhattan&#39;`, and others supported by </span>
-<span class="sd">        `scipy.spatial.distance.cdist`.</span>
+<span class="sd">        Метрика расстояния, используемая для вычисления медианов. По умолчанию `&#39;cosine&#39;`.</span>
+<span class="sd">        Другие допустимые метрики включают `&#39;euclidean&#39;`, `&#39;manhattan&#39;` и другие, поддерживаемые </span>
+<span class="sd">        функцией `scipy.spatial.distance.cdist`.</span>
 
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
+<span class="sd">    Возвращаемые значения</span>
+<span class="sd">    ---------------------</span>
 <span class="sd">    centroids : np.ndarray</span>
-<span class="sd">        2D array of shape `(n_clusters, n_features)` containing the centroids of the clusters.</span>
+<span class="sd">        2D массив формы `(n_clusters, n_features)`, содержащий центроиды кластеров.</span>
 <span class="sd">    medoids : np.ndarray</span>
-<span class="sd">        2D array of shape `(n_clusters, n_features)` containing the medoids of the clusters.</span>
+<span class="sd">        2D массив формы `(n_clusters, n_features)`, содержащий медианы кластеров.</span>
 
-<span class="sd">    Examples</span>
-<span class="sd">    --------</span>
-<span class="sd">    Compute centroids and medoids for cosine similarity</span>
+<span class="sd">    Примеры</span>
+<span class="sd">    -------</span>
+<span class="sd">    Вычисление центроидов и медианов для косинусного сходства</span>
 
 <span class="sd">    &gt;&gt;&gt; import numpy as np</span>
 <span class="sd">    &gt;&gt;&gt; from hsip.analysis.analysis import get_centroids_and_medoids</span>
@@ -122,15 +124,15 @@
 <span class="sd">    ...     [5, 6], [6, 7]</span>
 <span class="sd">    ... ])</span>
 <span class="sd">    &gt;&gt;&gt; centroids, medoids = get_centroids_and_medoids(labels, data, metric=&#39;cosine&#39;)</span>
-<span class="sd">    &gt;&gt;&gt; print(&quot;Centroids:&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; print(&quot;Центроиды:&quot;)</span>
 <span class="sd">    &gt;&gt;&gt; print(centroids)</span>
-<span class="sd">    Centroids:</span>
+<span class="sd">    Центроиды:</span>
 <span class="sd">    [[1.5 2.5]</span>
 <span class="sd">     [3.5 4.5]</span>
 <span class="sd">     [5.5 6.5]]</span>
-<span class="sd">    &gt;&gt;&gt; print(&quot;Medoids:&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; print(&quot;Медианы:&quot;)</span>
 <span class="sd">    &gt;&gt;&gt; print(medoids)</span>
-<span class="sd">    Medoids:</span>
+<span class="sd">    Медианы:</span>
 <span class="sd">    [[1. 2.]</span>
 <span class="sd">     [3. 4.]</span>
 <span class="sd">     [5. 6.]]</span>
@@ -151,33 +153,34 @@
 
 
 <div class="viewcode-block" id="get_cross_correlation_matrix">
-<a class="viewcode-back" href="../../../hsip.analysis.html#hsip.analysis.analysis.get_cross_correlation_matrix">[docs]</a>
+<a class="viewcode-back" href="../../../hsip.analysis.html#hsip.analysis.analysis.get_cross_correlation_matrix">[документация]</a>
 <span class="k">def</span> <span class="nf">get_cross_correlation_matrix</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">metric</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Compute the cross-correlation matrix for a given dataset.</span>
+<span class="sd">    Вычисление матрицы перекрёстной корреляции для заданного набора данных.</span>
 
-<span class="sd">    This function calculates the pairwise distances between all rows in the input data </span>
-<span class="sd">    using the specified distance metric and returns the resulting cross-correlation matrix.</span>
+<span class="sd">    Эта функция вычисляет попарные расстояния между всеми строками входных данных </span>
+<span class="sd">    с использованием указанной метрики расстояния и возвращает полученную матрицу </span>
+<span class="sd">    перекрёстной корреляции.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
+<span class="sd">    Параметры</span>
+<span class="sd">    ---------</span>
 <span class="sd">    data : np.ndarray</span>
-<span class="sd">        2D array of shape `(n_samples, n_features)` containing the input data, where `n_samples` </span>
-<span class="sd">        is the number of data points and `n_features` is the number of features.</span>
+<span class="sd">        2D массив формы `(n_samples, n_features)`, содержащий входные данные, где `n_samples` — </span>
+<span class="sd">        количество точек данных, а `n_features` — количество признаков.</span>
 <span class="sd">    metric : str, optional</span>
-<span class="sd">        The distance metric to use for calculating pairwise distances. Default is `&#39;euclidean&#39;`. </span>
-<span class="sd">        Supported metrics include `&#39;euclidean&#39;`, `&#39;manhattan&#39;`, `&#39;cosine&#39;`, and others supported by </span>
-<span class="sd">        `scipy.spatial.distance.cdist`.</span>
+<span class="sd">        Метрика расстояния, используемая для вычисления попарных расстояний. По умолчанию `&#39;euclidean&#39;`.</span>
+<span class="sd">        Поддерживаемые метрики включают `&#39;euclidean&#39;`, `&#39;manhattan&#39;`, `&#39;cosine&#39;` и другие, </span>
+<span class="sd">        доступные в `scipy.spatial.distance.cdist`.</span>
 
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
+<span class="sd">    Возвращаемые значения</span>
+<span class="sd">    ---------------------</span>
 <span class="sd">    cross_corr_mat : np.ndarray</span>
-<span class="sd">        2D array of shape `(n_samples, n_samples)` containing the pairwise distances between </span>
-<span class="sd">        all data points in the input data.</span>
+<span class="sd">        2D массив формы `(n_samples, n_samples)`, содержащий попарные расстояния между всеми </span>
+<span class="sd">        точками данных во входных данных.</span>
 
-<span class="sd">    Examples</span>
-<span class="sd">    --------</span>
-<span class="sd">    Compute cross-correlation matrix with the default Euclidean metric</span>
+<span class="sd">    Примеры</span>
+<span class="sd">    -------</span>
+<span class="sd">    Вычисление матрицы перекрёстной корреляции с метрикой Евклида по умолчанию</span>
 <span class="sd">    </span>
 <span class="sd">    &gt;&gt;&gt; import numpy as np</span>
 <span class="sd">    &gt;&gt;&gt; from hsip.analysis.analysis import get_cross_correlation_matrix</span>
@@ -206,12 +209,12 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, Pukhkii Konstantin.</p>
+    <p>&#169; Авторские права 2024, Константин Пухкий. </p>
   </div>
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Собрано при помощи <a href="https://www.sphinx-doc.org/">Sphinx</a> с использованием
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">темы,</a>
+    предоставленной <a href="https://readthedocs.org">Read the Docs</a>.
    
 
 </footer>

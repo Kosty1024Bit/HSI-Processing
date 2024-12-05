@@ -1,10 +1,10 @@
-Clustering of hyperspectral data
-================================
+Кластеризация гиперспектральных данных
+======================================
 
-One of the main methods of processing the HSI is clustering.
+Одним из основных методов для обработки ГСИ является кластеризация.
 
-Clustering methods:
--------------------
+Методы кластеризации:
+---------------------
 
 .. automodule:: hsip.clustering.clustering
    :members:

@@ -1,10 +1,10 @@
-Methods of processing hyperspectral data
-========================================
+Методы обработки гиперспектральных данных
+=========================================
 
-Working with HSI often requires functionality for both pre- and post-processing of data.
+Работа с HSI часто требует наличия функциональных возможностей как для предварительной, так и для последующей обработки данных.
 
-Processing methods:
--------------------
+Методы обработки:
+-----------------
 
 .. automodule:: hsip.processing.processing
    :members:

@@ -1,10 +1,10 @@
-Signature analysis
-==================
+Анализ сигнатур
+===============
 
-This collection of functions provides essential tools for analyzing and processing data in clustering and similarity contexts. These utilities include operations for calculating centroids and medoids, creating cross-correlation matrices, and additional methods that aid in understanding the structure and relationships within datasets.
+Данный набор функций предоставляет основные инструменты для анализа и обработки данных в контекстах кластеризации и корреляционного анализа. Эти утилиты включают операции для вычисления центроидов и медиан, создания матриц кросс-корреляции и дополнительные методы, которые помогают в понимании структуры и взаимосвязей внутри наборов данных.
 
-Functions for analysis:
------------------------
+Функции для анализа:
+--------------------
 
 .. automodule:: hsip.analysis.analysis
    :members:

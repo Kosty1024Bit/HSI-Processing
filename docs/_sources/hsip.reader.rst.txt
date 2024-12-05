@@ -1,12 +1,12 @@
-Hyperspectral data reading tools
-================================
+Функции для чтения гиперспектральных данных
+===========================================
 
-Hyperspectral data are distributed in different formats. Using these functions it is possible to read HSI in the following formats: SpyFile, ENVI, AVIRIS, ERDAS/Lan, Tif.
+Гиперспектральные данные распространяются в разных форматах. Используя эти функции, можно читать HSI в следующих форматах: SpyFile, ENVI, AVIRIS, ERDAS/Lan, Tif.
 
-All readers except the TIF reader are wrappers for the opening functions from the `Spectral Python library <https://www.spectralpython.net/>`_.
+Все функции чтения, кроме чтения в формате TIF, являются обертками для функций из `библиотеки Spectral Python <https://www.spectralpython.net/>`_.
 
-Readers:
---------
+Функции для чтения:
+-------------------
 
 .. automodule:: hsip.reader.reader
    :members:

@@ -1,23 +1,24 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../../">
+<html class="writer-html5" lang="ru" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>hsip.rgb.colors &mdash; HSI Processing 1.0.0 documentation</title>
+  <title>hsip.rgb.colors &mdash; документация HSI-Processing 1.0.0</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../../../_static/documentation_options.js?v=e35015f7"></script>
       <script src="../../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/translations.js?v=5b699b7f"></script>
     <script src="../../../_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" /> 
+    <link rel="index" title="Алфавитный указатель" href="../../../genindex.html" />
+    <link rel="search" title="Поиск" href="../../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -29,41 +30,42 @@
           
           
           <a href="../../../index.html" class="icon icon-home">
-            HSI Processing
+            HSI-Processing
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Поиск в документации" aria-label="Поиск в документации" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Меню навигации">
+              <p class="caption" role="heading"><span class="caption-text">Содержание:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../hsip.analysis.html">Signature analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../hsip.clustering.html">Clustering of hyperspectral data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../hsip.processing.html">Methods of processing hyperspectral data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../hsip.reader.html">Hyperspectral data reading tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../hsip.rgb.html">Color image synthesis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../hsip.swemd.html">Empirical mode decomposition (EMD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hsip.analysis.html">Анализ сигнатур</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hsip.clustering.html">Кластеризация гиперспектральных данных</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hsip.graphics.html">Визуализация данных</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hsip.processing.html">Методы обработки гиперспектральных данных</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hsip.reader.html">Функции для чтения гиперспектральных данных</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hsip.rgb.html">Сентез цветных изображений</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hsip.swemd.html">Разложение на эмпирические моды (EMD)</a></li>
 </ul>
 
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Меню навигации для мобильных устройств" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../index.html">HSI Processing</a>
+          <a href="../../../index.html">HSI-Processing</a>
       </nav>
 
       <div class="wy-nav-content">
         <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
+          <div role="navigation" aria-label="Навигация по страницам">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Код модуля</a></li>
       <li class="breadcrumb-item active">hsip.rgb.colors</li>
       <li class="wy-breadcrumbs-aside">
       </li>
@@ -73,58 +75,66 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for hsip.rgb.colors</h1><div class="highlight"><pre>
+  <h1>Исходный код hsip.rgb.colors</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 
 <div class="viewcode-block" id="Color">
-<a class="viewcode-back" href="../../../hsip.rgb.html#hsip.rgb.colors.Color">[docs]</a>
+<a class="viewcode-back" href="../../../hsip.rgb.html#hsip.rgb.colors.Color">[документация]</a>
 <span class="k">class</span> <span class="nc">Color</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    A utility class for managing and accessing a predefined set of colors.</span>
+<span class="sd">    Утилитный класс для управления и доступа к предустановленному набору цветов.</span>
 
-<span class="sd">    This class provides a collection of RGB color values in the range [0, 1], </span>
-<span class="sd">    and methods to retrieve single or multiple colors by index or slice. </span>
-<span class="sd">    It also supports modular indexing to wrap around the color set.</span>
+<span class="sd">    Этот класс предоставляет коллекцию значений цветов в формате RGB в диапазоне [0, 1] </span>
+<span class="sd">    и методы для получения одного или нескольких цветов по индексу или срезу. </span>
+<span class="sd">    Он также поддерживает модульную индексацию для циклического обращения к набору цветов.</span>
 
-<span class="sd">    Attributes</span>
-<span class="sd">    ----------</span>
-<span class="sd">    colors : np.ndarray</span>
-<span class="sd">        A 2D array of shape `(n_colors, 3)` containing RGB color values in the range [0, 1].</span>
-
-<span class="sd">    Methods</span>
-<span class="sd">    -------</span>
-<span class="sd">    __get_color__(index)</span>
-<span class="sd">        Retrieves a single color or a subset of colors by index or slice.</span>
-<span class="sd">    __getitem__(index)</span>
-<span class="sd">        Alias for `__get_color__`, allows indexing with square brackets.</span>
-<span class="sd">    __len__()</span>
-<span class="sd">        Returns the total number of colors in the palette.</span>
-<span class="sd">    __iter__()</span>
-<span class="sd">        Returns an iterator over the colors.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    None</span>
-
-<span class="sd">    Examples</span>
+<span class="sd">    Атрибуты</span>
 <span class="sd">    --------</span>
-<span class="sd">    </span>
-<span class="sd">    &gt;&gt;&gt; # Create an instance of the `Color` class and retrieve colors:</span>
+<span class="sd">    colors : np.ndarray</span>
+<span class="sd">        Двумерный массив формы `(n_colors, 3)`, содержащий значения цветов RGB в диапазоне [0, 1].</span>
+
+<span class="sd">    Методы</span>
+<span class="sd">    ------</span>
+<span class="sd">    __get_color__(index)</span>
+<span class="sd">        Получает один цвет или подмножество цветов по индексу или срезу.</span>
+<span class="sd">    __getitem__(index)</span>
+<span class="sd">        Псевдоним для метода `__get_color__`, позволяет использовать квадратные скобки для индексации.</span>
+<span class="sd">    __len__()</span>
+<span class="sd">        Возвращает общее количество цветов в палитре.</span>
+<span class="sd">    __iter__()</span>
+<span class="sd">        Возвращает итератор по цветам.</span>
+
+<span class="sd">    Параметры</span>
+<span class="sd">    ----------</span>
+<span class="sd">    Нет</span>
+
+<span class="sd">    Примеры</span>
+<span class="sd">    -------</span>
+<span class="sd">    Создание экземпляра класса `Color` и получение цветов:</span>
+
 <span class="sd">    &gt;&gt;&gt; from hsip.rgb.colors import Color</span>
 <span class="sd">    &gt;&gt;&gt; color_palette = Color()</span>
-<span class="sd">    &gt;&gt;&gt; # Access a single color using an index:</span>
+
+<span class="sd">    Получение одного цвета с использованием индекса:</span>
+
 <span class="sd">    &gt;&gt;&gt; color_palette[0]</span>
 <span class="sd">    array([0.90196078, 0.09803922, 0.29411765])</span>
-<span class="sd">    &gt;&gt;&gt; # Access multiple colors using a slice:</span>
+
+<span class="sd">    Получение нескольких цветов с использованием среза:</span>
+<span class="sd">    </span>
 <span class="sd">    &gt;&gt;&gt; color_palette[1:4]</span>
 <span class="sd">    array([[0.23529412, 0.70588235, 0.29411765],</span>
 <span class="sd">           [0.        , 0.50980392, 0.78431373],</span>
 <span class="sd">           [0.96078431, 0.50980392, 0.18823529]])</span>
-<span class="sd">    &gt;&gt;&gt; # Modular indexing wraps around:</span>
+
+<span class="sd">    Модульная индексация:</span>
+<span class="sd">    </span>
 <span class="sd">    &gt;&gt;&gt; color_palette[20]</span>
-<span class="sd">    array([0.23529412, 0.70588235, 0.29411765])  # Index 20 maps to 1 (20 % len(colors))</span>
-<span class="sd">    &gt;&gt;&gt; # Iterate through the colors:</span>
+<span class="sd">    array([0.23529412, 0.70588235, 0.29411765])  # Индекс 20 соответствует индексу 1 (20 % len(colors))</span>
+
+<span class="sd">    Итерация по цветам:</span>
+<span class="sd">    </span>
 <span class="sd">    &gt;&gt;&gt; for color in color_palette:</span>
 <span class="sd">    ...     print(color)</span>
 <span class="sd">    array([0.90196078, 0.09803922, 0.29411765])</span>
@@ -154,8 +164,6 @@
         <span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="Color.__get_color__">
-<a class="viewcode-back" href="../../../hsip.rgb.html#hsip.rgb.colors.Color.__get_color__">[docs]</a>
     <span class="k">def</span> <span class="nf">__get_color__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">slice</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">slice</span><span class="p">:</span>
         <span class="n">len_array</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">colors</span><span class="p">)</span> <span class="c1"># Number of colors</span>
 
@@ -170,29 +178,19 @@
             <span class="k">if</span> <span class="n">index</span><span class="o">.</span><span class="n">start</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">index</span><span class="o">.</span><span class="n">stop</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid slice values, if start is specified, stop must be specified.&quot;</span><span class="p">)</span>
 
-            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="n">len_array</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">index</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="n">index</span><span class="o">.</span><span class="n">stop</span><span class="p">)],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span></div>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="n">len_array</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">index</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="n">index</span><span class="o">.</span><span class="n">stop</span><span class="p">)],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
 
 
-
-<div class="viewcode-block" id="Color.__getitem__">
-<a class="viewcode-back" href="../../../hsip.rgb.html#hsip.rgb.colors.Color.__getitem__">[docs]</a>
     <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_color__</span><span class="p">(</span><span class="n">index</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_color__</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
 
 
-
-<div class="viewcode-block" id="Color.__len__">
-<a class="viewcode-back" href="../../../hsip.rgb.html#hsip.rgb.colors.Color.__len__">[docs]</a>
     <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">colors</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">colors</span><span class="p">)</span>
 
 
-
-<div class="viewcode-block" id="Color.__iter__">
-<a class="viewcode-back" href="../../../hsip.rgb.html#hsip.rgb.colors.Color.__iter__">[docs]</a>
     <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">colors</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">))</span></div>
-</div>
 
 
 <span class="n">colors_set</span> <span class="o">=</span> <span class="n">Color</span><span class="p">()</span>
@@ -205,12 +203,12 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, Pukhkii Konstantin.</p>
+    <p>&#169; Авторские права 2024, Константин Пухкий. </p>
   </div>
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Собрано при помощи <a href="https://www.sphinx-doc.org/">Sphinx</a> с использованием
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">темы,</a>
+    предоставленной <a href="https://readthedocs.org">Read the Docs</a>.
    
 
 </footer>
