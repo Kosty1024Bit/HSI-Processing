@@ -214,6 +214,20 @@ class SCH():
 
 
     def fit(self, source_data: np.ndarray):
+        '''
+        Выполняет кластеризацию методом иерархичексой кластеризации на входных данных.
+
+        Параметры
+        ---------
+        source_data : np.ndarray
+            Массив данных для кластеризации. Размерность массива (n_samples, n_features), 
+            где n_samples — количество объектов, n_features — количество признаков.
+
+        Возвращаемое значение
+        ---------------------
+        np.ndarray
+            Массив меток кластеров для каждого объекта в данных. Размерность: (n_samples,).
+        '''
         if source_data.shape[0] > 32000:
             raise ValueError(f'Very large sample! Recommended no more than 32000 samples. Submitted: {source_data.shape[0]}.')
 
@@ -283,6 +297,20 @@ class HDBSCAN():
 
         
     def fit(self, source_data: np.ndarray):
+        '''
+        Выполняет кластеризацию методом HDBSCAN на входных данных.
+
+        Параметры
+        ---------
+        source_data : np.ndarray
+            Массив данных для кластеризации. Размерность массива (n_samples, n_features), 
+            где n_samples — количество объектов, n_features — количество признаков.
+
+        Возвращаемое значение
+        ---------------------
+        np.ndarray
+            Массив меток кластеров для каждого объекта в данных. Размерность: (n_samples,).
+        '''
         if source_data.shape[0] > 64000:
             raise ValueError(f'Very large sample! Recommended no more than 64000 samples. Submitted: {source_data.shape[0]}.')
 
