@@ -27,6 +27,7 @@ def labels_to_rgb(labels: np.ndarray, RGB_image: np.ndarray = None):
     Примеры
     -------
     Пример 1: Использование заранее определенного набора цветов:
+
     >>> from hsip.rgb.labels import labels_to_rgb
     >>> labels = np.array([[0, 0, 1],
     ...                    [1, 2, 2]])
@@ -35,6 +36,7 @@ def labels_to_rgb(labels: np.ndarray, RGB_image: np.ndarray = None):
     (2, 3, 3)
 
     Пример 2: Использование существующего RGB-изображения для вычисления цветов:
+    
     >>> from hsip.rgb.labels import labels_to_rgb
     >>> labels = np.array([[0, 0, 1],
     ...                    [1, 2, 2]])

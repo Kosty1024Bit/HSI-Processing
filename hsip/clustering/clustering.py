@@ -238,40 +238,37 @@ class SCH():
 
 class HDBSCAN():
     '''
-    A wrapper class for the HDBSCAN clustering algorithm.
+    Обёртка для алгоритма кластеризации HDBSCAN.
 
-    The `HDBSCAN` class simplifies the usage of the HDBSCAN clustering algorithm by encapsulating 
-    the core functionality of the `hdbscan.HDBSCAN` class. It provides a streamlined interface for 
-    clustering data and retrieving cluster labels.
+    Класс `HDBSCAN` упрощает использование алгоритма кластеризации HDBSCAN, инкапсулируя основную функциональность класса `hdbscan.HDBSCAN`. Он предоставляет удобный интерфейс для кластеризации данных и получения меток кластеров.
 
-    Attributes
-    ----------
-    labels : np.ndarray or None
-        Cluster labels assigned to each data point after fitting the model. Initially set to `None`.
+    Атрибуты
+    --------
+    labels : np.ndarray или None
+        Метки кластеров, назначенные каждой точке данных после обучения модели. Изначально установлено в `None`.
     centroids : np.ndarray
-        2D array of shape `(n_clusters, n_features)` containing the centroids of the clusters.
+        Двумерный массив формы `(n_clusters, n_features)`, содержащий центроиды кластеров.
     medoids : np.ndarray
-        2D array of shape `(n_clusters, n_features)` containing the medoids of the clusters.
+        Двумерный массив формы `(n_clusters, n_features)`, содержащий медианы кластеров.
 
-    Methods
-    -------
+    Методы
+    ------
     fit(source_data: np.ndarray) -> np.ndarray
-        Fits the HDBSCAN clustering model to the provided data and computes cluster labels.
+        Обучает модель кластеризации HDBSCAN на предоставленных данных и вычисляет метки кластеров.
 
-    Parameters
-    ----------
-    min_cluster_size : int, optional
-        The minimum size of clusters. Default is 5.
-    min_samples : int, optional
-        The minimum number of samples in a neighborhood for a point to be considered a core point. 
-    cluster_selection_epsilon : float, optional
-        The distance threshold for cluster selection. Default is 0.0.
+    Параметры
+    ---------
+    min_cluster_size : int, по умолчанию=5
+        Минимальный размер кластеров.
+    min_samples : int, необязательный
+        Минимальное количество точек в окружении, чтобы точка считалась ядром кластера.
+    cluster_selection_epsilon : float, по умолчанию=0.0
+        Пороговое расстояние для выбора кластера.
 
-    Examples
+    Примеры
     --------
     >>> import numpy as np
-    >>> from hsip.clustering.clustering import HDBSCAN
-    >>> source_data = np.random.rand(100, 5)
+    >>> source_data = np.random.rand(100, 5)  # Пример данных
     >>> model = HDBSCAN(min_cluster_size=10)
     >>> labels = model.fit(source_data)
     >>> print(labels)
