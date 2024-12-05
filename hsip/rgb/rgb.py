@@ -78,6 +78,7 @@ def hsi_synthesize_rgb(spectral_data: np.ndarray, rgb_bands: list | np.ndarray =
 
     return rgb_image
 
+
 def simple_synthesize_rgb(band_data: list, sig_max_filt: float = None):
     '''
     Генерирует RGB-изображение из трех гиперспектральных полос.

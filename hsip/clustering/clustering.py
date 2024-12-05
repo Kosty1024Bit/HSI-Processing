@@ -294,3 +294,132 @@ class HDBSCAN():
         self.centroids, self.medoids = get_centroids_and_medoids(self.labels, source_data, 'euclidean')
 
         return self.labels
+
+
+class KMeans():
+    '''
+    Класс KMeans
+
+    Класс для кластеризации данных методом K-средних с возможностью задания начальных центроидов, настройки количества кластеров, выбора метрики и ограничения числа итераций.
+
+    Атрибуты
+    --------
+    labels : np.ndarray
+        Метки кластеров для каждого объекта в данных после выполнения алгоритма.
+    centroids : np.ndarray
+        2D массив формы `(n_clusters, n_features)`, содержащий центроиды кластеров.
+    medoids : np.ndarray
+        2D массив формы `(n_clusters, n_features)`, содержащий медианы кластеров.
+    n_clusters : int
+        Количество указанных кластеров.
+    metric : str
+        Метрика расстояния, используемая для расчёта расстояний. Доступные значения: `'euclidean'`, `'cosine'`.
+    verbose : bool
+        Флаг вывода прогресса выполнения алгоритма. По умолчанию `True`.
+    max_iter : int
+        Максимальное количество итераций алгоритма. По умолчанию `300`.
+
+    Методы
+    ------
+    fit(source_data)
+        Выполняет кластеризацию методом K-средних на входных данных.
+
+    Параметры
+    ---------
+    centroids : list | np.ndarray, optional
+        Начальные центроиды. Если не указаны, центроиды инициализируются случайным выбором из данных.
+    n_clusters : int, optional
+        Количество кластеров. Требуется, если не заданы центроиды.
+    metric : str, optional
+        Метрика для расчёта расстояний между точками и центроидами. Поддерживаются `'euclidean'` и `'cosine'`. По умолчанию `'euclidean'`.
+    verbose : bool, optional
+        Вывод информации о ходе выполнения. По умолчанию `True`.
+    max_iter : int, optional
+        Максимальное число итераций. По умолчанию `300`.
+
+    Пример
+    ------
+    Кластеризация данных с 3 кластерами:
+    
+    >>> import numpy as np
+    >>> data = np.random.rand(100, 2)  # Случайные точки
+    >>> kmeans = KMeans(n_clusters=3)
+    >>> labels = kmeans.fit(data)
+
+    Задание начальных центроидов:
+    
+    >>> initial_centroids = [[0.1, 0.1], [0.5, 0.5], [0.9, 0.9]]
+    >>> kmeans = KMeans(centroids=initial_centroids)
+    >>> labels = kmeans.fit(data)
+
+    Вывод центроидов:
+    
+    >>> print(kmeans.centroids)
+    '''
+    def __init__(self, centroids: list | np.ndarray = None, n_clusters: int = None, metric: str = 'euclidean', verbose: bool = True, max_iter: int = 300):
+        np.random.seed(42)
+        
+        if centroids is None and n_clusters is None:
+            raise ValueError('For KMeans you need to pass the number of clusters or the initial set of centroids.')
+        
+        self.labels = None
+        self.verbose = verbose
+            
+        self.centroids = None
+        self.medoids = None
+        
+        self.max_iter = max_iter
+        
+        if centroids is not None:
+            if isinstance(centroids, list):
+                self.centroids = np.array(centroids)
+            else:
+                self.centroids = centroids
+            self.n_clusters = centroids.shape[0]
+            
+        else:
+            self.n_clusters=n_clusters
+            
+        if metric not in ['euclidean', 'cosine']:
+            raise ValueError('Available metrics: euclidean, cosine')
+        self.metric = metric
+            
+    
+    def fit(self, source_data: np.ndarray):
+        '''
+        Выполняет кластеризацию методом K-средних на входных данных.
+
+        Параметры
+        ---------
+        source_data : np.ndarray
+            Массив данных для кластеризации. Размерность массива (n_samples, n_features), 
+            где n_samples — количество объектов, n_features — количество признаков.
+
+        Возвращаемое значение
+        ---------------------
+        np.ndarray
+            Массив меток кластеров для каждого объекта в данных. Размерность: (n_samples,).
+        '''
+        if self.centroids is None:
+            self.centroids = source_data[np.random.choice(range(len(source_data)), size=self.n_clusters, replace=False)]
+            self.centroids = np.array(self.centroids)
+    
+        for i in tqdm(range(self.max_iter), disable=not self.verbose): 
+            # Расчет расстояний между точками и центроидами
+            distances = cdist(source_data, self.centroids, metric=self.metric)
+
+            # Определение ближайшего центроида для каждой точки
+            self.labels = np.argmin(distances, axis=1)
+
+            # Обновление центроидов на основе средних значений в каждом кластере
+            new_centroids = np.array([source_data[self.labels==clust].mean(axis=0) for clust in range(self.n_clusters)])
+
+            # Проверка условия сходимости
+            if np.all(self.centroids == new_centroids):
+                break
+
+            self.centroids = new_centroids
+            
+            _, self.medoids = get_centroids_and_medoids(self.labels, source_data, metric)
+        
+        return self.labels

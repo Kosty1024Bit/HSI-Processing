@@ -1,1 +1,1 @@
-from .graphics import show_correlation_matrix
+from .graphics import show_correlation_matrix, show_image, show_curves
