@@ -1,1 +1,1 @@
-from .clustering import CosClust, SCH, HDBSCAN
+from .clustering import CosClust, SCH, HDBSCAN, KMeans
